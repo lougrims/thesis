@@ -1,0 +1,247 @@
+\documentclass{iitthesis}
+
+%   \documentclass[draft]{iitthesis}
+
+\usepackage[dvips]{graphicx}    % This package is used for Figures
+\usepackage{rotating}           % This package is used for landscape mode.
+\usepackage{epsfig}
+\usepackage{subfigure}          % These two packages, epsfig and subfigure, are used for creating subplots.
+% Packages are explained in the Help document.
+
+
+\begin{document}
+%%fakesection{TITLES AND INDEXES)
+%%% Declarations for Title Page %%%
+\title{How to Write Theses\\
+  With Two Line Titles}
+\author{Lou Grimaud}
+\degree{Master of Science}
+\dept{Mechanical, Materials, and Aerospace Engineering}
+\date{May 2014}
+%\copyrightnoticetrue      % crate copyright page or not
+\maketitle                % create title and copyright pages
+
+
+\prelimpages         % Settings of preliminary pages are done with \prelimpages command
+
+
+%%%  Acknowledgement %%%
+\begin{acknowledgement}     % acknowledgement environment, this is optional
+\par  This dissertation could not have been written without Dr. X
+who not only served as my supervisor but also encouraged and
+challenged me throughout my academic program. He and the other
+faculty members, Dr. Y and Dr. Z, guided me through the
+dissertation process, never accepting less than my best efforts. I
+thank them all.\\ \\ (Don't copy this sample text. Write your own
+acknowledgement.)
+%\input{acknowledgement.tex} % you need a separate acknowledgement.tex file to include it.
+\end{acknowledgement}
+
+
+% Table of Contents
+\tableofcontents
+\clearpage
+
+% List of Tables
+\listoftables
+
+\clearpage
+
+%List of Figures
+\listoffigures
+
+\clearpage
+
+%List of Symbols(optional)
+
+\listofsymbols
+ \SymbolDefinition{$\beta$}{probability of non-detecting bad data}
+ \SymbolDefinition{$\delta$}{Transition Coefficient Constant for the Design of Linear-Phase FIR Filters}
+ \SymbolDefinition{$\zeta$}{Reflection Coefficient Parameter}
+
+
+ \clearpage
+
+%%% END OF INDEXES %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Abstract %%%
+\begin{abstract}           % abstract environment, this is optional
+ \input{./Chapters/abstract.tex}  %you need a separate abstract.tex file to include it.
+\end{abstract}
+
+
+\textpages     % Settings of text-pages are done with \textpages command
+
+% Chapters are created with \Chapter{title} command
+\Chapter{INTRODUCTION}
+
+\input{Chapters/introduction.tex}
+\Chapter{Energy extraction optimization}
+
+\Section{2 DoF model}
+
+\Subsection{Non-dimensional equations of motion}
+
+\Subsection{Lift and drag models}
+
+\Section{Optimization process, cost function and constraints}
+
+\Subsection{General consideration on optimization}
+% Get some stuff from the MM544 class
+
+\Subsection{Cost function and constraints formulation}
+
+\Section{Results}
+
+\Subsection{Horizontal gusts}
+
+\Subsection{Vertical gusts}
+
+\Subsection{Combined gusts}
+
+
+
+\Subsection{Preliminary analysis of the results}
+
+\Chapter{Active Flow Control}
+
+\Section{Experimental setup}
+
+\Subsection{wind tunnel}
+
+\Subsection{Leading edge piezoelectric actuators}
+
+\par{NACA 009 airfoil with leading edge synthetic jets}
+
+\par{Driver for the piezoelectric elements}
+
+\Section{Single pulse response}
+
+\Subsection{Pulse design}
+% high frequency to frive the piezos (find paper for that)
+
+\Subsection{Influence of the pulse duration}
+
+\Subsection{Effect of pulse duration}
+
+\Subsection{Effect of pulse separation}
+
+\Subsection{Effect of pulse amplitude}
+
+
+\Section{Pulse train design}
+
+\Subsection{Design constraints}
+% bandwidth consideration
+
+\Subsection{Chosen parameter}
+
+\Subsection{Square input example}
+
+
+
+
+\Section{Experimental results for different input signals}
+
+\Subsection{continual and square input signals}
+
+\Subsection{triangle input signal}
+
+\Section{System identification}
+% discuss about dead time, lift reversal, asymmetry
+
+\Chapter{Modelization of the Lift coefficient under unsteady pitching motion)}
+
+%servo drive and stuff
+
+\Section{Theoretical background of the GK model}
+
+\Section{GK model adaptation}
+
+\Subsection{Steady list and stalling behavior}
+
+\Subsection{State variable approximation}
+
+\Section{Experimental Setup}
+
+\Section{Model validation}
+% put both sinusoidal and ``random'' motion
+
+\Chapter{Controller design and validation}
+
+\Section{Proof of concept for combining AFC with pitching}
+
+\Subsection{Open loop experimental results}
+
+\Subsection{Comparison with models output}
+
+\Section{Controller structure}
+
+\Subsection{AFC transfer function inverse}
+
+\Subsection{Controller input and objective discussion}
+
+\Subsection{Controller block choice}
+
+\Section{Results}
+
+\Subsection{Periodic pitching motion}
+
+\Subsection{Limited bandwidth random pitching motion}
+
+\Section{Discussion of the results}
+
+\Subsection{Bandwidth limitation}
+
+\Subsection{Precision issues}
+
+\Section{Possible improvements and feedback implementation}
+
+\Chapter{CONCLUSION}
+
+% \input{Conclusion.tex}
+
+\Section{Summary}
+
+This was just to create a sample section...
+
+\clearpage
+
+
+%
+% APPENDIX
+%
+
+% Do the settings of appendices with \appendix command
+\appendix
+
+% Then create each appendix using
+% \Appendix{title_of_appendix} command
+
+\Appendix{Table of Transition Coefficients for the Design of
+Linear-Phase FIR Filters}
+Your Appendix will go here !
+
+ \moretox
+
+  \Appendix{Name of your Second
+Appendix}
+
+Your second appendix text....
+
+\Appendix{Name of your Third Appendix}
+
+Your third appendix text....
+%
+% BIBLIOGRAPHY
+%
+% you have two options: 1) create bibliography manually,
+% 2) create bibliography automatically. See BibliographyHelp.pdf file for details.
+
+
+\bibliographystyle{plain}
+\bibliography{mybib}
+
+
+\end{document}  % end of document
