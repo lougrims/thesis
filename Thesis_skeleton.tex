@@ -12,8 +12,9 @@
 \begin{document}
 %%fakesection{TITLES AND INDEXES)
 %%% Declarations for Title Page %%%
-\title{How to Write Theses\\
-  With Two Line Titles}
+\title{Energy saving for UAV flight in gusting conditions \\
+through trajectory optimization \\
+and active flow control}
 \author{Lou Grimaud}
 \degree{Master of Science}
 \dept{Mechanical, Materials, and Aerospace Engineering}
@@ -77,23 +78,9 @@ acknowledgement.)
 \Chapter{INTRODUCTION}
 
 \input{Chapters/introduction.tex}
-\Chapter{Energy extraction optimization}
+\Chapter{Energy extraction optimization} \label{ch:Eni_extraction}
 
-\Section{2 DoF model}
-
-\Subsection{Non-dimensional equations of motion}
-
-\Subsection{Lift and drag models}
-
-\Section{Optimization process, cost function and constraints}
-
-\Subsection{General consideration on optimization}
-% Get some stuff from the MM544 class
-
-\Subsection{Cost function and constraints formulation}
-
-\Section{Results}
-
+\input{Chapters/Eni_extraction.tex}
 \Subsection{Horizontal gusts}
 
 \Subsection{Vertical gusts}
@@ -151,7 +138,7 @@ acknowledgement.)
 \Section{System identification}
 % discuss about dead time, lift reversal, asymmetry
 
-\Chapter{Modelization of the Lift coefficient under unsteady pitching motion)}
+\Chapter{Modelization of the Lift coefficient under unsteady pitching motion}
 
 %servo drive and stuff
 
