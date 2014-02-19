@@ -28,14 +28,18 @@ For this reason a controller capable of dealing with unsteady aerodynamics for a
 This means that the angle of attack will be close to the one when partial flow separation occurs.
 In the partially separated domain, it has been shown [REF NEEDED] that disturbing the shear layer leads to a sporadic increase in the lift coefficient.
 These lift changes can be significant enough to be able to improve the maximum attainable Cl by as much as 40\%.
-The disturbances can be created by a wide array of means. The goal is to change the path of the shape of the shear layer by applying a force on the flow. Mechanical retractable vortex generator \cite{Onera_afc}
+The disturbances can be created by a wide array of means. 
+The goal is to change the path of the shape of the shear layer by applying a force on the flow. 
+Mechanical retractable vortex generator \cite{Onera_afc}, combustion actuator [REF COMBUSTION ACTUATOR] , compressed air \cite{Williams_afc} and even Lorentz force actuator \cite{Dresden_afc} have been used to control the flow.
 
-Active flow control (AFC) provides a convenient mean to achieve the performances in both speed and range for the lift coefficient. 
+\par Active flow control (AFC) provides a convenient mean to achieve the performances in both speed and range for the lift coefficient. 
 
 \par There is no mention in the literature of real control system for the lift under varying pitch angle.
-Some success have been reported in manually synchronizing a sinusoidal pitching motion with a AFC input to keep the lift coefficient under control. 
-However these system only works for specific frequencies and waveforms. 
-The objective for this project was to investigate the possible performances of such a controller for arbitrary pitch input and to assess its limitations.
+Some success have been reported in manually synchronizing a sinusoidal pitching motion with a AFC input to keep the lift coefficient under control, however these system only works for specific frequencies and waveforms. 
+The objective for this project was to investigate the possible performances of such a controller for arbitrary pitch input and to assess its limitations in bandwidth, range and precision.
+
+\par The controller has to handle the interactions between unsteady pitching effect and active flow control.
+
 
 \Section{Previous investigations/literature review}
 
