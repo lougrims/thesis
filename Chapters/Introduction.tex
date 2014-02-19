@@ -2,28 +2,34 @@
 
 \Subsection{Dynamic soaring} \label{subsec:dynsoar}
 
-\par The main challenge electric small size unmanned aerial vehicle is the autonomy.
+\par The main challenge for electric small size unmanned aerial vehicle is the autonomy.
 Battery energy density is limited and can rapidly become a important part of the weight of vehicle.
-Since most of the energy is used by the electric engine for propulsion. 
+Since most of the energy is used by the electric engine for propulsion, optimizing the control laws and trajectory could have a dramatic effect on endurance. 
 With the progress in autonomous control software successful attempt have been made by Allen \cite{flight_test_soaring_NASA} and Edwards \cite{flight_test_soaring_NCU} to extract energy from natural updraft.
-These experiment has shown that a UAV can take advantage of localized vertical gusts naturally produced by thermal convection effects.
+These experiment has shown that a UAV can take advantage of localized vertical winds naturally produced by thermal convection effects.
 
 \par However, within an urban environment, such as the one mini and micro-UAV are dedicated to, the gust's profile is vastly different. [INSERT REF FROM NEXT DOORS LAB !!!]. 
 Wind blowing through an group of building produce turbulent conditions with both vertical and horizontal vortexes.
+These turbulences can reach speed representing a significant portion of micro-UAV's glide speed [GET REFERENCE FOR THATH].
 
-\par \emph{Figure from, PIV of the building array}
+\par \emph{Figure from, PIV of the building array, ask Bruno for it}
 
 \par In flow fields such as this the gusts encountered are both faster and more arguably more complex than the ones due to thermal convection.
-The resulting effect is that the optimal trajectory through such gust profile is different from the one shown developed previously by XXXXXXXXXXXXXX.
- 
+The resulting effect is that the optimal trajectory through such gust profile is widely different from the one shown developed previously by XXXXXXXXXXXXXX.
+
+
 \Subsection{Active flow control system}
 
-\par The dynamic soaring maneuvers required for energy extraction in environments described in \ref{subsec:dynsoar} necessity rapid variations of the lift coefficient. If these variations are performed by pitch change a number of unsteady effect are introduced and can produce some unexpected lift behaviors.
+\par The dynamic soaring maneuvers required for energy extraction in environments described in \ref{subsec:dynsoar} necessity rapid variations of the lift coefficient. 
+If these variations are performed by pitch change a number of unsteady effect are introduced and can produce some unexpected lift behaviors.
+For this reason a controller capable of dealing with unsteady aerodynamics for a fast pitching wing is needed.
 
 \par Moreover the lift range needs to be as wide as possible, as it is shown in chapter \ref{ch:Eni_extraction}.
 This means that the angle of attack will be close to the one when partial flow separation occurs.
 In the partially separated domain, it has been shown [REF NEEDED] that disturbing the shear layer leads to a sporadic increase in the lift coefficient.
-These lift changes can be significant enough to be able to improve the maximum attainable Cl by 40\%.
+These lift changes can be significant enough to be able to improve the maximum attainable Cl by as much as 40\%.
+The disturbances can be created by a wide array of means. The goal is to change the path of the shape of the shear layer by applying a force on the flow. Mechanical retractable vortex generator \cite{Onera_afc}
+
 Active flow control (AFC) provides a convenient mean to achieve the performances in both speed and range for the lift coefficient. 
 
 \par There is no mention in the literature of real control system for the lift under varying pitch angle.

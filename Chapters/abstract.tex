@@ -5,13 +5,13 @@ an active flow control system.
 \par The trajectory of a small UAV flying through wind gusts is simulated with a two degree of freedom model.
 The non-dimensional model is set to include vertical and horizontal gusts of varying amplitude and duration.
 From this model a optimization routine is performed in order to obtain the minimum gust amplitude to get a neutral energy trajectory.
-From these results, it is discovered that neutral energy flight is possible through relatively moderate gust amplitude.
-However the lift coefficient has to change very rapidly in order to perform these maneuver during short duration gusts. 
+With these results, it is discovered that neutral energy flight is possible through relatively moderate gust amplitude.
+However the lift coefficient has to change very rapidly in order to perform these maneuvers during short duration gusts. 
 
 \par To achieve this performances an active flow control system is investigated.
-Since this controller has to work at high angle of attack during rapid pitch changes, a model based on the Goman-Khrabrov paper \cite{GK} is used.
-With the help of a wing fitted with piezoelectric actuators different way of driving the leading edge synthetic jets are investigated.
+With the help of a wing fitted with piezoelectric actuators different ways of driving a set of leading edge synthetic jets are investigated.
 After defining the most suitable way to drive the actuator a controller is designed. 
 This controller aims to control the lift variations under unsteady pitching conditions.
+Since this controller has to work at high angle of attack during rapid pitch changes, a model based on the Goman-Khrabrov paper \cite{GK} is used to predict the unsteady lift coefficient.
 
 \par The resulting controller is shown to be able to greatly reduce lift oscillation and improve the available lift for partially separated flow under unsteady pitching conditions.
