@@ -8,23 +8,70 @@ With such assumption the equations of motion in the ground reference frame is :
 
 \begin{equation}
 	\begin{array}[c]{c}
-		\dot{x}= -L \cdot sin(\gamma) + D \cdot cos(\gamma) \\ 
-		\dot{y}= L \cdot cos(\gamma) - D \cdot sin(\gamma) - m \cdot g
+		\dot{x}= -L' \cdot sin(\gamma) + D' \cdot cos(\gamma) \\ 
+		\dot{z}= L' \cdot cos(\gamma) - D' \cdot sin(\gamma) - m \cdot g
 	\end{array}
 	\label{eqn:eqm}
 \end{equation}
 
 % should I include a figure with the reference frame, and angle definition?
 
-\par The lift and drag are defined are :
+\par The lift and drag are defined are: 
 
 \begin{equation}
 	\begin{array}[c]{c}
-		L= \frac{1}{2} \rho V^2 C_l \\ 
-		D= \frac{1}{2} \rho V^2 C_d
+		L'= \frac{1}{2} \rho V^2 C_l \\ 
+		D'= \frac{1}{2} \rho V^2 C_d 
 	\end{array}
 	\label{eqn:Cl_def}
 \end{equation}
+
+\par With $V$ being the relative wind for the vehicle.
+% do I need to include this kind basic stuff?
+
+\par Since this simulation is mainly concerned with Newtonian physics (rather than fluid phenomenons) the usual fluid dynamics non-dimensional variables make little sens.
+Here the equations are normalized by the optimal glide speed and $g$, the gravitational acceleration.
+This is more representative of the performances of the aircraft.
+
+\par Following Lissaman's \cite{lissaman2005wind} implementation of the equation of motion we define $V^*$ the optimal glide speed for the aircraft. This speed is achieved at the optimal lift to drag ratio of the aircraft.
+With $C_l^*$ and $C_d^*$ the angle of attack for the maximum lift to drag ratio and $\gamma$ the pitch angle with respect to the horizon the optimal glide speed is:
+
+\begin{equation}
+	\begin{array}[c]{c}
+		\gamma^*= - atan(\frac{C_l^*}{C_d^*}) \\
+		V^* = \sqrt{\frac{2mg}{\rho S (C_l^* cos(\gamma^*) - C_d^* sin(\gamma^*)}}
+	\end{array}
+	\label{eqn:glide_speed}
+\end{equation}
+
+\par From this we define $U$ and $W$ the non dimensional horizontal and vertical speed in the inertial reference frame.
+
+\begin{equation}
+	\begin{array}[c]{c}
+		U = \frac{\dot{x}}{V^*} \\
+		V= \frac{\dot{z}}{V^*}
+	\end{array}
+	\label{eqn:non_dim_speed}
+\end{equation}
+The time is normalized by $g / V^*$.
+
+\par Since the speed is seen as a fraction of the optimal glide speed it makes sens to also normalize the lift and drag coefficients by their corresponding values at the optimal lift to drag ratio.
+
+\begin{equation}
+	\begin{array}[c]{c}
+		L= \frac{C_l}{C_l^*} \\
+		D= \frac{C_d}{C_d^*} 
+	\end{array}
+	\label{eqn:non_dim_coef}
+\end{equation}
+
+\par Finally we introduce Q the dynamic pressure as:
+
+\begin{equation}
+	Q = \frac{L'}{MgL} = \frac{\frac{1}{2} \rho V^2 C_l C_l^* }{Mg}
+	\label{eqn:dynamic_pressure}
+\end{equation}
+
 
 \Subsection{Lift and drag models}
 
