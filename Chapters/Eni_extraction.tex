@@ -8,8 +8,8 @@ With such assumption the equations of motion in the ground reference frame is :
 
 \begin{equation}
 	\begin{array}[c]{c}
-		\dot{x}= -L' \cdot sin(\gamma) + D' \cdot cos(\gamma) \\ 
-		\dot{z}= L' \cdot cos(\gamma) - D' \cdot sin(\gamma) - m \cdot g
+		\ddot{x}= -L' \cdot sin(\gamma) + D' \cdot cos(\gamma) \\ 
+		\ddot{z}= L' \cdot cos(\gamma) - D' \cdot sin(\gamma) - m \cdot g
 	\end{array}
 	\label{eqn:eqm}
 \end{equation}
@@ -72,7 +72,15 @@ The time is normalized by $g / V^*$.
 	\label{eqn:dynamic_pressure}
 \end{equation}
 
+\par From there the equation of motion \ref{eqn:eqm} can be expressed as:
 
+\begin{equation}
+\begin{array}[c]{c}
+	\frac{dU}{dT}= -LQ \cdot sin(\gamma) + DQ \cdot cos(\gamma) \\ 
+	\frac{dW}{dT}= LQ \cdot cos(\gamma) - DQ \cdot sin(\gamma) - 1
+	\end{array}
+	\label{eqn:non_dim_eqm}
+\end{equation}
 \Subsection{Lift and drag models}
 
 \Section{Optimization process, cost function and constraints}
