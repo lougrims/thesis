@@ -81,7 +81,48 @@ The time is normalized by $g / V^*$.
 	\end{array}
 	\label{eqn:non_dim_eqm}
 \end{equation}
+
+With 
+
+\begin{equation}
+	\gamma = -atan(\frac{W}{U})
+	\label{eqn:gamma_def}
+\end{equation}
+
+\par Finally the remaining thing to consider is $Q$ the dynamic pressure. If we define the speed of the wind gust as $W_g$ and $U_g$ we can express:
+
+\begin{equation}
+	Q = V^2 = (W-W_g)^2 + (U-U_g)^2
+	\label{eqn:q_def}
+\end{equation}
+
+\par With these definitions we have the basic formulation of our non-dimensional equation of motions, normalized by the performances at the optimal glide trajectory in a calm environment.
+
 \Subsection{Lift and drag models}
+
+\par The normalized equation of motion \ref{eqn:non_dim_eqm} are not accounting for the fluid dynamic part of the flight.
+The most important factor for glide performance is the lift to drag ratio. 
+In his paper, Lissaman \cite{Lissaman2007neutral} is using a relatively simple quadratic model for the relationship between lift and drag:
+
+\begin{equation}
+	D=\frac{L}{2G}(1+L^2)
+	\label{eqn:Lissaman_G}
+\end{equation}
+
+[CHECK THIS EQUATION !!!!!]
+
+\par This simple model work relatively well for simple airfoil but is inadequate for more complex shapes.
+For various reasons, small UAVs tend to have non classical designs such as blended wing body or flying wing shapes.
+The advantages of these designs reside in bigger space available for the payload while keeping the drag low.
+However the flying wing airfoil profiles have very different lift to drag characteristics compared to more classical airfoils.
+
+\par To get the lift to drag curve of a typical flying wing a typical flying wing shape is tested in the XFLR5 software.
+
+\par [FIGURE OF THE UAV !!!]
+
+\par This software perform flow simulation over the aircraft with a panel based method. 
+The simulation is performed on a 
+
 
 \Section{Optimization process, cost function and constraints}
 
