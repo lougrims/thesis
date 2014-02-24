@@ -121,7 +121,14 @@ However the flying wing airfoil profiles have very different lift to drag charac
 \par [FIGURE OF THE UAV !!!]
 
 \par This software perform flow simulation over the aircraft with a panel based method. 
-The simulation is performed on a 
+The simulation is performed on a range of angle of attack from negative XXXX degrees to to separation at XXXX degree.
+Due to the presence of sharp edges at the tip of the wings the Reynolds number had to be limited to XXXX.
+At each angle of attack the software automatically computed the steady lift and drag coefficients.
+
+\par [GRAPH OF CL AND CD VS ALPHA !!!]
+
+\par This results, while being arguably more realistic than a simple quadratic approach, are still only considering quasi-steady change in the angle of attack.
+This limitation will be discussed more in depth in the result discussion section \ref{sec:results}.
 
 
 \Section{Optimization process, cost function and constraints}
@@ -129,8 +136,50 @@ The simulation is performed on a
 \Subsection{General consideration on optimization}
 % Get some stuff from the MM544 class
 
+\par The general principle for the optimization routines resides in defining a so called ``cost function'' that will represent a quantity we want to minimize.
+While the algorithm tries to minimize this scalar, a series of constraints have to be respected. 
+These constraints can represent physical limitations or system requirements.
+The cost and constraints are expressed as functions of a set of system state variables.
+The state variables can represent temporal or spatial values.
+The optimization is performed in a sequential fashion where different algorithm are used to step from a set of values for the state variables to another. 
+
+\par Optimization routines are divided into two families. 
+
+\par The first method is the gradient method, it requires a good knowledge of the physics behind the problem.
+The cost function as well as the constraints have to be explicitly defined.
+In this method the gradient of the cost function and the constraints is used to determine the direction of the next step in the optimization.
+Different algorithm are used to chose the step size, and sometime the direction of the previous step can influence the current step.
+The gradients for either the cost function or the constraints do not have to be explicitly defined as modern optimization routines, such as the one included in Matlab, can perform numerical gradient estimation.
+However putting user calculated gradient into the routine will significantly speed up the overall calculation.
+
+\par The second method is using the so called ``evolutionary algorithms''. 
+This method relies a lot less on knowing the underlying physical phenomenon.
+Its basic principle is a ``try and see'' process.
+Random changes are performed on the state variables and their effects on the cost function are assessed.
+The best steps are selected as a starting point for the next generation.
+While with this method each step is a lot less computation intensive than with the previous method, the number of steps is a lot higher.
+
+\par The first method has been used in this optimization as it provides more insight on the physics behind the problem.
+However it should be noted that the resulting ``optimal'' point is usually only assured to be \emph{a local} minimum of the cost function.
+Several different starting states should be tested to ensure that the optimization converges toward a reasonable minimum.
+
+
 \Subsection{Cost function and constraints formulation}
 
-\Section{Results}
+\par Our problem here consists in optimizing the trajectory in a gusting environment to minimize energy lose.
+The most obvious cost function would be something like
+
+\begin{equation}
+	- \frac{1}{2}m{V(T_f)}^2 - gX(T_f)
+	\label{eqn:eni_cost_fun}
+\end{equation}
+
+which would be equivalent to maximizing the total energy at the end of the gust.
+However after testing this has shown to leave to much freedom to the algorithm. 
+As a result the local minimum found are the result of trajectories such as very steep dives, clearly far from the optimum.
+
+\par Once again we refer to the Lissaman paper \cite{Lissaman2007neutral} and chose, instead of minimizing energy loss for a given gust condition, to find the minimum gust amplitude to satisfy an energy neutral trajectory over the gust period.
+
+\Section{Results} \label{sec:results}
 
 
