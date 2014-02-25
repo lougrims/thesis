@@ -105,7 +105,7 @@ The most important factor for glide performance is the lift to drag ratio.
 In his paper, Lissaman \cite{Lissaman2007neutral} is using a relatively simple quadratic model for the relationship between lift and drag:
 
 \begin{equation}
-	D=\frac{L}{2G}(1+L^2)
+	D=\frac{Q}{2G}(1+L^2)
 	\label{eqn:Lissaman_G}
 \end{equation}
 
@@ -164,8 +164,38 @@ However it should be noted that the resulting ``optimal'' point is usually only 
 Several different starting states should be tested to ensure that the optimization converges toward a reasonable minimum.
 
 
-\Subsection{Cost function and constraints formulation}
+\Subsection{State vector and constraints formulation}
 
+\par In our case a gust cycle of duration $T_f$ is divided into $N$ discrete instants $T_i$ (usually around 30).
+At each of these points we need to know the state of the vehicle.
+Since we are considering a two degree of freedom model the two positions $X$, $Z$ and speed $U$, $W$ variables are the most simple choices.
+However this is not enough to describe the system completely, we also need to know the lift available and where on the lift vs drag curve we are.
+Theres is two possible choices for this.
+If you consider only the quasi steady part, the angle of attack $\alpha$ seems obvious.
+However since the drag is a function of the lift (the inverse is not true), it is possible to use only the $L$ to define our point on the lift to drag curve.
+This allows us to use one less variable.
+
+\par With this five variables defined at each considered time points the state vector look like:
+
+\begin{equation}
+	x= 
+	\begin{bmatrix}
+		\cdots \\
+		X_i \\
+		Z_i \\
+		U_i \\
+		W_i \\
+		L_i \\
+		\cdots \\
+	\end{bmatrix}
+	\quad i \in [1,N]
+	\label{eqn:state_vector}
+\end{equation}
+
+
+
+
+\Subsection{Cost function}
 \par Our problem here consists in optimizing the trajectory in a gusting environment to minimize energy lose.
 The most obvious cost function would be something like
 
