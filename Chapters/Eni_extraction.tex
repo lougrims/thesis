@@ -118,7 +118,16 @@ However the flying wing airfoil profiles have very different lift to drag charac
 
 \par To get the lift to drag curve of a typical flying wing a typical flying wing shape is tested in the XFLR5 software.
 
-\par [FIGURE OF THE UAV !!!]
+%\par [FIGURE OF THE UAV !!!]
+\begin{figure}[ht]
+	\begin{center}
+  \scalebox{0.5}            % rescale the figure by a factor of 0.8
+  {\includegraphics{./Figures/UAV.png}}
+	\end{center}
+	\caption{Flying wing UAV shape used in XLFR5}
+	\label{fig:UAV}
+\end{figure}
+
 
 \par This software perform flow simulation over the aircraft with a panel based method. 
 The simulation is performed on a range of angle of attack from negative XXXX degrees to to separation at XXXX degree.
@@ -164,6 +173,23 @@ However it should be noted that the resulting ``optimal'' point is usually only 
 Several different starting states should be tested to ensure that the optimization converges toward a reasonable minimum.
 
 
+
+\Subsection{Cost function}
+\par Our problem here consists in optimizing the trajectory in a gusting environment to minimize energy lose.
+The most obvious cost function would be something like
+
+\begin{equation}
+	- \frac{1}{2}m{V(T_f)}^2 - gX(T_f)
+	\label{eqn:eni_cost_fun}
+\end{equation}
+
+Which would be equivalent to maximizing the total energy at the end of the gust.
+However after testing this has shown to leave to much freedom to the algorithm. 
+As a result the local minimum found are the result of trajectories such as very steep dives, clearly far from the optimum.
+
+\par Once again we refer to the Lissaman paper \cite{Lissaman2007neutral} and chose, instead of minimizing energy loss for a given gust condition, to find the minimum gust amplitude to satisfy an energy neutral trajectory over the gust period.
+This means that the cost function is the wind gust amplitude, which will have to be added to the state vector in order to be explicit, and that the neutral energy trajectory will have to be added to the constraints
+
 \Subsection{State vector and constraints formulation}
 
 \par In our case a gust cycle of duration $T_f$ is divided into $N$ discrete instants $T_i$ (usually around 30).
@@ -187,28 +213,20 @@ This allows us to use one less variable.
 		W_i \\
 		L_i \\
 		\cdots \\
+		W_g
 	\end{bmatrix}
 	\quad i \in [1,N]
 	\label{eqn:state_vector}
 \end{equation}
 
+\par All this variables have to be constrained to achieve a realistic trajectory.
+The first and most obvious constrain is done with the equation of motion \ref{eqn:non_dim_eqm}.
+This equation has to be changed from a continuous differential equation to a discrete equation.
+This is done by using the Simpson's 1/3rd rule.
+The equation of motion then becomes:
 
 
 
-\Subsection{Cost function}
-\par Our problem here consists in optimizing the trajectory in a gusting environment to minimize energy lose.
-The most obvious cost function would be something like
-
-\begin{equation}
-	- \frac{1}{2}m{V(T_f)}^2 - gX(T_f)
-	\label{eqn:eni_cost_fun}
-\end{equation}
-
-which would be equivalent to maximizing the total energy at the end of the gust.
-However after testing this has shown to leave to much freedom to the algorithm. 
-As a result the local minimum found are the result of trajectories such as very steep dives, clearly far from the optimum.
-
-\par Once again we refer to the Lissaman paper \cite{Lissaman2007neutral} and chose, instead of minimizing energy loss for a given gust condition, to find the minimum gust amplitude to satisfy an energy neutral trajectory over the gust period.
 
 \Section{Results} \label{sec:results}
 
