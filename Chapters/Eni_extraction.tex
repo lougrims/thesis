@@ -20,20 +20,21 @@ With such assumption the equations of motion in the ground reference frame is :
 
 \begin{equation}
 	\begin{array}[c]{c}
-		L'= \frac{1}{2} \rho V^2 C_l \\ 
-		D'= \frac{1}{2} \rho V^2 C_d 
+		L'= \frac{1}{2} \rho v^2 C_l \\ 
+		D'= \frac{1}{2} \rho v^2 C_d 
 	\end{array}
 	\label{eqn:Cl_def}
 \end{equation}
 
-\par With $V$ being the relative wind for the vehicle.
+\par With $v$ being the relative wind for the vehicle.
 % do I need to include this kind basic stuff?
 
 \par Since this simulation is mainly concerned with Newtonian physics (rather than fluid phenomenons) the usual fluid dynamics non-dimensional variables make little sens.
 Here the equations are normalized by the optimal glide speed and $g$, the gravitational acceleration.
 This is more representative of the performances of the aircraft.
 
-\par Following Lissaman's \cite{lissaman2005wind} implementation of the equation of motion we define $V^*$ the optimal glide speed for the aircraft. This speed is achieved at the optimal lift to drag ratio of the aircraft.
+\par Following Lissaman's \cite{lissaman2005wind} implementation of the equation of motion we define $V^*$ the optimal glide speed for the aircraft. 
+This speed is achieved at the optimal lift to drag ratio of the aircraft.
 With $C_l^*$ and $C_d^*$ the angle of attack for the maximum lift to drag ratio and $\gamma$ the pitch angle with respect to the horizon the optimal glide speed is:
 
 \begin{equation}
@@ -88,6 +89,8 @@ With
 	\gamma = -atan(\frac{W-W_g}{U-U_g})
 	\label{eqn:gamma_def}
 \end{equation}
+
+$W_g$ and $U_g$ are the vertical and horizontal wind speeds in the inertial reference frame.
 
 \par Finally the remaining thing to consider is $Q$ the dynamic pressure. If we define the speed of the wind gust as $W_g$ and $U_g$ we can express:
 
@@ -224,6 +227,10 @@ This is done by using the Simpson's 1/3rd rule.
 The equation of motion then becomes:
 
 \par [SIMPSON EQM !!!]
+\begin{equation}
+	x_{k+1}=x_k + \frac{1}{6} \dot{x_k} + 4 \dot{
+	\label{<++>}
+\end{equation}<++>
 
 \par Another constraint is on the neutral energy loop condition.
 To account for that the initial and final $Z$ values are fixed at zero and the initial and final vertical and horizontal speeds are set to be equal.
