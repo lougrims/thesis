@@ -45,7 +45,7 @@ With $C_l^*$ and $C_d^*$ the angle of attack for the maximum lift to drag ratio 
 	\label{eqn:glide_speed}
 \end{equation}
 
-\par From this we define $U$ and $W$ the non dimensional horizontal and vertical speed in the inertial reference frame.
+\par From we define $U$ and $W$ the non dimensional horizontal and vertical speed in the inertial reference frame.
 
 \begin{equation}
 	\begin{array}[c]{c}
@@ -196,13 +196,13 @@ This means that the cost function is the wind gust amplitude, which will have to
 \par In our case a gust cycle of duration $T_f$ is divided into $N$ discrete instants $T_i$ (usually around 30).
 At each of these points we need to know the state of the vehicle.
 Since we are considering a two degree of freedom model the two positions $X$, $Z$ and speed $U$, $W$ variables are the most simple choices.
-However this is not enough to describe the system completely, we also need to know the lift available and where on the lift vs drag curve we are.
+However this is not enough to describe the system completely, we also need to know what our input is going to be, in this case the lift available and where on the lift vs drag curve we are.
 Theres is two possible choices for this.
 If you consider only the quasi steady part, the angle of attack $\alpha$ seems obvious.
 However since the drag is a function of the lift (the inverse is not true), it is possible to use only the $L$ to define our point on the lift to drag curve.
 This allows us to use one less variable.
 
-\par With this five variables defined at each considered time points the state vector look like:
+\par With this five variables defined at each considered time points the state and input vector look like:
 
 \begin{equation}
 	x= 
@@ -217,20 +217,42 @@ This allows us to use one less variable.
 		W_g
 	\end{bmatrix}
 	\quad i \in [1,N]
-	\label{eqn:state_vector}
+	\label{eqn:big_vector}
 \end{equation}
 
 \par All this variables have to be constrained to achieve a realistic trajectory.
 The first and most obvious constrain is done with the equation of motion \ref{eqn:non_dim_eqm}.
 This equation has to be changed from a continuous differential equation to a discrete equation.
-This is done by using the Simpson's 1/3rd rule.
-The equation of motion then becomes:
+This is done by using the Simpson's 1/3rd rule as derived by Zhao \cite{zhao2004optimal}.
 
-\par [SIMPSON EQM !!!]
+In order to satisfy the equations of motion we need to define the state variable at the time $T_i$:
+
 \begin{equation}
-	x_{k+1}=x_k + \frac{1}{6} \dot{x_k} + 4 \dot{x_k}
-	\label{<++>}
-\end{equation}<++>
+	y_i= \begin{bmatrix}
+		X_i \\
+		Z_i \\
+		U_i \\
+		W_i 
+	\end{bmatrix}
+	\label{eqn:state_i}
+\end{equation}
+
+Then with
+
+\begin{equation}
+	\begin{array}[c]{c}
+		y_m= \frac{1}{2}(y_k + Y_{k+1}) - \frac{1}{8}(\dot{y_{k+1}} - \dot{y_k})\delta t \\
+		L_m=\frac{1}{2}(L_i + L_{i+1})
+	\end{array}
+	\label{eqn:simpson_middle}
+\end{equation}
+
+The condition to satisfy the equation of motion becomes
+
+\begin{equation}
+	0=y_{k+1} - y_k - \frac{1}{6}( \dot{y_k} + 4 \dot{y_m} + \dot{y_{k+1}})\delta t
+	\label{eqn:simpson}
+\end{equation}
 
 \par Another constraint is on the neutral energy loop condition.
 To account for that the initial and final $Z$ values are fixed at zero and the initial and final vertical and horizontal speeds are set to be equal.
