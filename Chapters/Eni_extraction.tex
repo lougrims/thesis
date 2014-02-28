@@ -237,7 +237,7 @@ In order to satisfy the equations of motion we need to define the state variable
 	\label{eqn:state_i}
 \end{equation}
 
-Then with
+Then with $\dot{y_i}$ the derivative of the state variables, given by the equation of motion \ref{eqn:non_dim_eqm} and:
 
 \begin{equation}
 	\begin{array}[c]{c}
@@ -250,7 +250,7 @@ Then with
 The condition to satisfy the equation of motion becomes
 
 \begin{equation}
-	0=y_{k+1} - y_k - \frac{1}{6}( \dot{y_k} + 4 \dot{y_m} + \dot{y_{k+1}})\delta t
+	0=y_{k+1} - y_k - \frac{1}{6}( \dot{y_k} + 4 \dot{y_m} + \dot{y_{k+1}})\delta t \quad \forall i \in [1,N-1]
 	\label{eqn:simpson}
 \end{equation}
 
@@ -279,7 +279,7 @@ The limit on the load can conveniently be expressed as:
 	\label{eqn:load_constraint}
 \end{equation}
 
-With $g_nax$ the maximum load in Gs.
+With $g_max$ the maximum load in Gs.
 
 % did I actually used that in my code? I think it wasn't necessary.
 
@@ -295,6 +295,31 @@ As it will be seen in section \ref{sec:results} the value of $C_l^{max}$ has a p
 \par It is also sometime advisable to limit $\gamma$ in the $\pm 90^{\circ}$ range to prevent loops and backtracking.
 
 
+\Subsection{Matlab optimization function}
+
+\par Matlab offers several ways of doing optimization.
+Since this scripting language allows for easy parallelization, it is relatively painless to implement your own optimization code.
+However in most cases, ``classical'' optimization problems, such as weight reduction, topology optimization or mechanism design are reducible to a set of linear  equations and constraints.
+In our case the equations of motions as well as the lift and drag properties are not linear at all, and trying to linearize this problem would make any solution meaningless.
+For this reason a already existing optimization function has been chosen.
+
+\par Since non linear optimizations like that are a computation intensive process dedicated tools have been developed to tackle the problem.
+SNOP is one of these software and seems to be widely use.
+Another tool appearing in the literature is a Fortran library called NPSOL.
+Since our laboratory's language of predilection is Matlab, the optimization toolbox from MathWorks will be used.
+
+\par The optimization toolbox provides with a helpful function for non-linear optimization called \emph{fmincon()}.
+This function needs an initial guest for the $x$ vector.
+When using this function the initial guest has quite a big influence on the converging speed and on the local optimal solution found.
+To account for that several educated guesses were made and tested for the different types of the wind profiles and gusts duration.
+These guesses are refined as new results are obtained.
+
+
 \Section{Results} \label{sec:results}
 
+\Subsection{Typical trajectories}
+
+\Subsection{Influence of the gust duration}
+
+\Subsection{Maximum lift available effects}
 
