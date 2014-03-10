@@ -189,7 +189,7 @@ However after testing this has shown to leave to much freedom to the algorithm.
 As a result the local minimum found are the result of trajectories such as very steep dives, clearly far from the optimum.
 
 \par Once again we refer to the Lissaman paper \cite{Lissaman2007neutral} and chose, instead of minimizing energy loss for a given gust condition, to find the minimum gust amplitude to satisfy an energy neutral trajectory over the gust period.
-This means that the cost function is the wind gust amplitude, which will have to be added to the state vector in order to be explicit, and that the neutral energy trajectory will have to be added to the constraints
+This means that the cost function is the wind gust amplitude $W_a$, which will have to be added to the state vector in order to be explicit, and that the neutral energy trajectory will have to be added to the constraints
 
 \Subsection{State vector and constraints formulation}
 
@@ -214,7 +214,7 @@ This allows us to use one less variable.
 		W_i \\
 		L_i \\
 		\cdots \\
-		W_g
+		W_a
 	\end{bmatrix}
 	\quad i \in [1,N]
 	\label{eqn:big_vector}
@@ -319,7 +319,45 @@ These guesses are refined as new results are obtained.
 
 \Subsection{Typical trajectories}
 
+\par We have three cases of wind gusts:
+
+\begin{equation}
+	\begin{array}[c]{c}
+		U_g=0 \\ 
+		W_g= W_a sin(2 \pi \frac{T}{T_g})
+	\end{array}
+	\label{eqn:vertical_gust}
+\end{equation}
+
+
+\begin{equation}
+	\begin{array}[c]{c}
+		U_g= W_a cos(2 \pi \frac{T}{T_g}) \\
+		W_g= W_a sin(2 \pi \frac{T}{T_g})
+	\end{array}
+	\label{eqn:compound_gust}
+\end{equation}
+
+
+\begin{equation}
+	\begin{array}[c]{c}
+		U_g= W_a cos( 2 \pi \frac{T}{T_g}) \\
+		W_g= 0
+	\end{array}
+	\label{eqn:horizontal_gust}
+\end{equation}
+
+\par The first 
+
 \Subsection{Influence of the gust duration}
 
+
+\begin{figure}[ht]
+	\begin{center}
+	{\includegraphics{./Figures/Vertical_wind_Tg4_Wg0p21.eps}}
+	\end{center}
+	\caption{Flying wing UAV shape used in XLFR5}
+	\label{fig:deUAV}
+\end{figure}
 \Subsection{Maximum lift available effects}
 
