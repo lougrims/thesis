@@ -1,8 +1,7 @@
 \Section{2 DoF model}
 
 \Subsection{Non-dimensional equations of motion}
-
-\par The model chosen for this simulation is a simple two degree of freedom, two dimension, point mass model. 
+The model chosen for this simulation is a simple two degree of freedom, two dimension, point mass model. 
 The aircraft is assumed to be a glider to simplify the optimization routine. 
 With such assumption the equations of motion in the ground reference frame is :
 
@@ -103,8 +102,7 @@ $W_g$ and $U_g$ are the vertical and horizontal wind speeds in the inertial refe
 \par With these definitions we have the basic formulation of our non-dimensional equation of motions, normalized by the performances at the optimal glide trajectory in a calm environment.
 
 \Subsection{Lift and drag models}
-
-\par The normalized equation of motion \ref{eqn:non_dim_eqm} are not accounting for the fluid dynamic part of the flight.
+The normalized equation of motion \ref{eqn:non_dim_eqm} are not accounting for the fluid dynamic part of the flight.
 The most important factor for glide performance is the lift to drag ratio. 
 In his paper, Lissaman \cite{Lissaman2007neutral} is using a relatively simple quadratic model for the relationship between lift and drag:
 
@@ -157,8 +155,7 @@ At each angle of attack the software automatically computed the steady lift and 
 This limitation will be discussed more in depth in the result discussion section \ref{sec:results}.
 
 \Subsection{Wind profiles}
-
-\par Most of the studies done on dynamic soaring has either been done with vertical wind gusts or thermal updraft, or horizontal wind gradient foxed in time.
+Most of the studies done on dynamic soaring has either been done with vertical wind gusts or thermal updraft, or horizontal wind gradient foxed in time.
 In this optimization procedure we chose to consider three different wind profiles made out of first order sinusoidal gusts.
 
 \par Our first gust profile is a simple vertical gust.
@@ -197,8 +194,7 @@ Moreover we introduce $\phi$, a phase difference between the two component of th
 
 \Subsection{General consideration on optimization}
 % Get some stuff from the MM544 class
-
-\par The general principle for the optimization routines resides in defining a so called ``cost function'' that will represent a quantity we want to minimize.
+The general principle for the optimization routines resides in defining a so called ``cost function'' that will represent a quantity we want to minimize.
 While the algorithm tries to minimize this scalar, a series of constraints have to be respected. 
 These constraints can represent physical limitations or system requirements.
 The cost and constraints are expressed as functions of a set of system state variables.
@@ -228,7 +224,7 @@ Several different starting states should be tested to ensure that the optimizati
 
 
 \Subsection{Cost function}
-\par Our problem here consists in optimizing the trajectory in a gusting environment to minimize energy lose.
+Our problem here consists in optimizing the trajectory in a gusting environment to minimize energy lose.
 The most obvious cost function would be something like
 
 \begin{equation}
@@ -244,8 +240,7 @@ As a result the local minimum found are the result of trajectories such as very 
 This means that the cost function is the wind gust amplitude, which will have to be added to the state vector in order to be explicit, and that the neutral energy trajectory will have to be added to the constraints
 
 \Subsection{State vector and constraints formulation}
-
-\par In our case a gust cycle of duration $T_f$ is divided into $N$ discrete instants $T_i$ (usually between 31 and 101).
+In our case a gust cycle of duration $T_f$ is divided into $N$ discrete instants $T_i$ (usually between 31 and 101).
 At each of these points we need to know the state of the vehicle.
 Since we are considering a two degree of freedom model the two positions $X$, $Z$ and speed $U$, $W$ variables are the most simple choices.
 However this is not enough to describe the system completely, we also need to know what our input is going to be, in this case the lift available and where on the lift vs drag curve we are.
@@ -348,8 +343,7 @@ As it will be seen in section \ref{sec:results} the value of $C_l^{max}$ has a p
 
 
 \Subsection{Matlab optimization function}
-
-\par Matlab offers several ways of doing optimization.
+Matlab offers several ways of doing optimization.
 Since this scripting language allows for easy parallelization, it is relatively painless to implement your own optimization code.
 However in most cases, ``classical'' optimization problems, such as weight reduction, topology optimization or mechanism design are reducible to a set of linear  equations and constraints.
 In our case the equations of motions as well as the lift and drag properties are not linear at all, and trying to linearize this problem would make any solution meaningless.
@@ -370,8 +364,7 @@ These guesses are refined as new results are obtained.
 \Section{Results} \label{sec:results}
 
 \Subsection{Typical trajectories}
-
-\par The first step is to validate the code implemented here against previous results. 
+The first step is to validate the code implemented here against previous results. 
 Even if the lift and drag profiles are different from Lissaman's assumptions a similar case is optimized.
 The gust duration is set to be $T_g=4 T+$, for a purely vertical gust.
 Since it is only a validation test the same lift and drag characteristics are used. Equation \ref{eqn:Lissaman_G} plugged into the equation of motion part of the code. An optimal lift to drag ratio of $G_{max}=20$ is chosen, as seen in the original Lissaman paper \cite{Lissaman2007neutral}.
@@ -488,19 +481,18 @@ Since the quadratic lift to drag profile isn't that different to the UAV one, th
 
 
 \Subsection{Influence of the gust duration}
+From our literature review it seems like most of the studies done on gusting winds has been conducted on gusts duration greater than $2T+$.
+Considering shorter gusts seems unreasonable of you only consider quasi steady aerodynamics, a $2T+$ gust is about 2 seconds for vehicle flying 10 m/s.
+However since the purpose this research is to extend the energy extraction envelope, such cases should be considered.
 
 \begin{figure}[h!]
 	\begin{center}
-		\scalebox{0.7}
+		\scalebox{0.8}
 		{\includegraphics{./Figures/Vertical_gust_amplitude_vs_duration.eps}}
 	\end{center}
 	\caption{Influence of gust duration on the minimum gust amplitude for vertical gusts}
 	\label{fig:vertical_amplitude_duration}
 \end{figure}
-
-\par From our literature review it seems like most of the studies done on gusting winds has been conducted on gusts duration greater than $2T+$.
-Considering shorter gusts seems unreasonable of you only consider quasi steady aerodynamics, a $2T+$ gust is about 2 seconds for vehicle flying 10 m/s.
-However since the purpose this research is to extend the energy extraction envelope, such cases should be considered.
 
 \FloatBarrier
 
@@ -512,7 +504,7 @@ However the actual minimum gust amplitude required for neutral energy flight has
 
 \begin{figure}[h!]
 	\begin{center}
-		\scalebox{0.7}
+		\scalebox{0.8}
 		{\includegraphics{./Figures/combined_gust_amplitude_vs_duration.eps}}
 	\end{center}
 	\caption{Influence of gust duration on the minimum gust amplitude for combined gusts}
@@ -520,15 +512,15 @@ However the actual minimum gust amplitude required for neutral energy flight has
 \end{figure}
 
 
+\FloatBarrier
+
 \par This time no minimum is found.
 This seems to reinforce the idea that the losses are mainly due to the energy dissipated by the drag since in this case the drag influence is mitigated by the horizontal component of the combined gust.
 
-\FloatBarrier
 % get some commentary there
 
 \Subsection{Influence of phase variation in the combined gust case}
-
-\par For combined vertical and horizontal gusts another parameter can be changed.
+For combined vertical and horizontal gusts another parameter can be changed.
 So far the phase between the two components of the gust has been constant.
 
 \par For this we define the phase $\phi$ as:
@@ -545,7 +537,7 @@ After Simulations are performed by 10 degrees steps with the following results.
 
 \begin{figure}[ht]
 	\begin{center}
-		\scalebox{0.7}
+		\scalebox{0.8}
 		{\includegraphics{./Figures/combined_gust_amplitude_vs_phase.eps}}
 	\end{center}
 	\caption{Influence of the phase between the component of the combined gust}
@@ -565,8 +557,7 @@ One possible explanation for this is that at some point the inertia is too great
 \Subsection{Maximum lift available effects}
 
 \Subsection{Additional remarks}
-
-\par As noticed by Lissaman the exact shape of the lift input isn't really important.
+As noticed by Lissaman the exact shape of the lift input isn't really important.
 In his paper he approximated the input with a simple sinusoidal with amplitude and phase control, similar inputs in this simulation have produced minimum gust amplitude similar to the previous results.
 This raises the hope that even very basic controllers should be able to improve UAV endurance.
 
