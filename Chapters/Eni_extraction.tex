@@ -489,18 +489,20 @@ Since the quadratic lift to drag profile isn't that different to the UAV one, th
 
 \Subsection{Influence of the gust duration}
 
-\par From our literature review it seems like most of the studies done on gusting winds has been conducted on gusts duration greater than $2T+$.
-Considering shorter gusts seems unreasonable of you only consider quasi steady aerodynamics, a $2T+$ gust is about 2 seconds for vehicle flying 10 m/s.
-However since the purpose this research is to extend the energy extraction envelope, such cases should be considered.
-
-\begin{figure}[ht]
+\begin{figure}[h!]
 	\begin{center}
-		\scalebox{0.8}
-		{\includegraphics{./Figures/vertical_gust_amplitude_vs_duration.eps}}
+		\scalebox{0.7}
+		{\includegraphics{./Figures/Vertical_gust_amplitude_vs_duration.eps}}
 	\end{center}
 	\caption{Influence of gust duration on the minimum gust amplitude for vertical gusts}
 	\label{fig:vertical_amplitude_duration}
 \end{figure}
+
+\par From our literature review it seems like most of the studies done on gusting winds has been conducted on gusts duration greater than $2T+$.
+Considering shorter gusts seems unreasonable of you only consider quasi steady aerodynamics, a $2T+$ gust is about 2 seconds for vehicle flying 10 m/s.
+However since the purpose this research is to extend the energy extraction envelope, such cases should be considered.
+
+\FloatBarrier
 
 \par Interestingly shorter gusts require less wind amplitude than the long ones.
 This seems to indicate that most of the lost energy is due to the non-conservative drag force and not due to the downwind effects.
@@ -508,20 +510,20 @@ However the actual minimum gust amplitude required for neutral energy flight has
 
 \par A similar graph can be made for combined gusts.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 	\begin{center}
-		\scalebox{0.8}
+		\scalebox{0.7}
 		{\includegraphics{./Figures/combined_gust_amplitude_vs_duration.eps}}
 	\end{center}
 	\caption{Influence of gust duration on the minimum gust amplitude for combined gusts}
 	\label{fig:combined_amplitude_duration}
 \end{figure}
 
-\FloatBarrier
 
 \par This time no minimum is found.
 This seems to reinforce the idea that the losses are mainly due to the energy dissipated by the drag since in this case the drag influence is mitigated by the horizontal component of the combined gust.
 
+\FloatBarrier
 % get some commentary there
 
 \Subsection{Influence of phase variation in the combined gust case}
@@ -543,7 +545,7 @@ After Simulations are performed by 10 degrees steps with the following results.
 
 \begin{figure}[ht]
 	\begin{center}
-		\scalebox{0.8}
+		\scalebox{0.7}
 		{\includegraphics{./Figures/combined_gust_amplitude_vs_phase.eps}}
 	\end{center}
 	\caption{Influence of the phase between the component of the combined gust}
