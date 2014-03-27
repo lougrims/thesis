@@ -1,0 +1,39 @@
+\Section{The Goman and Khrabrov model}
+
+\Subsection{Motivation}
+In their 1994 paper entitled ``State-Space Representation of Aerodynamic Characteristics of an Aircraft at High Angle of Attack'' \cite{GK} Goman and Khrabrov introduce a new model for caracterizing the lift and moment coefficients for slender delta wings.
+Their goal was to study the stability of delta wing fighter jets where maneuverability is important, and to link it to physical fluid dynamic phenomenons such as vortex breakdown or flow separation.
+
+\par The classical stability analysis method relies on a Taylor series expansion of the aerodynamic coefficients.
+% maybe put an example here.
+This linear representation is relatively accurate for fully attached flow but the model breaks down at higher angle of attack when separation occurs.
+In the semi separated region the aerodynamic effects are mainly driven by the degree of flow separation happening on the wing.
+For this reason they chose to define $C_l$ as a function of $\alpha$, the angle of attack, and a state variable $x$ representing the degree of separation.
+This degree of separation can be defined as the position of the vortex breakdown point if you are looking at delta wings, or the position of the reattachment point in the case of 2D airfoils.
+This allows for a model tightly defined by the physics of the flow.
+
+
+\Subsection{Flow physics and state variables}
+Since this study was performed with a 2D NACA0009 airfoil, we define the state variable $x$ as the position of the reattachment point.
+Its value linearly change from 1 when it is situated at the leading edge to 0 when it gets to the trailing edge and beyond.
+For quasi-steady cases separation point is a function of the angle of attack. If we define $x_0$ as the separation point position in a quasi-steady situation then
+
+\begin{equation}
+	C_l^{qs} = f(\alpha,x_0(\alpha))
+	\label{eqn:qs_Cl}
+\end{equation}
+
+The unsteady part of the flow physics can be divided into two groups of phenomenons.
+The firsts are the effects of the angle of attack variation speed on the position of the separation point.
+Goman and Khrabrov argue that this is roughly proportional to the pitch rate $\dot{\alpha}$ and as such they can be included by modifying the quasi-steady state value by using $x_0 (\alpha - \tau_2 \dot{\alpha})$ 
+\Section{GK model adaptation}
+
+\Subsection{Steady list and stalling behavior}
+
+\Subsection{State variable approximation}
+
+\Section{Experimental Setup}
+
+\Section{Model validation}
+% put both sinusoidal and ``random'' motion
+
