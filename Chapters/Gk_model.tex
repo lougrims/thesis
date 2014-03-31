@@ -1,7 +1,7 @@
 \Section{The Goman and Khrabrov model}
 
 \Subsection{Motivation}
-In their 1994 paper entitled ``State-Space Representation of Aerodynamic Characteristics of an Aircraft at High Angle of Attack'' \cite{GK} Goman and Khrabrov introduce a new model for caracterizing the lift and moment coefficients for slender delta wings.
+In their 1994 paper entitled ``State-Space Representation of Aerodynamic Characteristics of an Aircraft at High Angle of Attack'' \cite{GK} Goman and Khrabrov introduce a new model for characterizing the lift and moment coefficients for slender delta wings.
 Their goal was to study the stability of delta wing fighter jets where maneuverability is important, and to link it to physical fluid dynamic phenomenons such as vortex breakdown or flow separation.
 
 \par The classical stability analysis method relies on a Taylor series expansion of the aerodynamic coefficients.
@@ -24,25 +24,102 @@ For quasi-steady cases separation point is a function of the angle of attack. If
 \end{equation}
 
 The unsteady part of the flow physics can be divided into two groups of phenomenons.
-The firsts are the effects of the angle of attack variation speed on the position of the separation point.
-Goman and Khrabrov argue that this is roughly proportional to the pitch rate $\dot{\alpha}$ and as such they can be included by modifying the quasi-steady state value by using $x_0 (\alpha - \tau_2 \dot{\alpha})$.
-In this case $\tau_2$ can be seen as the delay between angle of attack change and the beginning of their effect on the separation bubble.
 
-\par The second kind of unsteady effects are due to the dynamics of the reattachment point.
-These effects can be approximated as a first order differential equation.
-This leads to the following equation for the state variable $x$
+\par The firsts are the effects of the angle of attack variation speed on the position of the separation point.
+Goman and Khrabrov argue that this is roughly proportional to the pitch rate $\dot{\alpha}$ and as such they can be included by modifying the quasi-steady state value by using $x_0 (\alpha - \tau_2 \dot{\alpha})$ 
 
-\begin{equation}
-	\tau_1
-	\label{<++>}
-\end{equation}<++>
+\par The second phenomenon is due to the dynamics of the separated flow.
+The flow has a certain relaxation characteristic under a disturbance input.
+This can be modeled using a first order differential equation.
+
+\begin{eqnarray}
+	\tau_1 \frac{dx}{dt} +x = x_0(\alpha - \tau_2 \dot{\alpha}) 
+	\label{eqn:state_variable}
+\end{eqnarray}
+
+
+
+\Section{Experimental Setup}
+
 \Section{GK model adaptation}
 
-\Subsection{Steady list and stalling behavior}
+\Subsection{Steady lift and stalling behavior}
+
+With the basics of the GK model defined, the goal is now to adapt it to our objectives.
+If this model is to be used for optimization purposes the drag also needs to be calculated.
+The original model defined by Goman and Khrabrov was included the lift and pitching moment coefficients.
+Similarly to their model the assumption is made that the lift and drag coefficients share the same state variable.
+As such we define $f$ and $g$ as
+\begin{equation}
+	\begin{array}[c]{c}
+		C_l=f(\alpha,x) \\
+		C_d=g(\alpha,x)
+	\end{array}
+	\label{eqn:lift_drag_functions}
+\end{equation}
+
+\par The other difference with their case study is that we are considering a 2D airfoil whereas they modeled a 3D delta wing.
+This means that we can't reuse the same lift function $f$ as the original paper.
+
+\par In order to get an accurate equation for the lift and drag a quasi-steady map of the lift and drag coefficients is made.
+This map is done by very slowly (0.1 degree per seconds) pitching the wing between -5 and 25 degrees.
+The free stream speed has to be corrected to account for the flow slowing down during the higher blockage ratio at high angle of attack.
+
+\begin{figure}[ht]
+	\begin{center}
+		%\includegraphics{<+file+>}
+	\end{center}
+	\caption{Lift and drag coefficient in the quasi-steady case}
+	\label{fig:QS_Cl_Cd_vs_alpha}
+\end{figure}
+
+\par Figure \ref{fig:QS_Cl_Cd_vs_alpha} shows how the aerodynamics behave for our NACA0009 airfoil.
+The lift coefficient is close to a clean linear function when the flow is attached.
+The separation happens around 8 degrees and the lift coefficient remains constant in the 10 to 20 degrees zone when the flow is partially separated.
+At higher angle of attack the flow is totally separated and $C_l$ is once again proportional to $\alpha$ but with a different slope this time.
+Even though the NACA0009 has a symmetric profile the measured lift coefficient for a angle of attack of zero is not null.
+It is suspected that the sting onto which the airfoil is fixed may disturb the flow and cause this asymmetry.
+Moreover this curve differs slightly from the ones found in the literature.
+Once again this can be attributed to the experimental setup; other than the sting effects the couple of millimeters of clearance between the wall of the wind tunnel and the edge of the airfoil are probably to blame as they induce some 3D effects.
+These gaps are necessary for to allow for the both pitching and plunging of the wing.
+
+\par From this static map we can approximate the part where the flow is still attached (<8 degrees) by 
+
+\begin{equation}
+	\begin{array}[c]{c}
+		C_l= 2 \pi \cdot \alpha + C_l0 \\
+		C_d= \frac{C_l^2}{2G_{max}} + C_d0
+	\end{array}
+	\label{eqn:attached_Cl_and_Cd_vs_alpha}
+\end{equation}
+
+Which is remarkably close to the classical theoretical result for a 2D airfoils in a ideal inviscid attached flow.
 
 \Subsection{State variable approximation}
 
-\Section{Experimental Setup}
+When the flow is still attached the value of $x$ is 1. 
+This means that we are considering the separation point to be at the trailing edge.
+Similarly when the flow is totally separated the separation point is at the leading edge and $x=0$.
+Since for totally separated flow the slop of the lift coefficient as a function of $\alpha$ can be approximated to about $0.4$ of the slope for the attached flow, we choose to use the following equation for the lift over the whole range of angle of attack. 
+
+
+\begin{equation}
+	C_l(\alpha,x)=2 \pi \cdot \alpha (0.6 x + 0.4) + C_l0
+	\label{eqn:Cl_function}
+\end{equation}
+
+\par From this equation the value of $x_0$ was then adjusted so that the output of this function matches the experimental data. 
+The resulting profile for $x_0(\alpha)$ can be seen in figure \ref{fig:x_0_vs_alpha}
+
+\begin{figure}[h]
+	\begin{center}
+%		\includegraphics{<+file+>}
+	\end{center}
+	\caption{Quasi-steady profile for the state variable $x$}
+	\label{fig:x_0_vs_alpha}
+\end{figure}
+
+With this profile we get a good approximation of the experimental $C_l$ (cf figure \ref{fig:}).
 
 \Section{Model validation}
 % put both sinusoidal and ``random'' motion
