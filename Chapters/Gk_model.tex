@@ -41,10 +41,67 @@ This can be modeled using a first order differential equation.
 
 \Section{Experimental Setup}
 
+\Subsection{Equipment and facilities}
+\begin{figure}[h]
+	\begin{center}
+		%\includegraphics{<+file+>}
+	\end{center}
+	\caption{Airfoil model inside the wind tunnel}
+	\label{fig:wind_tunnel}
+\end{figure}
+
+All of the experimental part of this research was performed into the Andrew Fejer Unsteady Wind Tunnel at the Illinois Institute of Technology, Chicago.
+This is a low velocity wind tunnel with a 60cm by 60cm test section.
+The wind tunnel is mainly used for unsteady aerodynamic studies.
+Airfoils are mounted on a motorized sting outfitted with two linear electric servo-motors.
+These servos are powered by an amplifier with a integrated PID system and driven by an analog voltage input signal proportional to the desired position.
+
+\begin{figure}[h]
+	\begin{center}
+%		\includegraphics{<+file+>}
+	\end{center}
+	\caption{Pitching and plunging mechanism}
+	\label{fig:pitching_mechanism}
+\end{figure}
+
+As seen on figure \ref{fig:pitching_mechanism} combining the motion of the front and back servo allows for the wing to be plunged as well as pitched around a range of axis.
+The tunnel is also equipped with a system of shutters that can be used to create wind gusts.
+However this feature will not be used in this project.
+
+\par The input signal for the servos is made with Simulink \textregistered and fed through D-Space \textregistered as an analog voltage.
+
+\par Several sensors are used for data acquisition.
+A pair of linear potentiometers measures the position of the servos in order to get the airfoil pitch angle.
+The flow speed is measure via a Pitot tube and pressure transducer plugged into a acquisition box.
+In parallel to this acquisition box the forces exerted on the airfoil can be measured.
+A piezoelectric ATI Nano17 force balance seats between the sting and the airfoil.
+This sensor measures both absolute forces and moments along 3 different axis.
+
+\par The wing is made out of balsa wood with a 3D printed leading edge housing the active flow control system.
+This system will be described in more detail in the appropriate chapter.
+The structure is wrapped in XXXXXXX, a heat-shrunk plastic film.
+Its chord length is 245mm its width 560mm with a NACA0009 profile.
+It connects to the force balance at a point at 25 percent of the chord.
+The maximum was made to keep the weight and moment of inertia as small as possible to minimize the inertial effects when the wing is moving.
+
+\Subsection{Experimental procedure and data processing}
+Different pitch input have been tried.
+There was some fears at first that if the pitching axis wasn't on the axis symmetry, at the quarter chord of the airfoil, additional aerodynamic phenomenon would affect the data.
+After testing different pitching input that placed the rotation axis either at the top of the front servo, at the top of the force balance or at the top of the back servo,  it was determined that the optimal way to drive the pitching mechanism was to move only the back servo.
+Other input method induced to much mechanical vibrations and did not seems to make any difference aerodynamically.
+
+\par The amplifier driving the electric servos has its own PID control system, however even after careful tunning some error exists between the commanded angle of attack and the actual angle of attack.
+To negate that effect the actual servo position, as given by the potentiometers, is used for our measurements.
+This data is used to transform the normal and tangent force into lift and drag (via a simple rotation matrix). 
+They are then normalized to get the aerodynamics coefficients.
+
+\par Unless specified otherwise, all the acquisitions have been done at a flow speed of 3m/s which correspond to a Reynolds number of 
+
+
+
 \Section{GK model adaptation}
 
 \Subsection{Steady lift and stalling behavior}
-
 With the basics of the GK model defined, the goal is now to adapt it to our objectives.
 If this model is to be used for optimization purposes the drag also needs to be calculated.
 The original model defined by Goman and Khrabrov was included the lift and pitching moment coefficients.
@@ -83,6 +140,8 @@ Moreover this curve differs slightly from the ones found in the literature.
 Once again this can be attributed to the experimental setup; other than the sting effects the couple of millimeters of clearance between the wall of the wind tunnel and the edge of the airfoil are probably to blame as they induce some 3D effects.
 These gaps are necessary for to allow for the both pitching and plunging of the wing.
 
+
+
 \par From this static map we can approximate the part where the flow is still attached (<8 degrees) by 
 
 \begin{equation}
@@ -96,7 +155,6 @@ These gaps are necessary for to allow for the both pitching and plunging of the 
 Which is remarkably close to the classical theoretical result for a 2D airfoils in a ideal inviscid attached flow.
 
 \Subsection{State variable approximation}
-
 When the flow is still attached the value of $x$ is 1. 
 This means that we are considering the separation point to be at the trailing edge.
 Similarly when the flow is totally separated the separation point is at the leading edge and $x=0$.
@@ -161,5 +219,6 @@ The pitching inputs are the following
 
 With $A=2^\circ$ and $\alpha_0=12^\circ$.
 The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively K of 0.064, 0.128, 0.257 and 0.513)
+
 % put both sinusoidal and ``random'' motion
 
