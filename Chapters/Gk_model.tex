@@ -79,7 +79,7 @@ This sensor measures both absolute forces and moments along 3 different axis.
 
 \par The wing is made out of balsa wood with a 3D printed leading edge housing the active flow control system.
 This system will be described in more detail in the appropriate chapter.
-The structure is wrapped in XXXXXXX, a heat-shrunk plastic film.
+The structure is wrapped in mono-coat, a heat-shrunk plastic film.
 Its chord length is 245mm its width 560mm with a NACA0009 profile.
 It connects to the force balance at a point at 25 percent of the chord.
 The maximum was made to keep the weight and moment of inertia as small as possible to minimize the inertial effects when the wing is moving.
@@ -95,7 +95,16 @@ To negate that effect the actual servo position, as given by the potentiometers,
 This data is used to transform the normal and tangent force into lift and drag (via a simple rotation matrix). 
 They are then normalized to get the aerodynamics coefficients.
 
-\par Unless specified otherwise, all the acquisitions have been done at a flow speed of 3m/s which correspond to a Reynolds number of 
+\par Unless specified otherwise, all the acquisitions have been done at a flow speed of 3m/s which correspond to a Reynolds number of 50000.
+
+\par For each experimental case the force balance as well as the servo position and a synchronisation signal are simultaneously acquired.
+A first offset with the tunnel off and the wing pitching is taken to let us get the force balance offset as well as record the inertial effects.
+Even tho the wing is only weighing around 300 grammes, these inertial effects represent the majority of the forces measured by the force balance.
+Moreover some of the force measured come from the springiness of the cables used for the active flow control part.
+After the first offset the real case is taken, followed by a second offset to account for the drift in the force balance measurement sometime seen over the course of several minutes.
+
+\par 
+
 
 
 
