@@ -103,10 +103,19 @@ Even tho the wing is only weighing around 300 grammes, these inertial effects re
 Moreover some of the force measured come from the springiness of the cables used for the active flow control part.
 After the first offset the real case is taken, followed by a second offset to account for the drift in the force balance measurement sometime seen over the course of several minutes.
 
-\par 
+\par During each acquisitions at least 50 cycles are recorded.
+This allows us to perform what we call phase averaging.
+This is done by slicing the files into individual cycles (thank to the synchronisation signal) and then making an average of these cycles.
+With this technique the signal to noise ratio of greatly improved.
+Once this has been done with the 2 offsets and the proper acquisition itself, aerodynamic forces are obtained by subtracting the offsets.
+All this processing is done with Matlab \textregistered. 
 
+\par The servo actuation system has a small but noticeable dead band as well as a delay between the input and output.
+This makes the actual pitching motion slightly different from the input.
+To account for that the actual measured pitch angle is used as an input of the GK model when we want to compare its prediction with the experimental data.
 
-
+\par Finally the GK model itself is also implemented in Matlab.
+The code can be seen in annex \ref{ch:GK_code}.
 
 \Section{GK model adaptation}
 
@@ -116,6 +125,7 @@ If this model is to be used for optimization purposes the drag also needs to be 
 The original model defined by Goman and Khrabrov was included the lift and pitching moment coefficients.
 Similarly to their model the assumption is made that the lift and drag coefficients share the same state variable.
 As such we define $f$ and $g$ as
+
 \begin{equation}
 	\begin{array}[c]{c}
 		C_l=f(\alpha,x) \\
@@ -148,8 +158,6 @@ It is suspected that the sting onto which the airfoil is fixed may disturb the f
 Moreover this curve differs slightly from the ones found in the literature.
 Once again this can be attributed to the experimental setup; other than the sting effects the couple of millimeters of clearance between the wall of the wind tunnel and the edge of the airfoil are probably to blame as they induce some 3D effects.
 These gaps are necessary for to allow for the both pitching and plunging of the wing.
-
-
 
 \par From this static map we can approximate the part where the flow is still attached (<8 degrees) by 
 
@@ -186,7 +194,7 @@ The resulting profile for $x_0(\alpha)$ can be seen in figure \ref{fig:x_0_vs_al
 	\label{fig:x_0_vs_alpha}
 \end{figure}
 
-With this profile we get a good approximation of the experimental $C_l(\alpha)$ (cf figure \ref{fig:}) for quasi steady cases.
+With this profile we get a good approximation of the experimental $C_l(\alpha)$ (cf figure \ref{fig:GK_Cl_vs_alpha}) for quasi steady cases.
 
 \begin{figure}[h]
 	\begin{center}
@@ -231,3 +239,7 @@ The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively K of 0.064, 0.12
 
 % put both sinusoidal and ``random'' motion
 
+% Also try a non dimensional validation
+
+\par This model is producing accurate results that account for both the dynamic effects and the flow separation.
+Moreover the procedure is light enough to be implemented into the optimization algorithm without increasing too much the computation cost.
