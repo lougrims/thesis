@@ -143,8 +143,8 @@ The free stream speed has to be corrected to account for the flow slowing down d
 
 \begin{figure}[ht]
 	\begin{center}
-		\scalebox{0.5}
-		{\includegraphics{../Figures/NACA0009_steady_map_Cl_Cd.eps}}
+		\scalebox{0.8}
+		{\includegraphics{./Figures/NACA0009_steady_map_Cl_Cd.eps}}
 	\end{center}
 	\caption{Lift and drag coefficient in the quasi-steady case}
 	\label{fig:QS_Cl_Cd_vs_alpha}
@@ -178,7 +178,6 @@ This means that we are considering the separation point to be at the trailing ed
 Similarly when the flow is totally separated the separation point is at the leading edge and $x=0$.
 Since for totally separated flow the slop of the lift coefficient as a function of $\alpha$ can be approximated to about $0.4$ of the slope for the attached flow, we choose to use the following equation for the lift over the whole range of angle of attack. 
 
-
 \begin{equation}
 	C_l(\alpha,x)=2 \pi \cdot \alpha (0.6 x + 0.4) + C_l0
 	\label{eqn:Cl_function}
@@ -189,7 +188,7 @@ The resulting profile for $x_0(\alpha)$ can be seen in figure \ref{fig:x_0_vs_al
 
 \begin{figure}[h]
 	\begin{center}
-%		\includegraphics{<+file+>}
+		\includegraphics{./Figures/x_0_vs_alpha.eps}
 	\end{center}
 	\caption{Quasi-steady profile for the state variable $x$}
 	\label{fig:x_0_vs_alpha}
@@ -199,7 +198,7 @@ With this profile we get a good approximation of the experimental $C_l(\alpha)$ 
 
 \begin{figure}[h]
 	\begin{center}
-%		\includegraphics{<+file+>}
+		\includegraphics{./Figures/GK_cl_vs_alpha.eps}
 	\end{center}
 	\caption{Comparison between the experimental and model quasi-steady lift}
 	\label{fig:GK_Cl_vs_alpha}
@@ -214,7 +213,7 @@ With this profile we get a good approximation of the experimental $C_l(\alpha)$ 
 
 \begin{figure}[h]
 	\begin{center}
-%		\includegraphics{<+file+>}
+		\includegraphics{./Figures/GK_cd_vs_alpha.eps}
 	\end{center}
 	\caption{Comparison between the experimental and model quasi-steady drag}
 	\label{fig:GK_Cd_vs_alpha}
