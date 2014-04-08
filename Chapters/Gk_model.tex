@@ -19,8 +19,8 @@ Its value linearly change from 1 when it is situated at the leading edge to 0 wh
 For quasi-steady cases separation point is a function of the angle of attack. If we define $x_0$ as the separation point position in a quasi-steady situation then
 
 \begin{equation}
-	C_l^{qs} = f(\alpha,x_0(\alpha))
-	\label{eqn:qs_Cl}
+  C_l^{qs} = f(\alpha,x_0(\alpha))
+  \label{eqn:qs_Cl}
 \end{equation}
 
 The unsteady part of the flow physics can be divided into two groups of phenomenons.
@@ -33,8 +33,8 @@ The flow has a certain relaxation characteristic under a disturbance input.
 This can be modeled using a first order differential equation.
 
 \begin{eqnarray}
-	\tau_1 \frac{dx}{dt} +x = x_0(\alpha - \tau_2 \dot{\alpha}) 
-	\label{eqn:state_variable}
+  \tau_1 \frac{dx}{dt} +x = x_0(\alpha - \tau_2 \dot{\alpha}) 
+  \label{eqn:state_variable}
 \end{eqnarray}
 
 
@@ -43,11 +43,11 @@ This can be modeled using a first order differential equation.
 
 \Subsection{Equipment and facilities}
 \begin{figure}[h]
-	\begin{center}
+  \begin{center}
 		%\includegraphics{<+file+>}
-	\end{center}
-	\caption{Airfoil model inside the wind tunnel}
-	\label{fig:wind_tunnel}
+  \end{center}
+  \caption{Airfoil model inside the wind tunnel}
+  \label{fig:wind_tunnel}
 \end{figure}
 
 All of the experimental part of this research was performed into the Andrew Fejer Unsteady Wind Tunnel at the Illinois Institute of Technology, Chicago.
@@ -57,11 +57,11 @@ Airfoils are mounted on a motorized sting outfitted with two linear electric ser
 These servos are powered by an amplifier with a integrated PID system and driven by an analog voltage input signal proportional to the desired position.
 
 \begin{figure}[h]
-	\begin{center}
+  \begin{center}
 %		\includegraphics{<+file+>}
-	\end{center}
-	\caption{Pitching and plunging mechanism}
-	\label{fig:pitching_mechanism}
+  \end{center}
+  \caption{Pitching and plunging mechanism}
+  \label{fig:pitching_mechanism}
 \end{figure}
 
 As seen on figure \ref{fig:pitching_mechanism} combining the motion of the front and back servo allows for the wing to be plunged as well as pitched around a range of axis.
@@ -127,11 +127,11 @@ Similarly to their model the assumption is made that the lift and drag coefficie
 As such we define $f$ and $g$ as
 
 \begin{equation}
-	\begin{array}[c]{c}
-		C_l=f(\alpha,x) \\
-		C_d=g(\alpha,x)
-	\end{array}
-	\label{eqn:lift_drag_functions}
+  \begin{array}[c]{c}
+    C_l=f(\alpha,x) \\
+    C_d=g(\alpha,x)
+  \end{array}
+  \label{eqn:lift_drag_functions}
 \end{equation}
 
 \par The other difference with their case study is that we are considering a 2D airfoil whereas they modeled a 3D delta wing.
@@ -142,12 +142,12 @@ This map is done by very slowly (0.1 degree per seconds) pitching the wing betwe
 The free stream speed has to be corrected to account for the flow slowing down during the higher blockage ratio at high angle of attack.
 
 \begin{figure}[ht]
-	\begin{center}
-		\scalebox{0.8}
-		{\includegraphics{./Figures/NACA0009_steady_map_Cl_Cd.eps}}
-	\end{center}
-	\caption{Lift and drag coefficient in the quasi-steady case}
-	\label{fig:QS_Cl_Cd_vs_alpha}
+  \begin{center}
+    \scalebox{0.8}
+    {\includegraphics{./Figures/NACA0009_steady_map_Cl_Cd.eps}}
+  \end{center}
+  \caption{Lift and drag coefficient in the quasi-steady case}
+  \label{fig:QS_Cl_Cd_vs_alpha}
 \end{figure}
 
 \par Figure \ref{fig:QS_Cl_Cd_vs_alpha} shows how the aerodynamics behave for our NACA0009 airfoil.
@@ -163,11 +163,11 @@ These gaps are necessary for to allow for the both pitching and plunging of the 
 \par From this static map we can approximate the part where the flow is still attached (<8 degrees) by 
 
 \begin{equation}
-	\begin{array}[c]{c}
-		C_l= 2 \pi \cdot \alpha + C_l0 \\
-		C_d= \frac{C_l^2}{2G_{max}} + C_d0
-	\end{array}
-	\label{eqn:attached_Cl_and_Cd_vs_alpha}
+  \begin{array}[c]{c}
+    C_l= 2 \pi \cdot \alpha + C_l0 \\
+    C_d= \frac{C_l^2}{2G_{max}} + C_d0
+  \end{array}
+  \label{eqn:attached_Cl_and_Cd_vs_alpha}
 \end{equation}
 
 Which is remarkably close to the classical theoretical result for a 2D airfoils in a ideal inviscid attached flow.
@@ -179,44 +179,44 @@ Similarly when the flow is totally separated the separation point is at the lead
 Since for totally separated flow the slop of the lift coefficient as a function of $\alpha$ can be approximated to about $0.4$ of the slope for the attached flow, we choose to use the following equation for the lift over the whole range of angle of attack. 
 
 \begin{equation}
-	C_l(\alpha,x)=2 \pi \cdot \alpha (0.6 x + 0.4) + C_l0
-	\label{eqn:Cl_function}
+  C_l(\alpha,x)=2 \pi \cdot \alpha (0.6 x + 0.4) + C_l0
+  \label{eqn:Cl_function}
 \end{equation}
 
 \par From this equation the value of $x_0$ was then adjusted so that the output of this function matches the experimental data. 
 The resulting profile for $x_0(\alpha)$ can be seen in figure \ref{fig:x_0_vs_alpha}
 
 \begin{figure}[h]
-	\begin{center}
-		\includegraphics{./Figures/x_0_vs_alpha.eps}
-	\end{center}
-	\caption{Quasi-steady profile for the state variable $x$}
-	\label{fig:x_0_vs_alpha}
+  \begin{center}
+    \includegraphics{./Figures/x_0_vs_alpha.eps}
+  \end{center}
+  \caption{Quasi-steady profile for the state variable $x$}
+  \label{fig:x_0_vs_alpha}
 \end{figure}
 
 With this profile we get a good approximation of the experimental $C_l(\alpha)$ (cf figure \ref{fig:GK_Cl_vs_alpha}) for quasi steady cases.
 
 \begin{figure}[h]
-	\begin{center}
-		\includegraphics{./Figures/GK_cl_vs_alpha.eps}
-	\end{center}
-	\caption{Comparison between the experimental and model quasi-steady lift}
-	\label{fig:GK_Cl_vs_alpha}
+  \begin{center}
+    \includegraphics{./Figures/GK_cl_vs_alpha.eps}
+  \end{center}
+  \caption{Comparison between the experimental and model quasi-steady lift}
+  \label{fig:GK_Cl_vs_alpha}
 \end{figure}
 
 \par The assumption that the drag share the same state variable as the lift is confirmed when the following equation produces similarly accurate results compared to experimental data, as seen on figure \ref{fig:GK_Cd_vs_alpha}.
 
 \begin{equation}
-	C_d(\alpha,x)= \frac{ \left( \left( 2 - x \right)C_l \right)^2 }{2 G_{max}} + C_d0
-	\label{eqn:Cd_function}
+  C_d(\alpha,x)= \frac{ \left( \left( 2 - x \right)C_l \right)^2 }{2 G_{max}} + C_d0
+  \label{eqn:Cd_function}
 \end{equation}
 
 \begin{figure}[h]
-	\begin{center}
-		\includegraphics{./Figures/GK_cd_vs_alpha.eps}
-	\end{center}
-	\caption{Comparison between the experimental and model quasi-steady drag}
-	\label{fig:GK_Cd_vs_alpha}
+  \begin{center}
+    \includegraphics{./Figures/GK_cd_vs_alpha.eps}
+  \end{center}
+  \caption{Comparison between the experimental and model quasi-steady drag}
+  \label{fig:GK_Cd_vs_alpha}
 \end{figure}
 
 \par These two relatively simple equations shows that a physics based GK model can be implemented for both lift and drag and that they indeed depend on the same state variable.
@@ -230,19 +230,19 @@ To do that a series of pitching cases are performed.
 The pitching inputs are the following
 
 \begin{equation}
-	\alpha\left( t \right)= A \sin \left( 2 \pi \frac{t}{f} \right) + \alpha_0
-	\label{eqn:pitch_input}
+  \alpha\left( t \right)= A \sin \left( 2 \pi \frac{t}{f} \right) + \alpha_0
+  \label{eqn:pitch_input}
 \end{equation}
 
 With $A=2^\circ$ and $\alpha_0=12^\circ$.
 The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively K of 0.064, 0.128, 0.257 and 0.513)
 
 \begin{figure}[h]
-	\begin{center}
-		\includegraphics{./Figures/Pitching_allcases_CL_12_amp_2.eps}
-	\end{center}
-	\caption{Unsteady effects of sinusoidal pitching on the lift}
-	\label{fig:Pitching_allcases_Cl}
+  \begin{center}
+    \includegraphics{./Figures/Pitching_allcases_CL_12_amp_2.eps}
+  \end{center}
+  \caption{Unsteady effects of sinusoidal pitching on the lift}
+  \label{fig:Pitching_allcases_Cl}
 \end{figure}
 
 
