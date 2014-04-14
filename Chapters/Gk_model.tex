@@ -247,42 +247,54 @@ The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively K of 0.064, 0.12
   \caption{Unsteady effects of sinusoidal pitching on the lift}
   \label{fig:Pitching_allcases_Cl_12}
 \end{figure}
+%
+%\begin{figure}[h]
+%  \begin{center}
+%    \scalebox{0.6}  
+%    {\includegraphics{./Figures/Pitching_allcases_CD_12_amp_2.eps}}
+%  \end{center}
+%  \caption{Unsteady effects of sinusoidal pitching on the drag}
+%  \label{fig:Pitching_allcases_Cd_12}
+%\end{figure}
+%
+\par On these figures it is easy to notice the influence of the time delays on the aerodynamic coefficients.
+At the lower frequencies the loops are quite open and a significant difference exists between the lift obtained during the pitch up and the pitch down phase.
+These lift value circulate on these loops rotating in an anti-clockwise direction.
+This means that the lift is higher during pitch down manoeuvre.
+Contrastingly this behavior disappears at higher frequencies.
+For K values of 0.257 and 0.513 the difference between the pitch up and pitch down is lower.
+However the lift variation amplitude is more pronounced in those cases.
 
-\begin{figure}[h]
-  \begin{center}
-    \scalebox{0.6}  
-    {\includegraphics{./Figures/Pitching_allcases_CD_12_amp_2.eps}}
-  \end{center}
-  \caption{Unsteady effects of sinusoidal pitching on the drag}
-  \label{fig:Pitching_allcases_Cd_12}
-\end{figure}
+\par Before using the Gk model as a predictive tool the time constants need to be found.
+This is done by trial and error.
+The two time constants are determined manually and are tuned to produce the best results at the different frequencies tested.
+$\tau_1$ is found to be equal to 3.06 t+ (0.25s) and $\tau_2$ is 4.29 t+ (0.35s).
 
-\par Similarly another set of acquisitions is made at a mean angle of 10 degrees.
+\par Now that the model is complete its accuracy can be checked.
+The most obvious result is that the shape of the lift and drag versus angle of attack curves are similar to the experimental results.
+ 
+\par Similarly another set of acquisitions is made at a mean ange of 10 degrees.
 The behavior is comparable at K of 0.257 and 0.513 but the drag has a noticeably different shape at K of 0.128.
-
-
-\begin{figure}[h]
-  \begin{center}
-    \scalebox{0.6}  
-    {\includegraphics{./Figures/Pitching_allcases_CL_10_amp_2.eps}}
-  \end{center}
-  \caption{Unsteady effects of sinusoidal pitching on the lift}
-  \label{fig:Pitching_allcases_Cl_10}
-\end{figure}
-
-\begin{figure}[h]
-  \begin{center}
-    \scalebox{0.6}  
-    {\includegraphics{./Figures/Pitching_allcases_CD_10_amp_2.eps}}
-  \end{center}
-  \caption{Unsteady effects of sinusoidal pitching on the drag}
-  \label{fig:Pitching_allcases_Cd_10}
-\end{figure}
-
-The two time constants are determined manually.
-$\tau_1$ is found to be 
+%
+%\begin{figure}[h]
+%  \begin{center}
+%    \scalebox{0.6}  
+%    {\includegraphics{./Figures/Pitching_allcases_CL_10_amp_2.eps}}
+%  \end{center}
+%  \caption{Unsteady effects of sinusoidal pitching on the lift}
+%  \label{fig:Pitching_allcases_Cl_10}
+%\end{figure}
+%
+%\begin{figure}[h]
+%  \begin{center}
+%    \scalebox{0.6}  
+%    {\includegraphics{./Figures/Pitching_allcases_CD_10_amp_2.eps}}
+%  \end{center}
+%  \caption{Unsteady effects of sinusoidal pitching on the drag}
+%  \label{fig:Pitching_allcases_Cd_10}
+%\end{figure}
 % put both sinusoidal and ``random'' motion
 % Also try a non dimensional validation
 
 \par This model is producing accurate results that account for both the dynamic effects and the flow separation.
-Moreover the procedure is light enough to be implemented into the optimization algorithm without increasing too much the computation cost.
+Moreover the procedure is light enough to be implemented into the optimization algorithm without increasing too much the computation cost
