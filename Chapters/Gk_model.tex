@@ -273,8 +273,10 @@ $\tau_1$ is found to be equal to 3.06 t+ (0.25s) and $\tau_2$ is 4.29 t+ (0.35s)
 \par Now that the model is complete its accuracy can be checked.
 The most obvious result is that the shape of the lift and drag versus angle of attack curves are similar to the experimental results.
  
-\par Similarly another set of acquisitions is made at a mean ange of 10 degrees.
+\par Similarly another set of acquisitions is made at a mean angle of 10 degrees.
 The behavior is comparable at K of 0.257 and 0.513 but the drag has a noticeably different shape at K of 0.128.
+For some unknown reason the model does not seems to account for the hysteresis at this frequency.
+
 %
 %\begin{figure}[h]
 %  \begin{center}
@@ -295,6 +297,43 @@ The behavior is comparable at K of 0.257 and 0.513 but the drag has a noticeably
 %\end{figure}
 % put both sinusoidal and ``random'' motion
 % Also try a non dimensional validation
+
+\par Another obvious parameter to check for our model is the amplitude of the oscillations.
+The amplitude is set to a range from 1 to 4 degrees at different mean angle of attack.
+The predictions still reasonably match the experimental results. 
+
+
+% divers figures
+
+\par To simulate a more realistic pitch profile, a pseudo-random pitch profile is designed.
+The input is constructed as seen in equation \ref{eqn:random_pitch_input} with a randomized phase difference $\varphi_i$ between each harmonic components.
+
+\begin{equation}
+	\alpha_{random}= \frac{\sum_{i=1}^{10} \sin (\frac{2 \pi t}{f_i} + \varphi_i)}{B} + \alpha_{0}
+	\label{eqn:random_pitch_input}
+\end{equation}
+
+The frequency are regularly spaced between 0.25 and 2Hz and the constant $B$ is chosen to make sure the maximum deviation from the $\alpha_0$ value is no more than 2 degrees.
+
+%\begin{figure}[h]
+%  \begin{center}
+%    \scalebox{0.6}  
+%    {\includegraphics{./Figures/Pitching_random_Cl_12_amp_2.eps}}
+%  \end{center}
+%  \caption{Unsteady effects of random pitching on the lift}
+%  \label{fig:Pitching_random_Cl_12}
+%\end{figure}
+
+%\begin{figure}[h]
+%  \begin{center}
+%    \scalebox{0.6}  
+%    {\includegraphics{./Figures/Pitching_random_Cd_12_amp_2.eps}}
+%  \end{center}
+%  \caption{Unsteady effects of random pitching on the drag}
+%  \label{fig:Pitching_random_Cd_12}
+%\end{figure}
+
+\par 
 
 \par This model is producing accurate results that account for both the dynamic effects and the flow separation.
 Moreover the procedure is light enough to be implemented into the optimization algorithm without increasing too much the computation cost
