@@ -84,6 +84,9 @@ Its chord length is 245mm its width 560mm with a NACA0009 profile.
 It connects to the force balance at a point at 25 percent of the chord.
 The maximum was made to keep the weight and moment of inertia as small as possible to minimize the inertial effects when the wing is moving.
 
+
+\FloatBarrier
+
 \Subsection{Experimental procedure and data processing}
 Different pitch input have been tried.
 There was some fears at first that if the pitching axis wasn't on the axis symmetry, at the quarter chord of the airfoil, additional aerodynamic phenomenon would affect the data.
@@ -117,112 +120,9 @@ To account for that the actual measured pitch angle is used as an input of the G
 \par Finally the GK model itself is also implemented in Matlab.
 The code can be seen in annex \ref{ch:GK_code}.
 
-\Section{GK model adaptation}
 
-\Subsection{Steady lift and stalling behavior}
-With the basics of the GK model defined, the goal is now to adapt it to our objectives.
-If this model is to be used for optimization purposes the drag also needs to be calculated.
-The original model defined by Goman and Khrabrov was included the lift and pitching moment coefficients.
-Similarly to their model the assumption is made that the lift and drag coefficients share the same state variable.
-As such we define $f$ and $g$ as
 
-\begin{equation}
-  \begin{array}[c]{c}
-    C_l=f(\alpha,x) \\
-    C_d=g(\alpha,x)
-  \end{array}
-  \label{eqn:lift_drag_functions}
-\end{equation}
-
-\par The other difference with their case study is that we are considering a 2D airfoil whereas they modeled a 3D delta wing.
-This means that we can't reuse the same lift function $f$ as the original paper.
-
-\par In order to get an accurate equation for the lift and drag a quasi-steady map of the lift and drag coefficients is made.
-This map is done by very slowly (0.1 degree per seconds) pitching the wing between -5 and 25 degrees.
-The free stream speed has to be corrected to account for the flow slowing down during the higher blockage ratio at high angle of attack.
-
-\begin{figure}[ht]
-  \begin{center}
-    \scalebox{0.8}
-    {\includegraphics{./Figures/NACA0009_steady_map_Cl_Cd.eps}}
-  \end{center}
-  \caption{Lift and drag coefficient in the quasi-steady case}
-  \label{fig:QS_Cl_Cd_vs_alpha}
-\end{figure}
-
-\par Figure \ref{fig:QS_Cl_Cd_vs_alpha} shows how the aerodynamics behave for our NACA0009 airfoil.
-The lift coefficient is close to a clean linear function when the flow is attached.
-The separation happens around 8 degrees and the lift coefficient remains constant in the 10 to 20 degrees zone when the flow is partially separated.
-At higher angle of attack the flow is totally separated and $C_l$ is once again proportional to $\alpha$ but with a different slope this time.
-Even though the NACA0009 has a symmetric profile the measured lift coefficient for a angle of attack of zero is not null.
-It is suspected that the sting onto which the airfoil is fixed may disturb the flow and cause this asymmetry.
-Moreover this curve differs slightly from the ones found in the literature.
-Once again this can be attributed to the experimental setup; other than the sting effects the couple of millimeters of clearance between the wall of the wind tunnel and the edge of the airfoil are probably to blame as they induce some 3D effects.
-These gaps are necessary for to allow for the both pitching and plunging of the wing.
-
-\par From this static map we can approximate the part where the flow is still attached (<8 degrees) by 
-
-\begin{equation}
-  \begin{array}[c]{c}
-    C_l= 2 \pi \cdot \alpha + C_l0 \\
-    C_d= \frac{C_l^2}{2G_{max}} + C_d0
-  \end{array}
-  \label{eqn:attached_Cl_and_Cd_vs_alpha}
-\end{equation}
-
-Which is remarkably close to the classical theoretical result for a 2D airfoils in a ideal inviscid attached flow.
-
-\Subsection{State variable approximation}
-When the flow is still attached the value of $x$ is 1. 
-This means that we are considering the separation point to be at the trailing edge.
-Similarly when the flow is totally separated the separation point is at the leading edge and $x=0$.
-Since for totally separated flow the slop of the lift coefficient as a function of $\alpha$ can be approximated to about $0.4$ of the slope for the attached flow, we choose to use the following equation for the lift over the whole range of angle of attack. 
-
-\begin{equation}
-  C_l(\alpha,x)=2 \pi \cdot \alpha (0.6 x + 0.4) + C_l0
-  \label{eqn:Cl_function}
-\end{equation}
-
-\par From this equation the value of $x_0$ was then adjusted so that the output of this function matches the experimental data. 
-The resulting profile for $x_0(\alpha)$ can be seen in figure \ref{fig:x_0_vs_alpha}
-
-\begin{figure}[h]
-  \begin{center}
-    \scalebox{0.5}
-    {\includegraphics{./Figures/x_0_vs_alpha.eps}}
-  \end{center}
-  \caption{Quasi-steady profile for the state variable $x$}
-  \label{fig:x_0_vs_alpha}
-\end{figure}
-
-With this profile we get a good approximation of the experimental $C_l(\alpha)$ (cf figure \ref{fig:GK_Cl_vs_alpha}) for quasi steady cases.
-
-\begin{figure}[h]
-  \begin{center}
-    \includegraphics{./Figures/GK_cl_vs_alpha.eps}
-  \end{center}
-  \caption{Comparison between the experimental and model quasi-steady lift}
-  \label{fig:GK_Cl_vs_alpha}
-\end{figure}
-
-\par The assumption that the drag share the same state variable as the lift is confirmed when the following equation produces similarly accurate results compared to experimental data, as seen on figure \ref{fig:GK_Cd_vs_alpha}.
-
-\begin{equation}
-  C_d(\alpha,x)= \frac{ \left( \left( 2 - x \right)C_l \right)^2 }{2 G_{max}} + C_d0
-  \label{eqn:Cd_function}
-\end{equation}
-
-\begin{figure}[h]
-  \begin{center}
-    \scalebox{0.6}
-    {\includegraphics{./Figures/GK_cd_vs_alpha.eps}}
-  \end{center}
-  \caption{Comparison between the experimental and model quasi-steady drag}
-  \label{fig:GK_Cd_vs_alpha}
-\end{figure}
-
-\par These two relatively simple equations shows that a physics based GK model can be implemented for both lift and drag and that they indeed depend on the same state variable.
-The two time constants $\tau_1$ and $\tau_2$ will be determined in the next section when the wing undergo unsteady pithing.
+\FloatBarrier
 
 \Section{Model validation}
 
@@ -232,20 +132,20 @@ To do that a series of pitching cases are performed.
 The pitching inputs are the following
 
 \begin{equation}
-  \alpha\left( t \right)= A \sin \left( 2 \pi \frac{t}{f} \right) + \alpha_0
-  \label{eqn:pitch_input}
+	\alpha\left( t \right)= A \sin \left( 2 \pi \frac{t}{f} \right) + \alpha_0
+	\label{eqn:pitch_input}
 \end{equation}
 
 With $A=2^\circ$ and $\alpha_0=12^\circ$.
 The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively K of 0.064, 0.128, 0.257 and 0.513)
 
 \begin{figure}[h]
-  \begin{center}
-    \scalebox{0.6}  
-    {\includegraphics{./Figures/Pitching_allcases_CL_12_amp_2.eps}}
-  \end{center}
-  \caption{Unsteady effects of sinusoidal pitching on the lift}
-  \label{fig:Pitching_allcases_Cl_12}
+	\begin{center}
+		\scalebox{0.6}  
+		{\includegraphics{./Figures/Pitching_allcases_CL_12_amp_2.eps}}
+	\end{center}
+	\caption{Unsteady effects of sinusoidal pitching on the lift}
+	\label{fig:Pitching_allcases_Cl_12}
 \end{figure}
 %
 %\begin{figure}[h]
@@ -257,6 +157,8 @@ The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively K of 0.064, 0.12
 %  \label{fig:Pitching_allcases_Cd_12}
 %\end{figure}
 %
+\FloatBarrier
+
 \par On these figures it is easy to notice the influence of the time delays on the aerodynamic coefficients.
 At the lower frequencies the loops are quite open and a significant difference exists between the lift obtained during the pitch up and the pitch down phase.
 These lift value circulate on these loops rotating in an anti-clockwise direction.
@@ -272,7 +174,7 @@ $\tau_1$ is found to be equal to 3.06 t+ (0.25s) and $\tau_2$ is 4.29 t+ (0.35s)
 
 \par Now that the model is complete its accuracy can be checked.
 The most obvious result is that the shape of the lift and drag versus angle of attack curves are similar to the experimental results.
- 
+
 \par Similarly another set of acquisitions is made at a mean angle of 10 degrees.
 The behavior is comparable at K of 0.257 and 0.513 but the drag has a noticeably different shape at K of 0.128.
 For some unknown reason the model does not seems to account for the hysteresis at this frequency.
