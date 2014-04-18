@@ -42,6 +42,7 @@ This can be modeled using a first order differential equation.
 \Section{Experimental Setup}
 
 \Subsection{Equipment and facilities}
+
 \begin{figure}[h]
   \begin{center}
 		%\includegraphics{<+file+>}
@@ -100,7 +101,7 @@ They are then normalized to get the aerodynamics coefficients.
 
 \par Unless specified otherwise, all the acquisitions have been done at a flow speed of 3m/s which correspond to a Reynolds number of 50000.
 
-\par For each experimental case the force balance as well as the servo position and a synchronisation signal are simultaneously acquired.
+\par For each experimental case the force balance as well as the servo position and a synchronization signal are simultaneously acquired.
 A first offset with the tunnel off and the wing pitching is taken to let us get the force balance offset as well as record the inertial effects.
 Even tho the wing is only weighing around 300 grammes, these inertial effects represent the majority of the forces measured by the force balance.
 Moreover some of the force measured come from the springiness of the cables used for the active flow control part.
@@ -108,7 +109,7 @@ After the first offset the real case is taken, followed by a second offset to ac
 
 \par During each acquisitions at least 50 cycles are recorded.
 This allows us to perform what we call phase averaging.
-This is done by slicing the files into individual cycles (thank to the synchronisation signal) and then making an average of these cycles.
+This is done by slicing the files into individual cycles (thank to the synchronization signal) and then making an average of these cycles.
 With this technique the signal to noise ratio of greatly improved.
 Once this has been done with the 2 offsets and the proper acquisition itself, aerodynamic forces are obtained by subtracting the offsets.
 All this processing is done with Matlab\textsuperscript{\textregistered}. 
@@ -162,7 +163,7 @@ The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively K of 0.064, 0.12
 \par On these figures it is easy to notice the influence of the time delays on the aerodynamic coefficients.
 At the lower frequencies the loops are quite open and a significant difference exists between the lift obtained during the pitch up and the pitch down phase.
 These lift value circulate on these loops rotating in an anti-clockwise direction.
-This means that the lift is higher during pitch down manoeuvre.
+This means that the lift is higher during pitch down maneuver.
 Contrastingly this behavior disappears at higher frequencies.
 For K values of 0.257 and 0.513 the difference between the pitch up and pitch down is lower.
 However the lift variation amplitude is more pronounced in those cases.
@@ -216,6 +217,7 @@ The input is constructed as seen in equation \ref{eqn:random_pitch_input} with a
 \end{equation}
 
 The frequency are regularly spaced between 0.25 and 2Hz and the constant $B$ is chosen to make sure the maximum deviation from the $\alpha_0$ value is no more than 2 degrees.
+This is done so that the bandwidth of the input signal is limited.
 
 %\begin{figure}[h]
 %  \begin{center}
