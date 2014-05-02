@@ -141,17 +141,17 @@ With $A=2^\circ$ and $\alpha_0=12^\circ$.
 The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively K of 0.064, 0.128, 0.257 and 0.513)
 
 \begin{figure}[h]
-	\begin{center}
-		\scalebox{0.6}  
-		{\includegraphics{./Figures/Pitching_allcases_CL_12_amp_2.eps}}
-	\end{center}
-	\caption{Unsteady effects on the lift of sinusoidal pitching around 12 degree} 
-	\label{fig:Pitching_allcases_Cl_12}
+  \begin{center}
+    \scalebox{0.8}  
+    {\includegraphics{./Figures/Pitching_allcases_CL_12_amp_2.eps}}
+  \end{center}
+  \caption{Unsteady effects on the lift of sinusoidal pitching around 12 degree} 
+  \label{fig:Pitching_allcases_Cl_12}
 \end{figure}
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}  
+    \scalebox{0.8}  
     {\includegraphics{./Figures/Pitching_allcases_CD_12_amp_2.eps}}
   \end{center}
   \caption{Unsteady effects on the drag of sinusoidal pitching around 12 degree} 
@@ -175,6 +175,7 @@ $\tau_1$ is found to be equal to 3.06 t+ (0.25s) and $\tau_2$ is 4.29 t+ (0.35s)
 
 \par Now that the model is complete its accuracy can be checked.
 The most obvious result is that the shape of the lift and drag versus angle of attack curves are similar to the experimental results.
+
 \begin{figure}[h]
   \begin{center}
     \scalebox{0.8}{
@@ -194,27 +195,47 @@ The most obvious result is that the shape of the lift and drag versus angle of a
 \end{figure}
 
 \FloatBarrier
-\par Similarly another set of acquisitions is made at a mean angle of 10 degrees (see figures \ref{fig:Pitching_allcases_Cl_10} and \ref{fig:Pitching_allcases_Cd_10}).
-The behavior is comparable at K of 0.257 and 0.513 but the drag has a noticeably different shape at K of 0.128.
-For some unknown reason the model does not seems to account for the hysteresis at this frequency.
 
+\par This behavior can be checked for other frequencies as well.
 
 \begin{figure}[h]
   \begin{center}
-    %\scalebox{0.6}  
-    %{\includegraphics{./Figures/Pitching_allcases_CL_10_amp_2.eps}}
+    \scalebox{0.8}  
+    {\includegraphics{./Figures/Pitching_allcases_GK_CL_12_amp_2.eps}}
   \end{center}
-  \caption{Unsteady effects on the lift of sinusoidal pitching around 10 degree} 
-  \label{fig:Pitching_allcases_Cl_10}
+  \caption{Lift measurement and prediction during sinusoidal pitching around 12 degree} 
+  \label{fig:Pitching_allcases_GK_Cl_12}
 \end{figure}
 
 \begin{figure}[h]
   \begin{center}
-    %\scalebox{0.6}  
-    %{\includegraphics{./Figures/Pitching_allcases_CD_10_amp_2.eps}}
+    \scalebox{0.8}  
+    {\includegraphics{./Figures/Pitching_allcases_GK_CD_12_amp_2.eps}}
   \end{center}
-  \caption{Unsteady effects on the drag of sinusoidal pitching around 10 degree} 
-  \label{fig:Pitching_allcases_Cd_10}
+  \caption{Drag measurement and prediction during sinusoidal pitching around 12 degree} 
+  \label{fig:Pitching_allcases_GK_Cd_12}
+\end{figure}
+
+\par Similarly another set of acquisitions is made at a mean angle of 10 degrees (see figures \ref{fig:Pitching_allcases_GK_Cl_10} and \ref{fig:Pitching_allcases_GK_Cd_10}).
+The behavior is comparable at K of 0.257 and 0.513 but the drag has a noticeably different shape at K of 0.128.
+For some unknown reason the model does not seems to account for the hysteresis at this frequency.
+
+\begin{figure}[h]
+  \begin{center}
+    \scalebox{0.8}  
+    {\includegraphics{./Figures/Pitching_allcases_GK_CL_10_amp_2.eps}}
+  \end{center}
+  \caption{Lift measurement and prediction during sinusoidal pitching around 10 degree} 
+  \label{fig:Pitching_allcases_GK_Cl_10}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \scalebox{0.8}  
+    {\includegraphics{./Figures/Pitching_allcases_GK_CD_10_amp_2.eps}}
+  \end{center}
+  \caption{Drag measurement and prediction during sinusoidal pitching around 10 degree} 
+  \label{fig:Pitching_allcases_GK_Cd_10}
 \end{figure}
 
 \FloatBarrier
