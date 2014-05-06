@@ -283,3 +283,43 @@ This is done so that the bandwidth of the input signal is limited.
 
 \par This model is producing accurate results that account for both the dynamic effects and the flow separation.
 Moreover the procedure is light enough to be implemented into the optimization algorithm without increasing too much the computation cost
+
+
+\Section{Implementation in the energy extraction algorithm}
+
+\par As seen in the previous chapter the optimization process for the energy extraction trajectory only requires a way to calculate the relationship between the lift and drag coefficient.
+Since in our case these 2 variables depend only on the angle of attack and its change rate over time, it is fairly easy to implement it into the algorithm.
+However the non dimensional time constant are different, the energy extraction one consider the optimal glide speed and the gravity acceleration whereas the one used for the GK model uses the flight speed and the chord length.
+
+\Subsection{Relation between the different time scales}
+
+As said before the time scale used in the two models are different.
+To solve this issue the ratio of the two time constants are plotted (see figure \ref{fig:T_t+_ratio}) for a wide variety of flying objects.
+
+\begin{equation}
+  \frac{T}{t+}=\frac{V_{opt}}{g} \cdot \frac{U}{c}
+  \label{eqn:T_t+}
+\end{equation}
+
+Or if the aircraft flies near its optimal glide speed
+
+\begin{equation}
+  \frac{T}{t+}=\frac{V_{opt}^2}{g \cdot c}
+  \label{eqn:T_t+_ratio}
+\end{equation}
+
+\begin{figure}[ht]
+  \begin{center}
+    %\includegraphics{<+file+>}
+  \end{center}
+  \caption{T to t+ ratio for divers flying objects}
+  \label{fig:T_t+_ratio}
+\end{figure}
+
+\par It is interesting to notice that this ratio is in the same order of magnitude for all these objects.
+The value of 90 is chosen for this ratio as it represent a good average of the data compiled.
+
+\par Another issue is that the GK model is dependent on the initial value of the state variable $x$.
+The initial value of $x$ is taken as the quasi-steady value.
+To minimize the effect of the transition from quasi-steady to unsteady flow at the beginning of the maneuver, the cycle is simulated twice and then only the second cycle is considered.
+This is possible to do since the conditions applied on the trajectory constrain the initial and final angle of attack to be the same.
