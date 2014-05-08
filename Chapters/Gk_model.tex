@@ -317,9 +317,24 @@ Or if the aircraft flies near its optimal glide speed
 \end{figure}
 
 \par It is interesting to notice that this ratio is in the same order of magnitude for all these objects.
-The value of 90 is chosen for this ratio as it represent a good average of the data compiled.
+The value of 90 is chosen as a default for this ratio as it represent a good average of the data compiled.
+
 
 \par Another issue is that the GK model is dependent on the initial value of the state variable $x$.
 The initial value of $x$ is taken as the quasi-steady value.
 To minimize the effect of the transition from quasi-steady to unsteady flow at the beginning of the maneuver, the cycle is simulated twice and then only the second cycle is considered.
 This is possible to do since the conditions applied on the trajectory constrain the initial and final angle of attack to be the same.
+
+
+\Subsection{Effects of considering unsteady aerodynamics on the optimal trajectory}
+
+Since the lift to drag ratio of the NACA0009 is about 10 (compared to 13 for the notional UAV) direct comparisons with the results presented in part \ref{sec:results_QS} are impossible.
+\begin{figure}[ht]
+  \begin{center}
+    %\includegraphics{<+file+>}
+  \end{center}
+  \caption{Cl versus alpha for different cases (shows the unsteadyness)}
+  \label{fig:Cl_vs_alpha_optimization}
+\end{figure}
+
+
