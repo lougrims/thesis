@@ -126,7 +126,7 @@ The code can be seen in annex \ref{ch:GK_code}.
 \FloatBarrier
 
 
-\Section{Model validation}
+\Section{Adapting the GK model to the NACA0009}
 
 \Subsection{Steady lift and stalling behavior}
 With the basics of the GK model defined, the goal is now to adapt it to our objectives.
@@ -197,18 +197,20 @@ The resulting profile for $x_0(\alpha)$ can be seen in figure \ref{fig:x_0_vs_al
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.5}
+    \scalebox{0.8}
     {\includegraphics{./Figures/x_0_vs_alpha.eps}}
   \end{center}
   \caption{Quasi-steady profile for the state variable $x$}
   \label{fig:x_0_vs_alpha}
 \end{figure}
 
+\FloatBarrier
 With this profile we get a good approximation of the experimental $C_l(\alpha)$ (cf figure \ref{fig:GK_Cl_vs_alpha}) for quasi steady cases.
 
 \begin{figure}[h]
   \begin{center}
-    \includegraphics{./Figures/GK_cl_vs_alpha.eps}
+    \scalebox{0.6}{
+      \includegraphics{./Figures/GK_cl_vs_alpha.eps}}
   \end{center}
   \caption{Comparison between the experimental and model quasi-steady lift}
   \label{fig:GK_Cl_vs_alpha}
@@ -233,6 +235,7 @@ With this profile we get a good approximation of the experimental $C_l(\alpha)$ 
 \par These two relatively simple equations shows that a physics based GK model can be implemented for both lift and drag and that they indeed depend on the same state variable.
 The two time constants $\tau_1$ and $\tau_2$ will be determined in the next section when the wing undergo unsteady pithing.
 
+\FloatBarrier
 \Section{Model validation}
 
 \par While the ability to predict lift and drag based on separation can be useful, the real strength of the GK model resides in its ability to work on unsteady cases.
