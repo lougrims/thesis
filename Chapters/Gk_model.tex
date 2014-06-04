@@ -37,8 +37,6 @@ This can be modeled using a first order differential equation.
   \label{eqn:state_variable}
 \end{eqnarray}
 
-
-
 \Section{Experimental Setup}
 
 \Subsection{Equipment and facilities}
@@ -373,7 +371,7 @@ This is done so that the bandwidth of the input signal is limited.
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}  
+    \scalebox{0.4}  
   {\includegraphics{./Figures/Cl_u=3_meanaoa=12(15seconds)_amp=2_freq=2p0.eps}}
   \end{center}
   \caption{Unsteady effects of random pitching on the lift}
@@ -382,7 +380,7 @@ This is done so that the bandwidth of the input signal is limited.
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}  
+    \scalebox{0.4}  
   {\includegraphics{./Figures/Cd_u=3_meanaoa=12(15seconds)_amp=2_freq=2p0.eps}}
   \end{center}
   \caption{Unsteady effects of random pitching on the drag}
@@ -419,6 +417,9 @@ Or if the aircraft flies near its optimal glide speed
   \label{eqn:T_t+_ratio}
 \end{equation}
 
+This ratio happens to be the Froude number.
+
+
 \begin{figure}[ht]
   \begin{center}
     %\includegraphics{<+file+>}
@@ -439,7 +440,26 @@ This is possible to do since the conditions applied on the trajectory constrain 
 
 \Subsection{Effects of considering unsteady aerodynamics on the optimal trajectory}
 
-Since the lift to drag ratio of the NACA0009 is about 10 (compared to 13 for the notional UAV) direct comparisons with the results presented in part \ref{sec:results_QS} are impossible.
+
+The unsteady model is expected to produce two effects on the lift and drag characteristics that can influence the optimization process.
+The first is the that the unsteady lift can reach values that are impossible to achieve in the quasi-steady case.
+If the airfoil is pitched up fast enough the flow doesn't have the time to separate and high values of Cl can be attained.
+The second effect is the delay between the angle of attack variations and the flow response.
+
+
+\par If the exact same constraints are used for optimization the problem illustrated by figure \ref{fig:unlimited_alpha_dot}.	
+
+\begin{figure}[h]
+  \begin{center}
+  
+<++>%\includegraphics{<+file+>}
+\end{center}
+  \caption{Optimization for vertical wind gusts with the same constraints as the previous cases}
+  \label{fig:unlimited_alpha_dot}
+\end{figure}
+
+The issue is that the in order to reach the favorable high lift regions the algorithm produces a 
+%Since the lift to drag ratio of the NACA0009 is about 10 (compared to 13 for the notional UAV) direct comparisons with the results presented in part \ref{sec:results_QS} are impossible.
 
 \begin{figure}[ht]
   \begin{center}
