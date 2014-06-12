@@ -282,7 +282,14 @@ This is done by trial and error.
 The two time constants are determined manually and are tuned to produce the best results at the different frequencies tested.
 $\tau_1$ is found to be equal to 3.06 t+ (0.25s) and $\tau_2$ is 4.29 t+ (0.35s).
 
-\par Theoretically the value of $\tau_1$ could be found by analysing the output of small step input for the angle of attack.
+
+\par The reason for the difference in behavior between the high and low frequencies is that at low frequencies the flow has the time to separate from the airfoil, this can be checked by the fact that state variable $x$ is driven by the time constant $\tau_1$.
+The characteristic frequency corresponding to this time constant is about $k=1.02$.
+For $k$ values of 0.257 and up, the low order filter described by the state variable equation \ref{eqn:state_variable} start to be more apparent.
+A higher frequencies the flow doesn't have the time to separate and the lift coefficient is mainly driven by the $2\pi\alpha$ multiplier.
+This can be seen on the by overlaying a line with a $2\pi\alpha$ slope on the results.
+
+\par Theoretically the value of $\tau_1$ could be found by analyzing the output of small step input for the angle of attack.
 In this situation $\dot{\alpha}$ at the time the step is taken but it doesn't last long enough affect the value of the state variable since the first order differential equation for $x$ acts as a low pass filter.
 This means that for a small step $C_l$ from 12 to 13 degrees the output lift looks like the following figure.
 
@@ -381,7 +388,6 @@ For some unknown reason the model does not seems to account for the hysteresis a
 The amplitude is set to a range from 1 to 4 degrees at different mean angle of attack.
 The predictions still reasonably match the experimental results. 
 
-
 % divers figures
 
 \par To simulate a more realistic pitch profile, a pseudo-random pitch profile is designed.
@@ -418,7 +424,6 @@ This is done so that the bandwidth of the input signal is limited.
 
 \par This model is producing accurate results that account for both the dynamic effects and the flow separation.
 Moreover the procedure is light enough to be implemented into the optimization algorithm without increasing too much the computation cost
-
 
 \Section{Implementation in the energy extraction algorithm}
 
