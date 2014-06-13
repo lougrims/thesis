@@ -359,8 +359,16 @@ The most obvious result is that the shape of the lift and drag versus angle of a
 \end{figure}
 
 \par Similarly another set of acquisitions is made at a mean angle of 10 degrees (see figures \ref{fig:Pitching_allcases_GK_Cl_10} and \ref{fig:Pitching_allcases_GK_Cd_10}).
+\par The area around 10 degrees is interesting because this is where the flow just starts to be get separated.
+The transition between attached flow and separated flow means that the state variable $x$ shouldn't have any effect for the lower angles and as a consequence the loop seen in the $C_l$ versus $\alpha$ plots should be ``pinched'' on its left side.
+This can be further illustrated by plotting the value of the state variable during this kind of maneuvers, it is constrained by the saturation of this value at one.
+This kind of behavior is particularly apparent on high amplitude (tens of degrees) pitch manoeuvre as it is seen in the original Goman and Khrabrov paper.
 The behavior is comparable at K of 0.257 and 0.513 but the drag has a noticeably different shape at K of 0.128.
+
+
+
 For some unknown reason the model does not seems to account for the hysteresis at this frequency.
+
 
 \begin{figure}[h]
   \begin{center}
@@ -389,6 +397,7 @@ The amplitude is set to a range from 1 to 4 degrees at different mean angle of a
 The predictions still reasonably match the experimental results. 
 
 % divers figures
+
 
 \par To simulate a more realistic pitch profile, a pseudo-random pitch profile is designed.
 The input is constructed as seen in equation \ref{eqn:random_pitch_input} with a randomized phase difference $\varphi_i$ between each harmonic components.
