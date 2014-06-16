@@ -114,43 +114,26 @@ In his paper, Lissaman \cite{Lissaman2007neutral} is using a relatively simple q
 %[CHECK THIS EQUATION !!!!!]
 
 \par This simple model work relatively well for simple airfoil but is inadequate for more complex shapes.
-For various reasons, small UAVs tend to have non classical designs such as blended wing body or flying wing shapes.
-The advantages of these designs reside in bigger space available for the payload while keeping the drag low.
-However the flying wing airfoil profiles have very different lift to drag characteristics compared to more classical airfoils.
+Moreover it fails to properly account for the effects of flow separation at high angle of attacks.
+Finally this model is only valid for the quasi-steady flow conditions.
 
-\par To get the lift to drag curve of a typical flying wing a typical flying wing shape is tested in the XFLR5 software.
-
-\begin{figure}[ht]
-  \begin{center}
-    \scalebox{0.5}            % rescale the figure by a factor of 0.8
-    {\includegraphics{./Figures/UAV.png}}
-  \end{center}
-  \caption{Flying wing UAV shape used in XLFR5}
-  \label{fig:UAV}
-\end{figure}
-
-\par This software perform flow simulation over the aircraft with a panel based method. 
-The simulation is performed on a range of angle of attack from negative 5 degrees to 13 degree.
+\par Since the unsteady model developed in chapter \ref{Ch:gkmodel} is based on experimental results for a NACA0009 airfoil, we will use simplified versions of the lift and drag characteristics of this airfoil.
 
 \begin{figure}[ht]
   \begin{center}
     \scalebox{0.8}
-    {\includegraphics{./Figures/Cd_and_Cl_UAV.eps}}
+    {\includegraphics{./Figures/NACA0009_steady_map_Cl_Cd.eps}} 
   \end{center}
-  \caption{Lift and drag characteristics of the notional UAV}
-  \label{fig:Cd_and_Cl_UAV}
+  \caption{Lift and drag characteristics of the NACA0009}
 \end{figure}
 
-Due to the presence of sharp edges at the tip of the wings the Reynolds number had to be limited to 3000.
-At each angle of attack the software automatically computed the steady lift and drag coefficients.
 
 \begin{figure}[ht]
   \begin{center}
     \scalebox{0.8}
-    {\includegraphics{./Figures/lift_to_drag_UAV.eps}}
+ %   {\includegraphics{./Figures/lift_to_drag_UAV.eps}}
   \end{center}
-  \caption{Lift to drag ratio for the notional UAV}
-  \label{fig:lift_to_drag_UAV}
+  \caption{Lift to drag ratio for the NACA0009}
 \end{figure}
 
 \par This results, while being arguably more realistic than a simple quadratic approach, are still only considering quasi-steady change in the angle of attack.
