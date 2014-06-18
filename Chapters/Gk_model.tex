@@ -236,7 +236,8 @@ The two time constants $\tau_1$ and $\tau_2$ will be determined in the next sect
 \FloatBarrier
 \Section{Model validation}
 
-\par While the ability to predict lift and drag based on separation can be useful, the real strength of the GK model resides in its ability to work on unsteady cases.
+\Subsection{Time constants}
+While the ability to predict lift and drag based on separation can be useful, the real strength of the GK model resides in its ability to work on unsteady cases.
 The first step is to determine the 2 $\tau$ time constants. 
 To do that a series of pitching cases are performed. 
 The pitching inputs are the following
@@ -295,8 +296,8 @@ This means that for a small step $C_l$ from 12 to 13 degrees the output lift loo
 
 \begin{figure}[h]
   \centering
-%  \includegraphics{}
-  \caption{Cl behavior for a instantaneous step from 12 to 13 degrees as simulated by the GK model}
+  \includegraphics{./Figures/Cl_vs_tplus_step_12to13.eps}
+  \caption{Cl behavior for a instantaneous step from 12 to 13 degrees at $t+=0$, as simulated by the GK model}
   \label{fig:Cl_for_alpha_step}
 \end{figure}
 
@@ -315,7 +316,9 @@ The force balance used to measure lift and drag is very fragile so a fast step c
 Furthermore any slower of even smoothed step input modifies the lift response enough to make the time constant identification impossible.
 While this method is unpractical for experimental cases it should be applicable in the case of CFD simulations.
 
-\par Now that the model is complete its accuracy can be checked.
+\Subsection{Model comparison at different frequencies mean angle and amplitudes}
+
+Now that the model is complete its accuracy can be checked.
 The most obvious result is that the shape of the lift and drag versus angle of attack curves are similar to the experimental results.
 
 \begin{figure}[h]
@@ -359,16 +362,7 @@ The most obvious result is that the shape of the lift and drag versus angle of a
 \end{figure}
 
 \par Similarly another set of acquisitions is made at a mean angle of 10 degrees (see figures \ref{fig:Pitching_allcases_GK_Cl_10} and \ref{fig:Pitching_allcases_GK_Cd_10}).
-\par The area around 10 degrees is interesting because this is where the flow just starts to be get separated.
-The transition between attached flow and separated flow means that the state variable $x$ shouldn't have any effect for the lower angles and as a consequence the loop seen in the $C_l$ versus $\alpha$ plots should be ``pinched'' on its left side.
-This can be further illustrated by plotting the value of the state variable during this kind of maneuvers, it is constrained by the saturation of this value at one.
-This kind of behavior is particularly apparent on high amplitude (tens of degrees) pitch manoeuvre as it is seen in the original Goman and Khrabrov paper.
-The behavior is comparable at K of 0.257 and 0.513 but the drag has a noticeably different shape at K of 0.128.
-
-
-
-For some unknown reason the model does not seems to account for the hysteresis at this frequency.
-
+For some unknown reason the model does not seems to model the behavior in the drag very well at this frequency.
 
 \begin{figure}[h]
   \begin{center}
@@ -389,8 +383,12 @@ For some unknown reason the model does not seems to account for the hysteresis a
 \end{figure}
 
 \FloatBarrier
- %put both sinusoidal and ``random'' motion
- %Also try a non dimensional validation
+
+\par The area around 8 degrees is interesting because this is where the flow just starts to be get separated.
+The transition between attached flow and separated flow means that the state variable $x$ shouldn't have any effect for the lower angles and as a consequence the loop seen in the $C_l$ versus $\alpha$ plots should be ``pinched'' on its left side.
+This can be further illustrated by plotting the value of the state variable during this kind of maneuvers, it is constrained by the saturation of this value at one.
+This kind of behavior is particularly apparent on high amplitude (tens of degrees) pitch maneuver as it is seen in the original Goman and Khrabrov paper.
+The behavior is comparable at K of 0.257 and 0.513 but the drag has a noticeably different shape at K of 0.128.
 
 \par Another obvious parameter to check for our model is the amplitude of the oscillations.
 The amplitude is set to a range from 1 to 4 degrees at different mean angle of attack.
@@ -398,8 +396,8 @@ The predictions still reasonably match the experimental results.
 
 % divers figures
 
-
-\par To simulate a more realistic pitch profile, a pseudo-random pitch profile is designed.
+\Subsection{Non-periodic pitch input}
+To simulate a more realistic pitch profile, a pseudo-random pitch profile is designed.
 The input is constructed as seen in equation \ref{eqn:random_pitch_input} with a randomized phase difference $\varphi_i$ between each harmonic components.
 
 \begin{equation}
@@ -408,11 +406,11 @@ The input is constructed as seen in equation \ref{eqn:random_pitch_input} with a
 \end{equation}
 
 The frequency are regularly spaced between 0.25 and 2Hz and the constant $B$ is chosen to make sure the maximum deviation from the $\alpha_0$ value is no more than 2 degrees.
-This is done so that the bandwidth of the input signal is limited.
+This is done so that the bandwidth of the input signal is limited to reasonable levels and to keep the force balance safe.
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.4}  
+    \scalebox{0.6}  
   {\includegraphics{./Figures/Cl_u=3_meanaoa=12(15seconds)_amp=2_freq=2p0.eps}}
   \end{center}
   \caption{Unsteady effects of random pitching on the lift}
@@ -421,13 +419,15 @@ This is done so that the bandwidth of the input signal is limited.
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.4}  
+    \scalebox{0.6}  
   {\includegraphics{./Figures/Cd_u=3_meanaoa=12(15seconds)_amp=2_freq=2p0.eps}}
   \end{center}
   \caption{Unsteady effects of random pitching on the drag}
   \label{fig:Pitching_random_Cd_12}
 \end{figure}
 
+\par The accuracy of these results means that this model could be used in real time during arbitrary pitching maneuvers.
+This is potentially very useful since a lot of systems rely on the periodicity of the pitching motion to predict the lift and can be inaccurate in case of non periodic disturbances such as wind gusts changing the effective angle of attack.
 
 \FloatBarrier
 
@@ -514,7 +514,7 @@ This also leads to lower lift overall (see figure \ref{fig:Cl_fast_pitching}) si
 \begin{figure}[h]
   \centering
   \includegraphics{./Figures/Cl_vs_alpha_amp=4_k=0p5.eps}
-  \caption{$C_l$ is decreased compared to quasi-steady values for high pitching rate manoeuvres}
+  \caption{$C_l$ is decreased compared to quasi-steady values for high pitching rate maneuvers (the transient part has been removed for clarity)}
   \label{fig:Cl_fast_pitching}
 \end{figure}
 
