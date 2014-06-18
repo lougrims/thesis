@@ -1,15 +1,23 @@
 \par The purpose of this thesis is to show how micro unmanned aerial vehicles can extract energy from natural wind gusts and how this energy extraction is affected by the effects of unsteady aerodynamics.
 
 \par The trajectory of a small UAV flying through wind gusts is simulated with a two degrees of freedom model.
-The non-dimensional model is set to include vertical and horizontal gusts of varying amplitude and duration.
+The non-dimensional model is set to include vertical and horizontal gusts of varying amplitudes and durations.
 From this model an optimization routine is performed in order to obtain the minimum gust amplitude needed to get a neutral energy trajectory.
-With these results, it is discovered that neutral energy flight is possible through gusts speeds only 10 to 20\% of the flying speed of the aircraft .
+With these results, it is shown that neutral energy flight is possible through gusts speeds only 10 to 30\% of the flying speed of the aircraft .
 Analysis of the results shows that the lift coefficient has to be changed very rapidly in order to perform these maneuvers in short duration gusts. 
 Moreover high lift values are often required. 
 
 \par To achieve this kind of rapid changes in the lift and drag forces, fast variations of the angle of attack are needed.
 The high lift values also requires high angles of attacks that are likely to cause separation of the flow over the airfoil.
 These fast variations at high angle of attack are shown to cause unsteady non linear aerodynamic responses.
-A low order model based on the Goman-Khrabrov paper \cite{GK} is developed and validated against experimental results.
+Traditional CFD simulations are far too computationally expensive to be implemented into the optimization routine.
+To solve this issue a low order model based on a paper by Goman and Khrabrov \cite{GK} is developed and validated against experimental results.
+This model produces accurate predictions of the lift and drag coefficients for a wide range of angle of attack and for different type of pitch inputs.
 
 \par With this light model the influence of the unsteady aerodynamics on the energy extraction problem are highlighted.
+The main difference with quasi-steady aerodynamics model was found to be for gusts at a reduced frequency faster than k of 0.07.
+Around these values the potential performances are improved by introducing the unsteady model.
+The trajectories obtained include more violent changes in angle of attacks in order to take full advantages of the unsteady effects.
+
+
+

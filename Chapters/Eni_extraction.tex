@@ -6,11 +6,11 @@ The aircraft is assumed to be a glider to simplify the optimization routine.
 With such assumption the equations of motion in the ground reference frame is :
 
 \begin{equation}
-  \begin{array}[c]{c}
-    \ddot{x}= -L' \cdot sin(\gamma) + D' \cdot cos(\gamma) \\ 
-    \ddot{z}= L' \cdot cos(\gamma) - D' \cdot sin(\gamma) - m \cdot g
-  \end{array}
-  \label{eqn:eqm}
+\begin{array}[c]{c}
+  \ddot{x}= -L' \cdot sin(\gamma) + D' \cdot cos(\gamma) \\ 
+  \ddot{z}= L' \cdot cos(\gamma) - D' \cdot sin(\gamma) - m \cdot g
+\end{array}
+\label{eqn:eqm}
 \end{equation}
 
 % should I include a figure with the reference frame, and angle definition?
@@ -18,11 +18,11 @@ With such assumption the equations of motion in the ground reference frame is :
 \par The lift and drag are defined are: 
 
 \begin{equation}
-  \begin{array}[c]{c}
-    L'= \frac{1}{2} \rho v^2 C_l \\ 
-    D'= \frac{1}{2} \rho v^2 C_d 
-  \end{array}
-  \label{eqn:Cl_def}
+\begin{array}[c]{c}
+  L'= \frac{1}{2} \rho v^2 C_l \\ 
+  D'= \frac{1}{2} \rho v^2 C_d 
+\end{array}
+\label{eqn:Cl_def}
 \end{equation}
 
 \par With $v$ being the relative wind for the vehicle.
@@ -37,21 +37,21 @@ This speed is achieved at the optimal lift to drag ratio of the aircraft.
 With $C_l^*$ and $C_d^*$ the angle of attack for the maximum lift to drag ratio and $\gamma$ the pitch angle with respect to the horizon the optimal glide speed is:
 
 \begin{equation}
-  \begin{array}[c]{c}
-    \gamma^*= - atan(\frac{C_l^*}{C_d^*}) \\
-    V^* = \sqrt{\frac{2mg}{\rho S (C_l^* cos(\gamma^*) - C_d^* sin(\gamma^*)}}
-  \end{array}
-  \label{eqn:glide_speed}
+\begin{array}[c]{c}
+  \gamma^*= - atan(\frac{C_l^*}{C_d^*}) \\
+  V^* = \sqrt{\frac{2mg}{\rho S (C_l^* cos(\gamma^*) - C_d^* sin(\gamma^*)}}
+\end{array}
+\label{eqn:glide_speed}
 \end{equation}
 
 \par From we define $U$ and $W$ the non dimensional horizontal and vertical speed in the inertial reference frame.
 
 \begin{equation}
-  \begin{array}[c]{c}
-    U = \frac{\dot{x}}{V^*} \\
-    V= \frac{\dot{z}}{V^*}
-  \end{array}
-  \label{eqn:non_dim_speed}
+\begin{array}[c]{c}
+  U = \frac{\dot{x}}{V^*} \\
+  V= \frac{\dot{z}}{V^*}
+\end{array}
+\label{eqn:non_dim_speed}
 \end{equation}
 
 The time is normalized by $g / V^*$.
@@ -59,35 +59,35 @@ The time is normalized by $g / V^*$.
 \par Since the speed is seen as a fraction of the optimal glide speed it makes sens to also normalize the lift and drag coefficients by their corresponding values at the optimal lift to drag ratio.
 
 \begin{equation}
-  \begin{array}[c]{c}
-    L= \frac{C_l}{C_l^*} \\
-    D= \frac{C_d}{C_d^*} 
-  \end{array}
-  \label{eqn:non_dim_coef}
+\begin{array}[c]{c}
+  L= \frac{C_l}{C_l^*} \\
+  D= \frac{C_d}{C_d^*} 
+\end{array}
+\label{eqn:non_dim_coef}
 \end{equation}
 
 \par Finally we introduce Q the dynamic pressure as:
 
 \begin{equation}
-  Q = \frac{L'}{MgL} = \frac{\frac{1}{2} \rho V^2 C_l C_l^* }{Mg}
-  \label{eqn:dynamic_pressure}
+Q = \frac{L'}{MgL} = \frac{\frac{1}{2} \rho V^2 C_l C_l^* }{Mg}
+\label{eqn:dynamic_pressure}
 \end{equation}
 
 \par From there the equation of motion \ref{eqn:eqm} can be expressed as:
 
 \begin{equation}
-  \begin{array}[c]{c}
-    \frac{dU}{dT}= -LQ \cdot sin(\gamma) + DQ \cdot cos(\gamma) \\ 
-    \frac{dW}{dT}= LQ \cdot cos(\gamma) - DQ \cdot sin(\gamma) - 1
-  \end{array}
-  \label{eqn:non_dim_eqm}
+\begin{array}[c]{c}
+  \frac{dU}{dT}= -LQ \cdot sin(\gamma) + DQ \cdot cos(\gamma) \\ 
+  \frac{dW}{dT}= LQ \cdot cos(\gamma) - DQ \cdot sin(\gamma) - 1
+\end{array}
+\label{eqn:non_dim_eqm}
 \end{equation}
 
 With 
 
 \begin{equation}
-  \gamma = -atan(\frac{W-W_g}{U-U_g})
-  \label{eqn:gamma_def}
+\gamma = -atan(\frac{W-W_g}{U-U_g})
+\label{eqn:gamma_def}
 \end{equation}
 
 $W_g$ and $U_g$ are the vertical and horizontal wind speeds in the inertial reference frame.
@@ -95,8 +95,8 @@ $W_g$ and $U_g$ are the vertical and horizontal wind speeds in the inertial refe
 \par Finally the remaining thing to consider is $Q$ the dynamic pressure. If we define the speed of the wind gust as $W_g$ and $U_g$ we can express:
 
 \begin{equation}
-  Q = V^2 = (W-W_g)^2 + (U-U_g)^2
-  \label{eqn:q_def}
+Q = V^2 = (W-W_g)^2 + (U-U_g)^2
+\label{eqn:q_def}
 \end{equation}
 
 \par With these definitions we have the basic formulation of our non-dimensional equation of motions, normalized by the performances at the optimal glide trajectory in a calm environment.
@@ -107,8 +107,8 @@ The most important factor for glide performance is the lift to drag ratio.
 In his paper, Lissaman \cite{Lissaman2007neutral} is using a relatively simple quadratic model for the relationship between lift and drag:
 
 \begin{equation}
-  D=\frac{Q}{2G}(1+L^2)
-  \label{eqn:Lissaman_G}
+D=\frac{Q}{2G}(1+L^2)
+\label{eqn:Lissaman_G}
 \end{equation}
 
 %[CHECK THIS EQUATION !!!!!]
@@ -120,20 +120,20 @@ Finally this model is only valid for the quasi-steady flow conditions.
 \par Since the unsteady model developed in chapter \ref{Ch:gkmodel} is based on experimental results for a NACA0009 airfoil, we will use simplified versions of the lift and drag characteristics of this airfoil.
 
 \begin{figure}[ht]
-  \begin{center}
-    \scalebox{0.8}
-    {\includegraphics{./Figures/NACA0009_steady_map_Cl_Cd.eps}} 
-  \end{center}
-  \caption{Lift and drag characteristics of the NACA0009}
+\begin{center}
+  \scalebox{0.8}
+  {\includegraphics{./Figures/NACA0009_steady_map_Cl_Cd.eps}} 
+\end{center}
+\caption{Lift and drag characteristics of the NACA0009}
 \end{figure}
 
 
 \begin{figure}[ht]
-  \begin{center}
+\begin{center}
 %    \scalebox{0.8}
- %   {\includegraphics{./Figures/lift_to_drag_UAV.eps}}
-  \end{center}
-  \caption{Lift to drag ratio for the NACA0009}
+%   {\includegraphics{./Figures/lift_to_drag_UAV.eps}}
+\end{center}
+\caption{Lift to drag ratio for the NACA0009}
 \end{figure}
 
 \par This results, while being arguably more realistic than a simple quadratic approach, are still only considering quasi-steady change in the angle of attack.
@@ -146,21 +146,21 @@ In this optimization procedure we chose to consider three different wind profile
 \par Our first gust profile is a simple vertical gust.
 
 \begin{equation}
-  \begin{array}[c]{c}
-    W_g = W_a \cdot sin(2\pi T) \\
-    U_g = 0 
-  \end{array}
-  \label{eqn:vertical_gust_definition}
+\begin{array}[c]{c}
+  W_g = W_a \cdot sin(2\pi T) \\
+  U_g = 0 
+\end{array}
+\label{eqn:vertical_gust_definition}
 \end{equation}
 
 \par Similarly the horizontal gust is defined as:
 
 \begin{equation}
-  \begin{array}[c]{c}
-    W_g = 0 \\
-    U_g = W_a \cdot cos(2 \pi T)
-  \end{array}
-  \label{eqn:horizontal_gust_definition}
+\begin{array}[c]{c}
+  W_g = 0 \\
+  U_g = W_a \cdot cos(2 \pi T)
+\end{array}
+\label{eqn:horizontal_gust_definition}
 \end{equation}
 
 \par Finally a more complex combined gust is defined.
@@ -168,11 +168,11 @@ This gust profile is the sum of the two previously defined gusts.
 Moreover we introduce $\phi$, a phase difference between the two component of the gust. 
 
 \begin{equation}
-  \begin{array}[c]{c}
-    W_g = W_a \cdot sin(2\pi T) \\
-    U_g = W_a \cdot cos(2 \pi T + \phi)
-  \end{array}
-  \label{eqn:combined_gust_definition}
+\begin{array}[c]{c}
+  W_g = W_a \cdot sin(2\pi T) \\
+  U_g = W_a \cdot cos(2 \pi T + \phi)
+\end{array}
+\label{eqn:combined_gust_definition}
 \end{equation}
 
 \Section{Optimization process, cost function and constraints}
