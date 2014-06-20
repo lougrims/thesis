@@ -41,7 +41,7 @@ To minimize the effect of the transition from quasi-steady to unsteady flow at t
 This is possible to do since the conditions applied on the trajectory constrain the initial and final angle of attack and pitch rate to be the same.
 
 
-\Subsection{Effects of considering unsteady aerodynamics on the optimal trajectory}
+\Subsection{Expected effects of considering unsteady aerodynamics on the optimal trajectory}
 Unsteady aerodynamics allows access to new areas on the $C_l$ vs $\alpha$ map as well as on the lift to drag ratio map.
 This effects on the lift and drag characteristics that will influence the optimization process if the pitching rate is fast enough to trigger them.
 The effects on the lift can divided into two categories.
@@ -121,6 +121,72 @@ These spikes in the pitch rate are too short to be able to influence the low pas
 
 \Section{A closer look at the high performing short gusts}
 
+\begin{figure}[h]
+  \begin{center}
+  \scalebox{0.4}{
+    \includegraphics{./Figures/Wg_vs_TG_windtype=3_alphamax=12_nodalphalimit.eps}}
+  \end{center}
+  \caption{Performance difference between quasi-steady and unsteady model for combined gusts}
+  \label{fig:WG_vs_TG_wt=3}
+\end{figure}
+
+
+\begin{figure}[h]
+  \centering
+  \scalebox{0.4}{
+    \includegraphics{./Figures/Wg_vs_TG_windtype=1_alphamax=12_nodalphalimit.eps}}
+  \caption{Performance difference between quasi-steady and unsteady model for vertical gusts}
+  \label{fig:WG_vs_TG_wt=1}
+\end{figure}
+
+\par The difference between the quasi-steady model and the unsteady one only appears close for $Tg<0.7$.
+This result is reassuring as it confirm that for long gusts ($Tg>0.7$ or $k<0.05$) the two model are equivalent.
+We can confirm that there is no unsteady effects active by looking at the $C_l$ versus $\alpha$ curve compared to the quasi-steady map, or even better $G$ the lift to drag ratio.
+On figure \ref{fig:G_vs_alpha_wt=1_Tg=1_GK.eps} you can see that the lift to drag ratio for $T_g=1$ is following the quasi-steady values.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{./Figures/G_vs_alpha_wt=1_Tg=1_GK.eps}
+  \caption{Lift to drag ratio for the unsteady model, vertical wind gust and gust duration of 1T}
+  \label{fig:G_vs_alpha_wt=1_Tg=1_GK.eps}
+\end{figure}
+
+\par However for shorter gusts the results are more interesting.
+We can see that for shorter gusts ($T_g<0.7$) the performances are better with the GK model than with the quasi-steady model.
+This is true for both vertical and combined wind gusts which seems to indicate that this is due to the unsteady effects starting to be significant at this frequency.
+
+\FloatBarrier
+
+\par Looking more precisely at the results around $T_G=0.3$ let's try to highlight thee differences between the quasi-steady and the unsteady model.
+First we can look at the optimization parameter $\alpha$ for both vertical and combined gusts.
+
+\begin{figure}[h]
+  \centering
+  \scalebox{0.4}{
+    \includegraphics{./Figures/alpha_vs_Tg_wt1.eps}}
+  \caption{Angle of attack for short vertical gusts with the quasi-steady (QS) and unsteady (GK) model}
+  \label{fig:alpha_vs_Tg_wt1}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \scalebox{0.4}{
+    \includegraphics{./Figures/alpha_vs_Tg_wt3.eps}}
+  \caption{Angle of attack for short combined gusts with the quasi-steady (QS) and unsteady (GK) model}
+  \label{fig:alpha_vs_Tg_wt3}
+\end{figure}
+
+\par It is immediately apparent that the main difference is in the high angle of attack area.
+Alpha increases exponentially before a sharp decrease happens around 30 to 40\% of the gust duration.
+The angle of attack then falls back to the quasi-steady values.
+
+\FloatBarrier
+
+\par To understand what happens to the lift when such a maneuver is performed we have to refer to the lift coefficient versus angle of attack plot.
+
+
+
+
 \Section{Bad performances at $T_G<0.1$}
 
 
@@ -138,5 +204,9 @@ The same can be said for the plunging motion.
 With that in mind there is a fairly high probability that the resulting mechanism could be described by a model inspired by the GK model.
 It is very likely that the state variable for such a model would be tied in some way to the state variable presented in this thesis.
 If $x$ could be expressed as a function of $\alpha$, $\dot{\alpha}$ and $\dot{u}$ (for example), this model could be applicable to a whole new range of situations.
+
+
+
+\Subsection{Moment of inertia considerations}
 
 
