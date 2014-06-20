@@ -43,7 +43,7 @@ This can be modeled using a first order differential equation.
 
 \begin{figure}[h]
   \begin{center}
-		%\includegraphics{<+file+>}
+%\includegraphics{<+file+>}
   \end{center}
   \caption{Airfoil model inside the wind tunnel}
   \label{fig:wind_tunnel}
@@ -433,100 +433,34 @@ This is potentially very useful since a lot of systems rely on the periodicity o
 \par This model is producing accurate results that account for both the dynamic effects and the flow separation.
 Moreover the procedure is light enough to be implemented into the optimization algorithm without increasing too much the computation cost
 
-\Section{Implementation in the energy extraction algorithm}
 
-\par As seen in the previous chapter the optimization process for the energy extraction trajectory only requires a way to calculate the relationship between the lift and drag coefficient.
-Since in our case these 2 variables depend only on the angle of attack and its change rate over time, it is fairly easy to implement it into the algorithm.
-However the non dimensional time constant are different, the energy extraction one consider the optimal glide speed and the gravity acceleration whereas the one used for the GK model uses the flight speed and the chord length.
+\Section{Model limitations}
 
-\Subsection{Relation between the different time scales}
-As said before the time scale used in the two models are different.
-To solve this issue the ratio of the two time constants are plotted (see figure \ref{fig:T_t+_ratio}) for a wide variety of flying objects.
+While this model produces impressive results for a lot of different cases it is not without its limitations.
 
-\begin{equation}
-  \frac{T}{t+}=\frac{V_{opt}}{g} \cdot \frac{U}{c}
-  \label{eqn:T_t+}
-\end{equation}
+\Subsection{Inertial and added mass effects} \label{subs:added_mass}
 
-Or if the aircraft flies near its optimal glide speed
+One of the biggest issue of the experimental part for the pitching experiment are the inertial effects due to the mass of the wing being thrown around.
+These inertial effects represent very high loads compared to the actual aerodynamic loads.
+To these we get the weight of the wing being added to the force balance measurement.
 
-\begin{equation}
-  \frac{T}{t+}=\frac{V_{opt}^2}{g \cdot c}
-  \label{eqn:T_t+_ratio}
-\end{equation}
+\par Since we are only interested in the aerodynamic forces we need to eliminate these mechanical forces.
+As explained before we remove these by averaging over several cycles both an acquisition with the tunnel on and one without the model on.
+Assuming that the inertial effects are reproducible (this has been a fairly solid assumption) then the forces due to the momentum and weight are removed.
+However the acquisition done when the wind tunnel is not running are not done in vacuum.
+As such the added mass effects are subtracted from the final data.
 
-This ratio happens to be the Froude number.
+\Subsection{Center of rotation}
 
+Traditionally whenever span-wise data are considered, all all moments and rotation centers are taken at the quarter chord point.
+With our double servomotor system we are able to find a relation which will allow us to rotate the wing around any arbitrary point (provided it is within the mechanical range of the actuators).
+A batch of acquisition was performed with the rotation point set at the emplacement of the force balance to minimize the effects of inertial tangential and normal forces on the measurements.
+However the results were deemed not as good as simply moving the back servo.
+The simultaneous motion of the two servos introduce a lot of vibrations, especially when small and slow motions are needed.
+This is due to the electric servos being based on stepper motors and the fact that the two servo rods are very close together.
 
-\begin{figure}[ht]
-  \begin{center}
-    %\includegraphics{<+file+>}
-  \end{center}
-  \caption{T to t+ ratio for divers flying objects}
-  \label{fig:T_t+_ratio}
-\end{figure}
+\par Attempts to move only the back servo (instead of the front) produced worst data than moving the back one.
+A possible explanation is that the front servo has to support the whole wing and sting assembly whereas the back one has a much lighter load.
+Under this higher load the servo positioning system is not as precise.
 
-\par It is interesting to notice that this ratio is in the same order of magnitude for all these objects.
-The value of 90 is chosen as a default for this ratio as it represent a good average of the data compiled.
-
-
-\par Another issue is that the GK model is dependent on the initial value of the state variable $x$.
-The initial value of $x$ is taken as the quasi-steady value.
-To minimize the effect of the transition from quasi-steady to unsteady flow at the beginning of the maneuver, the cycle is simulated twice and then only the second cycle is considered.
-This is possible to do since the conditions applied on the trajectory constrain the initial and final angle of attack to be the same.
-
-
-\Subsection{Effects of considering unsteady aerodynamics on the optimal trajectory}
-Unsteady aerodynamics allows access to new areas on the $C_l$ vs $\alpha$ map as well as on the lift to drag ratio map.
-This effects on the lift and drag characteristics that will influence the optimization process if the pitching rate is fast enough to trigger them.
-The effects on the lift can divided into two categories.
-
-\par The first one is the time lag for the flow separation. 
-If the airfoil is pitched up fast enough the flow doesn't have the time to separate and high values of Cl can be attained.
-%Since during a typical gust negative and positive values are needed for the lift we can assume that the flow will reattach when the angle of attack is close to zero.
-If the flow separates then behaviors like the one we saw in the periodic pitching around 12 degrees (see figure \ref{fig:Pitching_allcases_Cl_12}) will be seen.
-
-\par The second effect is seen when high pitch rates are present.
-In these cases the $\alpha - \tau_2 \dot{\alpha}$ term in the state variable equation \ref{eqn:state_variable} starts to get influenced by the $\dot{\alpha}$ term. 
-For example for a 4 degrees amplitude sinusoidal pitching around a mean angle of attack of zero at a frequency of $k=0.5$ will produce unsteady effects as seen on the following figures \ref{fig:alpha_dalpha_vs_t} and \ref{fig:x_fast_pitching}.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics{./Figures/alpha_dalpha_sin_amp=4_k=0p5.eps}
-  \caption{Effects of $\tau_2 \dot{\alpha}$ for high pitching rate}
-  \label{fig:alpha_dalpha_vs_t}
-\end{figure}
-
-
-\begin{figure}[h]
-  \centering
-  \includegraphics{./Figures/x_sin_amp=4_k=0p5.eps}
-  \caption{State variable during fast sinusoidal pitching}
-  \label{fig:x_fast_pitching}
-\end{figure}
-
-\par The state variable value starts at the quasi-steady value (as designed in the algorithm implementation) but after a couple of cycles it orbits close to an average value that would correspond to separated flows in a quasi-steady case.
-This also leads to lower lift overall (see figure \ref{fig:Cl_fast_pitching}) since the value of x is smaller.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics{./Figures/Cl_vs_alpha_amp=4_k=0p5.eps}
-  \caption{$C_l$ is decreased compared to quasi-steady values for high pitching rate maneuvers (the transient part has been removed for clarity)}
-  \label{fig:Cl_fast_pitching}
-\end{figure}
-
-
-
-\par If the exact same constraints are used for optimization the problem illustrated by figure \ref{fig:unlimited_alpha_dot}.	
-
-\begin{figure}[h]
-  \begin{center}
-  
-<++>%\includegraphics{<+file+>}
-\end{center}
-  \caption{Optimization for vertical wind gusts with the same constraints as the previous cases}
-  \label{fig:unlimited_alpha_dot}
-\end{figure}
-
-The issue is that the in order to reach the favorable high lift regions the algorithm produces a 
-%Since the lift to drag ratio of the NACA0009 is about 10 (compared to 13 for the notional UAV) direct comparisons with the results presented in part \ref{sec:results_QS} are impossible.
+\par Any unwanted forces created by rotating the airfoil in front of the quarter chord point should get subtracted by the procedure described in the previous section \ref{subs:added_mass}.

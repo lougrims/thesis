@@ -106,7 +106,7 @@ It seems that for most optimization cases this effect is avoided.
 
 \begin{figure}[h]
   \centering
-  \includegraphics{<+file+>}
+  %\includegraphics{<+file+>}
   \caption{Staircase pattern seen for XXXX wind gust with $T_g=XX$}
   \label{fig:staircase_case}
 \end{figure}
@@ -121,4 +121,22 @@ These spikes in the pitch rate are too short to be able to influence the low pas
 
 \Section{A closer look at the high performing short gusts}
 
-\Section{
+\Section{Bad performances at $T_G<0.1$}
+
+
+\Section{Limitations of the unsteady GK model}
+
+\Subsection{Considering the gusting and plunging component}
+
+One of the major thing this optimization misses are the unsteady effects due to gusting and plunging.
+In our case we have major gusts present at the same time as the pitching motion.
+While the speed of the UAV changes too, the relative wind amplitude is in the order of 20\%.
+We know that gusts as gentle as 5\% of the free stream speed can have huge influence on the lift characteristics and that the lift response to such gusts depends heavily on the frequency of the gusts.
+The same can be said for the plunging motion.
+
+\par While this variations are pretty wild it is suspected that they are caused by the same kind of mechanism as the lift variations caused by pitch angle changes.
+With that in mind there is a fairly high probability that the resulting mechanism could be described by a model inspired by the GK model.
+It is very likely that the state variable for such a model would be tied in some way to the state variable presented in this thesis.
+If $x$ could be expressed as a function of $\alpha$, $\dot{\alpha}$ and $\dot{u}$ (for example), this model could be applicable to a whole new range of situations.
+
+
