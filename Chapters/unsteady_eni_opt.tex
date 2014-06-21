@@ -184,10 +184,24 @@ The angle of attack then falls back to the quasi-steady values.
 
 \par To understand what happens to the lift when such a maneuver is performed we have to refer to the lift coefficient versus angle of attack plot.
 
+\begin{figure}[h]
+  \centering
+  \includegraphics{./Figures/Cl_vs_alpha_wt=1_tg=0p5_alphamax=20.eps}
+  \caption{Lift coefficient versus angle of attack for 0.5T long vertical wind gusts with the unsteady model}
+  \label{fig:Cl_vs_alpha_short_gust_unsteady}
+\end{figure}
+\FloatBarrier
+
+\par Figure \ref{fig:Cl_vs_alpha_short_gust_unsteady} illustrate perfectly the effects of the unsteady aerodynamic model and the difference with the quasi-steady model.
+The spiking in angle of attack allows the flow to remain attached to the airfoil and let the lift coefficient reach values for superior to what the quasi-steady (red curve) model would ever permit.
+Sharply decreasing the angle of attack at the end of this maneuver means that the flow doesn't have time to separate.
+Similar results are observed for vertical and horizontal gusts in the $T_g=0.2$ to $0.7$ region.
 
 
 
-\Section{Bad performances at $T_G<0.1$}
+\Section{Bad performances at $T_g\leq0.1$}
+
+\par As seen on figures \ref{fig:WG_vs_TG_wt=3} and \ref{fig:WG_vs_TG_wt=1} while the unsteady model optimizations are showing a more efficient energy extraction than the quasi-steady for $0.2 \leq T_g \leq 0.7$ it is not the case at $T_g=0.1$. 
 
 
 \Section{Limitations of the unsteady GK model}

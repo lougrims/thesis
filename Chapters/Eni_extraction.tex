@@ -349,9 +349,11 @@ These guesses are refined as new results are obtained.
 \Section{Results for quasi-steady aerodynamics} \label{sec:results_QS}
 
 \Subsection{Typical trajectories}
+
+\Subsection{Implementation validation}
 The first step is to validate the code implemented here against previous results. 
 Even if the lift and drag profiles are different from Lissaman's assumptions a similar case is optimized.
-The gust duration is set to be $T_g=4 T+$, for a purely vertical gust.
+The gust duration is set to be $T_g=4 T$, for a purely vertical gust.
 Since it is only a validation test the same lift and drag characteristics are used. Equation \ref{eqn:Lissaman_G} plugged into the equation of motion part of the code. An optimal lift to drag ratio of $G_{max}=20$ is chosen, as seen in the original Lissaman paper \cite{Lissaman2007neutral}.
 
 \begin{figure}[ht]
@@ -359,7 +361,7 @@ Since it is only a validation test the same lift and drag characteristics are us
     \scalebox{0.8}
     {\includegraphics{./Figures/Windtype=1_Tg=4_Wg=0p129_quad_G=20.eps}}
   \end{center}
-  \caption{Optimization results for a $4T+$ long vertical gust}
+  \caption{Optimization results for a $4T$ long vertical gust}
   \label{fig:Validation_optimization}
 \end{figure}
 
@@ -376,7 +378,7 @@ The shape of the state and control parameters curves are also consistent with th
     \scalebox{0.8}
     {\includegraphics{./Figures/Windtype=2_Tg=4_Wg=0p246_quad_G=20.eps}}
   \end{center}
-  \caption{$4T+$ long horizontal gust for $G=20$, $W_a=0.246$}
+  \caption{$4T$ long horizontal gust for $G=20$, $W_a=0.246$}
   \label{fig:Horizontal_optimization}
 \end{figure}
 
@@ -390,24 +392,25 @@ However this shows that it is possible to take advantage of horizontal wind gust
     \scalebox{0.8}
     {\includegraphics{./Figures/Windtype=3_Tg=4_Wg=0p232_quad_G=20.eps}}
   \end{center}
-  \caption{$4T+$ long combined gust for $G=20$, $W_a=0.232$}
+  \caption{$4T$ long combined gust for $G=20$, $W_a=0.232$}
   \label{fig:combined_optimization}
 \end{figure}
 
 Unsurprisingly the neutral energy loop trajectory exists also for this case.
 
-\par The general idea for flying when there is a wind gust is the ``belly to the wind'' technique described by Zhao \cite{zhao2004optimal}.
-
 \FloatBarrier
 
+\Subsection{Typical results for the NACA0009 wing}
+
 \par A similar batch of optimizations is done with the more realistic lift and drag profiles.
+However since the lift to drag ration is lower than what Lissaman used in his model a higher gust amplitude is expected.
 
 \begin{figure}
   \begin{center}
    \scalebox{0.8}
    {\includegraphics{./Figures/Windtype=1_Tg=4_Wg=0p205_UAV_alphamax=12.eps}}
   \end{center}
-  \caption{$4T+$ long vertical gust for UAV, $W_a=0.205$}
+  \caption{$4T$ long vertical gust for UAV, $W_a=0.205$}
   \label{fig:vertical_optimization_UAV}
 \end{figure}
 
@@ -417,7 +420,7 @@ Unsurprisingly the neutral energy loop trajectory exists also for this case.
     \scalebox{0.8}
     {\includegraphics{./Figures/Windtype=3_Tg=4_Wg=0p387_UAV_alphamax=12.eps}}
   \end{center}
-  \caption{$4T+$ long combined gust for UAV, $W_a=0.387$}
+  \caption{$4T$ long combined gust for UAV, $W_a=0.387$}
   \label{fig:combined_optimization_UAV}
 \end{figure}
 
@@ -438,7 +441,7 @@ The notional UAV used is closer to 14.
     \scalebox{0.8}
     {\includegraphics{./Figures/Windtype=1_Tg=4_Wg=0p194_quad_G=13.eps}}
   \end{center}
-  \caption{$4T+$ long vertical gust for $G=14$, $W_a=0.194$}
+  \caption{$4T$ long vertical gust for $G=14$, $W_a=0.194$}
   \label{fig:vertical_optimization_UAV_modified}
 \end{figure}
 
@@ -448,7 +451,7 @@ The notional UAV used is closer to 14.
     \scalebox{0.8}
     {\includegraphics{./Figures/Windtype=3_Tg=4_Wg=0p360_quad_G=13.eps}}
   \end{center}
-  \caption{$4T+$ long combined gust for $G=14$, $W_a=0.360$}
+  \caption{$4T$ long combined gust for $G=14$, $W_a=0.360$}
   \label{fig:combined_optimization_UAV_modified}
 \end{figure}
 
@@ -465,8 +468,8 @@ Since the quadratic lift to drag profile isn't that different to the UAV one, th
 
 
 \Subsection{Influence of the gust duration}
-From our literature review it seems like most of the studies done on gusting winds has been conducted on gusts duration greater than $2T+$.
-Considering shorter gusts seems unreasonable of you only consider quasi steady aerodynamics, a $2T+$ gust is about 2 seconds for vehicle flying 10 m/s.
+From our literature review it seems like most of the studies done on gusting winds has been conducted on gusts duration greater than $2T$.
+Considering shorter gusts seems unreasonable of you only consider quasi steady aerodynamics, a $2T$ gust is about 2 seconds for vehicle flying 10 m/s.
 However since the purpose this research is to extend the energy extraction envelope, such cases should be considered.
 
 \begin{figure}[h!]
@@ -489,7 +492,7 @@ However since the purpose this research is to extend the energy extraction envel
 
 \par Interestingly shorter gusts require less wind amplitude than the long ones.
 This seems to indicate that most of the lost energy is due to the non-conservative drag force and not due to the downwind effects.
-However the actual minimum gust amplitude required for neutral energy flight has a minimum for $2T+$ long vertical gusts.
+However the actual minimum gust amplitude required for neutral energy flight has a minimum for $2T$ long vertical gusts.
 
 \par In figure \ref{fig:combined_amplitude_duration} This time no minimum is found.
 This seems to reinforce the idea that the losses are mainly due to the energy dissipated by the drag since in this case the drag influence is mitigated by the horizontal component of the combined gust.
