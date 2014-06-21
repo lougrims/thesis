@@ -348,8 +348,6 @@ These guesses are refined as new results are obtained.
 
 \Section{Results for quasi-steady aerodynamics} \label{sec:results_QS}
 
-\Subsection{Typical trajectories}
-
 \Subsection{Implementation validation}
 The first step is to validate the code implemented here against previous results. 
 Even if the lift and drag profiles are different from Lissaman's assumptions a similar case is optimized.
@@ -403,7 +401,6 @@ Unsurprisingly the neutral energy loop trajectory exists also for this case.
 \Subsection{Typical results for the NACA0009 wing}
 
 \par A similar batch of optimizations is done with the more realistic lift and drag profiles.
-However since the lift to drag ration is lower than what Lissaman used in his model a higher gust amplitude is expected.
 
 \begin{figure}
   \begin{center}
@@ -427,36 +424,10 @@ However since the lift to drag ration is lower than what Lissaman used in his mo
 As it can be seen on the figures \ref{fig:vertical_optimization_UAV} and \ref{fig:combined_optimization_UAV} the trajectories are similar in shape. However the gust amplitude needed to achieve neutral energy flight are a lot higher.
 Such differences can be explained by looking at the maximum lift to drag ratio for both conceptual aircraft.
 The quadratic drag profile used by Lissaman has a $G_{max}$ of 20.
-The notional UAV used is closer to 14.
 
 \FloatBarrier
 
 \par With this kind of performances, a purely horizontal gust can't sustain a neutral energy loop.
-
-
-\par To account for these differences a third batch of simulation is performed with by setting the $G_{max}$ parameter in the quadratic drag profile to 13.3.
-
-\begin{figure}[ht]
-  \begin{center}
-    \scalebox{0.8}
-    {\includegraphics{./Figures/Windtype=1_Tg=4_Wg=0p194_quad_G=13.eps}}
-  \end{center}
-  \caption{$4T$ long vertical gust for $G=14$, $W_a=0.194$}
-  \label{fig:vertical_optimization_UAV_modified}
-\end{figure}
-
-
-\begin{figure}[ht]
-  \begin{center}
-    \scalebox{0.8}
-    {\includegraphics{./Figures/Windtype=3_Tg=4_Wg=0p360_quad_G=13.eps}}
-  \end{center}
-  \caption{$4T$ long combined gust for $G=14$, $W_a=0.360$}
-  \label{fig:combined_optimization_UAV_modified}
-\end{figure}
-
-\par The results are similar.
-Since the quadratic lift to drag profile isn't that different to the UAV one, the optimized gust amplitude is relatively close for both case.
 
 \FloatBarrier
 
@@ -469,13 +440,13 @@ Since the quadratic lift to drag profile isn't that different to the UAV one, th
 
 \Subsection{Influence of the gust duration}
 From our literature review it seems like most of the studies done on gusting winds has been conducted on gusts duration greater than $2T$.
-Considering shorter gusts seems unreasonable of you only consider quasi steady aerodynamics, a $2T$ gust is about 2 seconds for vehicle flying 10 m/s.
+Considering shorter gusts seemed unreasonable since only quasi steady aerodynamic models were used. 
 However since the purpose this research is to extend the energy extraction envelope, such cases should be considered.
 
 \begin{figure}[h!]
   \begin{center}
-%    \scalebox{0.8}
-%    {\includegraphics{./Figures/Vertical_gust_amplitude_vs_duration.eps}}
+    \scalebox{0.8}
+    {\includegraphics{./Figures/Wg_vs_TG_windtype=1_alhpamax=12_nodalphalimit.eps}}
   \end{center}
   \caption{Influence of gust duration on the minimum gust amplitude for vertical gusts}
   \label{fig:vertical_amplitude_duration}
@@ -483,8 +454,8 @@ However since the purpose this research is to extend the energy extraction envel
 
 \begin{figure}[h!]
   \begin{center}
-%    \scalebox{0.8}
-%    {\includegraphics{./Figures/Vertical_gust_amplitude_vs_duration.eps}}
+    \scalebox{0.8}
+    {\includegraphics{./Figures/Wg_vs_TG_windtype=3_alhpamax=12_nodalphalimit.eps}}
   \end{center}
   \caption{Influence of gust duration on the minimum gust amplitude for combined gusts}
   \label{fig:combined_amplitude_duration}
@@ -492,30 +463,50 @@ However since the purpose this research is to extend the energy extraction envel
 
 \par Interestingly shorter gusts require less wind amplitude than the long ones.
 This seems to indicate that most of the lost energy is due to the non-conservative drag force and not due to the downwind effects.
-However the actual minimum gust amplitude required for neutral energy flight has a minimum for $2T$ long vertical gusts.
+However the actual minimum gust amplitude required for neutral energy flight has a minimum for $2.5T$ long vertical gusts.
 
 \par In figure \ref{fig:combined_amplitude_duration} This time no minimum is found.
 This seems to reinforce the idea that the losses are mainly due to the energy dissipated by the drag since in this case the drag influence is mitigated by the horizontal component of the combined gust.
 
-\par The diminishing gust amplitude required is an interesting phenomenon but can be fairly easily explained.
-For a glider the only energy dissipation comes from the drag, in the cases we are considering the energy loss can be seen as a superposition of the losses due to simple cruse flight and the ones due to the maneuvering.
-Since the total flight time during short gusts is shorter while the relative wind velocity remains more or less constant, the energy loss due purely to flying this long should be proportional to the flight time.
-The energy input for this system is the wind gust itself is proportional to the force on the fluid times its velocity and the gust duration.
-Since the force required to move the fluid is itself proportional to the derivative of the gust velocity the energy of the gust over a whole gust is in fact only proportional to the square of the gust amplitude.
-
-\par This means that if the energy extraction efficiency was constant the value of $\frac{T_g0}{{W_g0}^2}$ should be constant for all the cases.
-
-
-\begin{figure}[h!]
-  \centering
-  %\includegraphics{<+file+>}
-  \caption{Energy extraction effectiveness}
-  %\label{fig:<+label+>}
-\end{figure}
-
+%\par The diminishing gust amplitude required is an interesting phenomenon but can be fairly easily explained.
+%For a glider the only energy dissipation comes from the drag, in the cases we are considering the energy loss can be seen as a superposition of the losses due to simple cruse flight and the ones due to the maneuvering.
+%Since the total flight time during short gusts is shorter while the relative wind velocity remains more or less constant, the energy loss due purely to flying this long should be proportional to the flight time.
+%The energy input for this system is the wind gust itself is proportional to the force on the fluid times its velocity and the gust duration.
+%Since the force required to move the fluid is itself proportional to the derivative of the gust velocity the energy of the gust over a whole gust is in fact only proportional to the square of the gust amplitude.
+%
+%\par This means that if the energy extraction efficiency was constant the value of $\frac{T_g0}{{W_g0}^2}$ should be constant for all the cases.
+%
+%
+%\begin{figure}[h!]
+%  \centering
+%  %\includegraphics{<+file+>}
+%  \caption{Energy extraction effectiveness}
+%  %\label{fig:<+label+>}
+%\end{figure}
+%
 
 
 \FloatBarrier
+
+\par To understand the difference between the short gusts ($T_g \leq 3$) and the long gusts ($T_g \geq 3$) a closer look at the profile of the angle of attack over time is needed.
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{./Figures/alpha_vs_Tg_QS_short_vs_long_wt1.eps}
+  \caption{Difference between short and long gust angle of attack profile for vertical gusts}
+  \label{fig:short_vs_long_qs_wt=1}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{./Figures/alpha_vs_Tg_QS_short_vs_long_wt3.eps}
+  \caption{Difference between short and long gust angle of attack profile for combined gusts}
+  \label{fig:short_vs_long_qs_wt=3}
+\end{figure}
+
+\par Figures \ref{fig:short_vs_long_qs_wt=1} and \ref{fig:short_vs_long_qs_wt=3} shows the clear distinction between short and long gusts results.
+These profiles are representative of what happens left and right of the $T_g=3$ value.
 
 
 % get some commentary there
