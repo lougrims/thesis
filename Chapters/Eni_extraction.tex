@@ -134,6 +134,7 @@ Finally this model is only valid for the quasi-steady flow conditions.
 %   {\includegraphics{./Figures/lift_to_drag_UAV.eps}}
 \end{center}
 \caption{Lift to drag ratio for the NACA0009}
+\label{fig:G_vs_alpha_qs}
 \end{figure}
 
 \par This results, while being arguably more realistic than a simple quadratic approach, are still only considering quasi-steady change in the angle of attack.
@@ -508,12 +509,22 @@ This seems to reinforce the idea that the losses are mainly due to the energy di
 \par Figures \ref{fig:short_vs_long_qs_wt=1} and \ref{fig:short_vs_long_qs_wt=3} shows the clear distinction between short and long gusts results.
 These profiles are representative of what happens left and right of the $T_g=3$ value.
 
-\par For longer duration gust the amplitude needed is for
+\par For longer duration gust the amplitude needed from the lift appears to be reduced, the algorithm seems to minimize the drag losses by flying close to either the maximum lift to drag ratio ($\alpha = 3.5 ^{\circ}$) or the minimum drag point at the zero angle of attack point.
+Only a short period of negative lift is needed.
+
+\par Shorter gusts need more amplitude to achieve the energy neutral loop.
+The angle of attack saturates at around $6^{\circ}$ and its minimum also decreases.
+The value of 6 degrees correspond to were the lift to drag ratio starts to really dip (see figure \ref{fig:G_vs_alpha_qs} so it is probable that the optimization routine voluntarily avoids these high drag regions. 
 
 
 % get some commentary there
 \FloatBarrier
 \Subsection{Influence of phase variation in the combined gust case}
+
+
+\emph{IS KEEPING THIS PART INTERESTING???}
+
+
 For combined vertical and horizontal gusts another parameter can be changed.
 So far the phase between the two components of the gust has been constant.
 
@@ -546,10 +557,43 @@ The best case scenario is when the phase is around 90 to 120 degrees and the wor
 \par We can see that the results are different for different gust durations.
 One possible explanation for this is that at some point the inertia is too great and start to act as a low pass filter, introducing some phase shift in the trajectory. 
 
+\Subsection{Effect of the maximum angle of attack allowed}
+
+The previous results show that for shorter gusts higher values of the angle of attack much be reached.
+The issue is that higher angle of attacks can get dangerously close to region where the flow is separated.
+To make sure no separation happens a new linear constraint is put on the angle of attack.
+The angle is limited to a range of $\pm 5 ^{\circ}$, the linear part of the lift curve.
 
 
-\Subsection{Maximum lift available effects}
+\begin{figure}[h]
+  \centering
+ \includegraphics{./Figures/allowed_alpha_wg_tg_wt=3.eps}
+  \caption{Difference in performance for combined wind gusts if no high angle of attack are allowed}
+  \label{fig:allowed_alpha_Wt_vs_tg_wt=3}
+\end{figure}
 
+\begin{figure}[h]
+  \centering
+ \includegraphics{./Figures/allowed_alpha_wg_tg_wt=1.eps}
+  \caption{Difference in performance for vertical wind gusts if no high angle of attack are allowed}
+  \label{fig:allowed_alpha_Wt_vs_tg_wt=1}
+\end{figure}
+
+\FloatBarrier
+
+As seen here the results are confirming the previous analysis of the difference between short and long gusts.
+There is no difference in the longer gusts region because, as seen before the optimization results in no angle of attack bigger than $4^{\circ}$.
+The difference is that for shorter gusts duration the more violent maneuvers are not available anymore.
+It can be seen on figure \ref{fig:alpha_vs_tg_maxalpha=5} that the angle of attack comes right against the limit of 5 degrees.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{./Figures/alpha_vs_tg_Tg=1_wt3_maxalpha=5.eps}
+  \caption{Result of limiting the angle of attack to $5^{\circ}$ for $T_g=1$ in a combined gust}
+  \label{fig:alpha_vs_tg_maxalpha=5}
+\end{figure}
+
+\FloatBarrier
 \Subsection{Additional remarks}
 As noticed by Lissaman the exact shape of the lift input isn't really important.
 In his paper he approximated the input with a simple sinusoidal with amplitude and phase control, similar inputs in this simulation have produced minimum gust amplitude similar to the previous results.
