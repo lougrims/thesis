@@ -121,7 +121,7 @@ Finally this model is only valid for the quasi-steady flow conditions.
 
 \begin{figure}[ht]
 \begin{center}
-  \scalebox{0.8}
+  \scalebox{1.0}
   {\includegraphics{./Figures/NACA0009_steady_map_Cl_Cd.eps}} 
 \end{center}
 \caption{Lift and drag characteristics of the NACA0009}
@@ -130,7 +130,7 @@ Finally this model is only valid for the quasi-steady flow conditions.
 
 \begin{figure}[ht]
 \begin{center}
-%    \scalebox{0.8}
+%    \scalebox{1.0}
 %   {\includegraphics{./Figures/lift_to_drag_UAV.eps}}
 \end{center}
 \caption{Lift to drag ratio for the NACA0009}
@@ -357,7 +357,7 @@ Since it is only a validation test the same lift and drag characteristics are us
 
 \begin{figure}[ht]
   \begin{center}	
-    \scalebox{0.8}
+    \scalebox{1.0}
     {\includegraphics{./Figures/Windtype=1_Tg=4_Wg=0p129_quad_G=20.eps}}
   \end{center}
   \caption{Optimization results for a $4T$ long vertical gust}
@@ -374,7 +374,7 @@ The shape of the state and control parameters curves are also consistent with th
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.8}
+    \scalebox{1.0}
     {\includegraphics{./Figures/Windtype=2_Tg=4_Wg=0p246_quad_G=20.eps}}
   \end{center}
   \caption{$4T$ long horizontal gust for $G=20$, $W_a=0.246$}
@@ -388,7 +388,7 @@ However this shows that it is possible to take advantage of horizontal wind gust
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.8}
+    \scalebox{1.0}
     {\includegraphics{./Figures/Windtype=3_Tg=4_Wg=0p232_quad_G=20.eps}}
   \end{center}
   \caption{$4T$ long combined gust for $G=20$, $W_a=0.232$}
@@ -405,7 +405,7 @@ Unsurprisingly the neutral energy loop trajectory exists also for this case.
 
 \begin{figure}
   \begin{center}
-   \scalebox{0.8}
+   \scalebox{1.0}
    {\includegraphics{./Figures/Windtype=1_Tg=4_Wg=0p205_UAV_alphamax=12.eps}}
   \end{center}
   \caption{$4T$ long vertical gust for UAV, $W_a=0.205$}
@@ -415,12 +415,13 @@ Unsurprisingly the neutral energy loop trajectory exists also for this case.
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.8}
+    \scalebox{1.0}
     {\includegraphics{./Figures/Windtype=3_Tg=4_Wg=0p387_UAV_alphamax=12.eps}}
   \end{center}
   \caption{$4T$ long combined gust for UAV, $W_a=0.387$}
   \label{fig:combined_optimization_UAV}
 \end{figure}
+\FloatBarrier
 
 As it can be seen on the figures \ref{fig:vertical_optimization_UAV} and \ref{fig:combined_optimization_UAV} the trajectories are similar in shape. However the gust amplitude needed to achieve neutral energy flight are a lot higher.
 Such differences can be explained by looking at the maximum lift to drag ratio for both conceptual aircraft.
@@ -446,7 +447,7 @@ However since the purpose this research is to extend the energy extraction envel
 
 \begin{figure}[h!]
   \begin{center}
-    \scalebox{0.8}
+    \scalebox{1.0}
     {\includegraphics{./Figures/Wg_vs_TG_windtype=1_alhpamax=12_nodalphalimit.eps}}
   \end{center}
   \caption{Influence of gust duration on the minimum gust amplitude for vertical gusts}
@@ -455,7 +456,7 @@ However since the purpose this research is to extend the energy extraction envel
 
 \begin{figure}[h!]
   \begin{center}
-    \scalebox{0.8}
+    \scalebox{1.0}
     {\includegraphics{./Figures/Wg_vs_TG_windtype=3_alhpamax=12_nodalphalimit.eps}}
   \end{center}
   \caption{Influence of gust duration on the minimum gust amplitude for combined gusts}
@@ -520,11 +521,7 @@ The value of 6 degrees correspond to were the lift to drag ratio starts to reall
 % get some commentary there
 \FloatBarrier
 \Subsection{Influence of phase variation in the combined gust case}
-
-
 \emph{IS KEEPING THIS PART INTERESTING???}
-
-
 For combined vertical and horizontal gusts another parameter can be changed.
 So far the phase between the two components of the gust has been constant.
 
@@ -542,7 +539,7 @@ After Simulations are performed by 10 degrees steps with the following results.
 
 \begin{figure}[ht]
   \begin{center}
-    \scalebox{0.8}
+    \scalebox{1.0}
     {\includegraphics{./Figures/combined_gust_amplitude_vs_phase.eps}}
   \end{center}
   \caption{Influence of the phase between the component of the combined gust}
@@ -557,8 +554,7 @@ The best case scenario is when the phase is around 90 to 120 degrees and the wor
 \par We can see that the results are different for different gust durations.
 One possible explanation for this is that at some point the inertia is too great and start to act as a low pass filter, introducing some phase shift in the trajectory. 
 
-\Subsection{Effect of the maximum angle of attack allowed}
-
+\Subsection{Effects of the maximum angle of attack allowed}
 The previous results show that for shorter gusts higher values of the angle of attack much be reached.
 The issue is that higher angle of attacks can get dangerously close to region where the flow is separated.
 To make sure no separation happens a new linear constraint is put on the angle of attack.

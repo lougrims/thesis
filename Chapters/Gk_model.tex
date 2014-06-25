@@ -150,7 +150,7 @@ The free stream speed has to be corrected to account for the flow slowing down d
 
 \begin{figure}[ht]
   \begin{center}
-    \scalebox{0.8}
+    \scalebox{1.0}
     {\includegraphics{./Figures/NACA0009_steady_map_Cl_Cd.eps}}
   \end{center}
   \caption{Lift and drag coefficient in the quasi-steady case}
@@ -195,7 +195,7 @@ The resulting profile for $x_0(\alpha)$ can be seen in figure \ref{fig:x_0_vs_al
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.8}
+    \scalebox{1.0}
     {\includegraphics{./Figures/x_0_vs_alpha.eps}}
   \end{center}
   \caption{Quasi-steady profile for the state variable $x$}
@@ -207,7 +207,7 @@ With this profile we get a good approximation of the experimental $C_l(\alpha)$ 
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}{
+    \scalebox{1.0}{
       \includegraphics{./Figures/GK_cl_vs_alpha.eps}}
   \end{center}
   \caption{Comparison between the experimental and model quasi-steady lift}
@@ -223,17 +223,50 @@ With this profile we get a good approximation of the experimental $C_l(\alpha)$ 
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}
+    \scalebox{1.0}
     {\includegraphics{./Figures/GK_cd_vs_alpha.eps}}
   \end{center}
   \caption{Comparison between the experimental and model quasi-steady drag}
   \label{fig:GK_Cd_vs_alpha}
 \end{figure}
 
+\par The $2\pi\alpha$ slope is a good first aproximation of lift coefficient slope.
+However for a real airfoil the slope is usually less than this theoretical value.
+To correct this a better coefficient can be found by averaging the slope of $C_l$ between 0 and 5 degrees of angle of attack.
+Then the slope for angles of attack larger than 20 degrees must be taken into account to make sure the value of the state variable will converge to 0.
+From there the same procedure of inverting the lift coefficient function can be used to get the quasi-steady $x$ curve.
+
 \par These two relatively simple equations shows that a physics based GK model can be implemented for both lift and drag and that they indeed depend on the same state variable.
 The two time constants $\tau_1$ and $\tau_2$ will be determined in the next section when the wing undergo unsteady pithing.
 
 \FloatBarrier
+
+\Subsection{Correlation between the state variable and the pressure surface}
+In their paper Goman and Khrabrov \cite{GK} mention that the state variable should reflect the position of the separation point, but they show little evidence of this theory.
+To check this assumption a wing model fitted with pressure sensors is used to map the position of the separation point for the quasi-steady map.
+
+\par This airfoil has an array of 6 sensors situated on the top surface.
+One additional sensor is fitted on the bottom of the wind tunnel to get the static pressure of the free stream.
+These sensors measure the differential pressure between the measuring point and the lab pressure.
+
+\begin{figure}[h]
+  \centering
+  %\includegraphics{<+file+>}
+  \caption{Pressure relative to the position on the wing for the quasi-steady map}
+  \label{fig:P_diff}
+\end{figure}
+
+\par As seen in figure \ref{fig:P_diff} the identification of the separation point isn't obvious.
+There is clearly some sort jumps in the pressure that we can see creeping up from the trailing edge of the airfoil.
+However this jump happens at angles where the lift coefficient is still linear with respect to the angle of attack.
+
+\par For higher angles of attack the pressure data is even harder to interpret.
+Something happens around 8 to 10 degrees for the pressure close to the leading edge but it is hard to correlate it to any feature on the state function.
+
+\par From these results it is clear that inferring $x$ from the pressure would require a more in depth analysis of the pressure distribution on the airfoil.
+Some work has been and is still being conducted on linking POD decomposition of the pressure to the lift forces but so far no definitive results seems to emerge.
+
+
 \Section{Model validation}
 
 \Subsection{Time constants}
@@ -252,7 +285,7 @@ The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively K of 0.064, 0.12
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.8}  
+    \scalebox{1.0}  
     {\includegraphics{./Figures/Pitching_allcases_CL_12_amp_2.eps}}
   \end{center}
   \caption{Unsteady effects on the lift of sinusoidal pitching around 12 degree} 
@@ -261,7 +294,7 @@ The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively K of 0.064, 0.12
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.8}  
+    \scalebox{1.0}  
     {\includegraphics{./Figures/Pitching_allcases_CD_12_amp_2.eps}}
   \end{center}
   \caption{Unsteady effects on the drag of sinusoidal pitching around 12 degree} 
@@ -322,7 +355,7 @@ The most obvious result is that the shape of the lift and drag versus angle of a
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}{
+    \scalebox{1.0}{
       \includegraphics{./Figures/Cl_u=3_meanaoa=12_amp=2_freq=0p5.eps}}
   \end{center}
   \caption{Comparison of experimental lift coefficient and model prediction after tunning of the time constant at k =0.128}
@@ -331,7 +364,7 @@ The most obvious result is that the shape of the lift and drag versus angle of a
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}{
+    \scalebox{1.0}{
       \includegraphics{./Figures/Cd_u=3_meanaoa=12_amp=2_freq=0p5.eps}}
   \end{center}
   \caption{Comparison of experimental drag coefficient and model prediction after tunning of the time constant at k =0.128}
@@ -344,7 +377,7 @@ The most obvious result is that the shape of the lift and drag versus angle of a
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}  
+    \scalebox{1.0}  
     {\includegraphics{./Figures/Pitching_allcases_GK_CL_12_amp_2.eps}}
   \end{center}
   \caption{Lift measurement and prediction during sinusoidal pitching around 12 degree} 
@@ -353,7 +386,7 @@ The most obvious result is that the shape of the lift and drag versus angle of a
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}  
+    \scalebox{1.0}  
     {\includegraphics{./Figures/Pitching_allcases_GK_CD_12_amp_2.eps}}
   \end{center}
   \caption{Drag measurement and prediction during sinusoidal pitching around 12 degree} 
@@ -365,7 +398,7 @@ For some unknown reason the model does not seems to model the behavior in the dr
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}  
+    \scalebox{1.0}  
     {\includegraphics{./Figures/Pitching_allcases_GK_CL_10_amp_2.eps}}
   \end{center}
   \caption{Lift measurement and prediction during sinusoidal pitching around 10 degree} 
@@ -374,7 +407,7 @@ For some unknown reason the model does not seems to model the behavior in the dr
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}  
+    \scalebox{1.0}  
     {\includegraphics{./Figures/Pitching_allcases_GK_CD_10_amp_2.eps}}
   \end{center}
   \caption{Drag measurement and prediction during sinusoidal pitching around 10 degree} 
@@ -409,7 +442,7 @@ This is done so that the bandwidth of the input signal is limited to reasonable 
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}  
+    \scalebox{1.0}  
   {\includegraphics{./Figures/Cl_u=3_meanaoa=12(15seconds)_amp=2_freq=2p0.eps}}
   \end{center}
   \caption{Unsteady effects of random pitching on the lift}
@@ -418,7 +451,7 @@ This is done so that the bandwidth of the input signal is limited to reasonable 
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{0.6}  
+    \scalebox{1.0}  
   {\includegraphics{./Figures/Cd_u=3_meanaoa=12(15seconds)_amp=2_freq=2p0.eps}}
   \end{center}
   \caption{Unsteady effects of random pitching on the drag}
@@ -451,7 +484,6 @@ However the acquisition done when the wind tunnel is not running are not done in
 As such the added mass effects are subtracted from the final data.
 
 \Subsection{Center of rotation}
-
 Traditionally whenever span-wise data are considered, all all moments and rotation centers are taken at the quarter chord point.
 With our double servomotor system we are able to find a relation which will allow us to rotate the wing around any arbitrary point (provided it is within the mechanical range of the actuators).
 A batch of acquisition was performed with the rotation point set at the emplacement of the force balance to minimize the effects of inertial tangential and normal forces on the measurements.

@@ -94,9 +94,9 @@ This also leads to lower lift overall (see figure \ref{fig:Cl_fast_pitching}) si
 \end{figure}
 
 The issue is that the in order to reach the favorable high lift regions the algorithm produces a 
+
 %Since the lift to drag ratio of the NACA0009 is about 10 (compared to 13 for the notional UAV) direct comparisons with the results presented in part \ref{sec:results_QS} are impossible.
 \Subsection{The ``staircase'' optimization issue}
-
 All these effects dependent on the pitch rate add a lot of complexity to the optimization problem.
 One of the biggest is that to keep a reasonably low execution time for the optimization the number of points has to be kept relatively low (less than a hundred).
 Such discretization of the interval can cause issues in the discreet integration parts of the algorithm.
@@ -123,7 +123,7 @@ These spikes in the pitch rate are too short to be able to influence the low pas
 
 \begin{figure}[h]
   \begin{center}
-  \scalebox{0.4}{
+  \scalebox{1.0}{
     \includegraphics{./Figures/Wg_vs_TG_windtype=3_alphamax=12_nodalphalimit.eps}}
   \end{center}
   \caption{Performance difference between quasi-steady and unsteady model for combined gusts}
@@ -133,7 +133,7 @@ These spikes in the pitch rate are too short to be able to influence the low pas
 
 \begin{figure}[h]
   \centering
-  \scalebox{0.4}{
+  \scalebox{1.0}{
     \includegraphics{./Figures/Wg_vs_TG_windtype=1_alphamax=12_nodalphalimit.eps}}
   \caption{Performance difference between quasi-steady and unsteady model for vertical gusts}
   \label{fig:WG_vs_TG_wt=1}
@@ -162,7 +162,7 @@ First we can look at the optimization parameter $\alpha$ for both vertical and c
 
 \begin{figure}[h]
   \centering
-  \scalebox{0.4}{
+  \scalebox{1.0}{
     \includegraphics{./Figures/alpha_vs_Tg_wt1.eps}}
   \caption{Angle of attack for short vertical gusts with the quasi-steady (QS) and unsteady (GK) model}
   \label{fig:alpha_vs_Tg_wt1}
@@ -170,7 +170,7 @@ First we can look at the optimization parameter $\alpha$ for both vertical and c
 
 \begin{figure}[h]
   \centering
-  \scalebox{0.4}{
+  \scalebox{1.0}{
     \includegraphics{./Figures/alpha_vs_Tg_wt3.eps}}
   \caption{Angle of attack for short combined gusts with the quasi-steady (QS) and unsteady (GK) model}
   \label{fig:alpha_vs_Tg_wt3}
@@ -207,7 +207,6 @@ Similar results are observed for vertical and horizontal gusts in the $T_g=0.2$ 
 \Section{Limitations of the unsteady GK model}
 
 \Subsection{Considering the gusting and plunging component}
-
 One of the major thing this optimization misses are the unsteady effects due to gusting and plunging.
 In our case we have major gusts present at the same time as the pitching motion.
 While the speed of the UAV changes too, the relative wind amplitude is in the order of 20\%.
