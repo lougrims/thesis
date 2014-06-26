@@ -591,20 +591,19 @@ It can be seen on figure \ref{fig:alpha_vs_tg_maxalpha=5} that the angle of atta
 
 \FloatBarrier
 \Subsection{Additional remarks}
-As noticed by Lissaman the exact shape of the lift input isn't really important.
-In his paper he approximated the input with a simple sinusoidal with amplitude and phase control, similar inputs in this simulation have produced minimum gust amplitude similar to the previous results.
-This raises the hope that even very basic controllers should be able to improve UAV endurance.
+Analyzing each of the solutions found, and notably the non optimal ones it can be see, as noticed by Lissaman, that the exact shape of the lift input isn't really important.
+In his paper he approximated the input with a simple sinusoidal curve with amplitude and phase control, similar inputs in this simulation have produced minimum gust amplitude similar to the previous results.
+This raises the hope that even very basic controllers should be able to improve UAV endurance as a very precise control of the lift and drag are not required to get improvement oer a non-controlled case.
 
 % [DO I WANT TO  CHANGE THE PHASE TO ACTUALLY TEST IT !!!!]
-
 \par While these results are supposed to be the optimal solution, it does not mean a controller can achieve such performances.
 Even if the trajectory and lift curves are physically possible, the optimization algorithm assume a known gust shape and optimize all of the time points at once.
-This means that contrary to a real controller the optimized trajectory can anticipate the wind change and preventively react.
-Even if the wind gusts were perfectly sinusoidal, since a controller is casual it would not be able to anticipate.
-Finally in a real life scenario the wind would of course not be a simple sinusoidal gust.
+This means that contrary to a real controller the optimized trajectory can anticipate the wind change and preemptively react.
+Even if the wind gusts were perfectly sinusoidal, it would not be able to anticipate since a controller is casual.
+Finally in a real life scenario the wind would of course not be a simple clean sinusoidal gust.
 
 \par The simulation is also limited by its inability to account for the moment of inertia along the pitch axis.
-Even is part of the lift change can be handled by the active flow control system, at low angle of attack, most of the lift comes from the changes in $\alpha$.
+Fast pitching as seen for shorter gusts would require a huge amount of pitch authority.
 
 \par Even with all this limitations these results provide good insight into what would be needed implement energy extraction trajectories in UAVs.
 
