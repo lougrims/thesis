@@ -1,9 +1,17 @@
-\Section{2 DoF model}
+\Section{Two degree of freedom model}
 
 \Subsection{Non-dimensional equations of motion}
-The model chosen for this simulation is a simple two degree of freedom, two dimension, point mass model. 
-The aircraft is assumed to be a glider to simplify the optimization routine. 
+The model chosen for the simulation is a simple two degree of freedom, two dimensions, point-mass model. 
+The aircraft is assumed to be an unpowered glider to simplify the optimization routine. 
 With such assumption the equations of motion in the ground reference frame is :
+
+\begin{figure}[h]
+  \centering
+  %\includegraphics{<+file+>}
+  \caption{Coordinate system used for the optimization}
+\end{figure}
+
+All these values and vectors are defined in the inertial ground reference frame.
 
 \begin{equation}
 \begin{array}[c]{c}
@@ -28,13 +36,14 @@ With such assumption the equations of motion in the ground reference frame is :
 \par With $v$ being the relative wind for the vehicle.
 % do I need to include this kind basic stuff?
 
-\par Since this simulation is mainly concerned with Newtonian physics (rather than fluid phenomenons) the usual fluid dynamics non-dimensional variables make little sense.
-Here the equations are normalized by the optimal glide speed and $g$, the gravitational acceleration.
+\par Since this simulation is mainly concerned with Newtonian physics (rather than fluid phenomena) the usual fluid dynamics non-dimensional variables based on $c$ and $U$ do not apply.
+Here the characteristic speed is the optimal glide speed.
+As such the equations are normalized by the optimal glide speed and $g$, the gravitational acceleration.
 This is more representative of the performances of the aircraft.
 
 \par Following Lissaman's \cite{lissaman2005wind} implementation of the equation of motion we define $V^*$ the optimal glide speed for the aircraft. 
 This speed is achieved at the optimal lift to drag ratio of the aircraft.
-With $C_l^*$ and $C_d^*$ the angle of attack for the maximum lift to drag ratio and $\gamma$ the pitch angle with respect to the horizon the optimal glide speed is:
+With $C_l^*$ and $C_d^*$ the angle of attack for the maximum lift to drag ratio and $\gamma$ the pitch angle with respect to the horizon, the optimal glide speed is:
 
 \begin{equation}
 \begin{array}[c]{c}
@@ -44,7 +53,7 @@ With $C_l^*$ and $C_d^*$ the angle of attack for the maximum lift to drag ratio 
 \label{eqn:glide_speed}
 \end{equation}
 
-\par From we define $U$ and $W$ the non dimensional horizontal and vertical speed in the inertial reference frame.
+\par We define $U$ and $W$ to be the non-dimensional horizontal and vertical speed in the inertial reference frame.
 
 \begin{equation}
 \begin{array}[c]{c}
@@ -54,9 +63,14 @@ With $C_l^*$ and $C_d^*$ the angle of attack for the maximum lift to drag ratio 
 \label{eqn:non_dim_speed}
 \end{equation}
 
-The time is normalized by $g / V^*$.
+The characteristic time for normalizing is
 
-\par Since the speed is seen as a fraction of the optimal glide speed it makes sens to also normalize the lift and drag coefficients by their corresponding values at the optimal lift to drag ratio.
+\begin{equation}
+  T = \frac{g}{V^*}
+  \label{eqn:T}
+\end{equation}
+
+\par Since the speed is seen as a fraction of the optimal glide speed, it makes sense to also normalize the lift and drag coefficients by their corresponding values at the optimal lift to drag ratio.
 
 \begin{equation}
 \begin{array}[c]{c}
@@ -66,7 +80,7 @@ The time is normalized by $g / V^*$.
 \label{eqn:non_dim_coef}
 \end{equation}
 
-\par Finally we introduce Q the dynamic pressure as:
+\par Finally we introduce Q the non-dimensional dynamic pressure as:
 
 \begin{equation}
 Q = \frac{L'}{MgL} = \frac{\frac{1}{2} \rho V^2 C_l C_l^* }{Mg}
@@ -90,6 +104,14 @@ With
 \label{eqn:gamma_def}
 \end{equation}
 
+\begin{figure}[h]
+  \centering
+  %\includegraphics{<+file+>}
+  \caption{Definition of $\gamma$ the flight path angle}
+  \label{fig:gamma}
+\end{figure}
+
+
 $W_g$ and $U_g$ are the vertical and horizontal wind speeds in the inertial reference frame.
 
 \par Finally the remaining thing to consider is $Q$ the dynamic pressure. If we define the speed of the wind gust as $W_g$ and $U_g$ we can express:
@@ -99,23 +121,24 @@ Q = V^2 = (W-W_g)^2 + (U-U_g)^2
 \label{eqn:q_def}
 \end{equation}
 
-\par With these definitions we have the basic formulation of our non-dimensional equation of motions, normalized by the performances at the optimal glide trajectory in a calm environment.
+\par With these definitions we have the basic formulation of our non-dimensional equation of motions, normalized by the performance at the optimal glide trajectory in a calm environment.
 
 \Subsection{Lift and drag models}
 The normalized equation of motion \ref{eqn:non_dim_eqm} are not accounting for the fluid dynamic part of the flight.
 The most important factor for glide performance is the lift to drag ratio. 
-In his paper, Lissaman \cite{Lissaman2007neutral} is using a relatively simple quadratic model for the relationship between lift and drag:
+In his paper, Lissaman \cite{Lissaman2007neutral} is using a relatively simple quadratic model for the relationship between lift and drag.
+The only parameter is the optimal lift to drag ratio $G^*$:
 
 \begin{equation}
-D=\frac{Q}{2G}(1+L^2)
+D=\frac{Q}{2G^*}(1+L^2)
 \label{eqn:Lissaman_G}
 \end{equation}
 
 %[CHECK THIS EQUATION !!!!!]
 
-\par This simple model work relatively well for simple airfoil but is inadequate for more complex shapes.
-Moreover it fails to properly account for the effects of flow separation at high angle of attacks.
-Finally this model is only valid for the quasi-steady flow conditions.
+\par This simple model works relatively well for simple airfoils, but is inadequate for more complex airfoil geometry.
+Moreover it fails to properly account for the effects of flow separation at high angles of attack.
+Finally, this model is only valid for the quasi-steady flow conditions.
 
 \par Since the unsteady model developed in chapter \ref{Ch:gkmodel} is based on experimental results for a NACA0009 airfoil, we will use simplified versions of the lift and drag characteristics of this airfoil.
 
@@ -136,12 +159,12 @@ Finally this model is only valid for the quasi-steady flow conditions.
 \label{fig:G_vs_alpha_qs}
 \end{figure}
 
-\par This results, while being arguably more realistic than a simple quadratic approach, are still only considering quasi-steady change in the angle of attack.
+\par The experimental results, while being arguably more realistic than a simple quadratic approach, are still only considering quasi-steady change in the angle of attack.
 This limitation will be discussed more in depth in the result discussion section \ref{sec:results_QS}.
 
 \FloatBarrier
 \Subsection{Wind profiles}
-Most of the studies done on dynamic soaring has either been done with vertical wind gusts or thermal updraft, or horizontal wind gradient foxed in time.
+Most of the studies done on dynamic soaring were done with vertical wind gusts, thermal updraft or horizontal wind gradient fixed in time.
 In this optimization procedure we chose to consider three different wind profiles made out of first order sinusoidal gusts.
 
 \par Our first gust profile is a simple vertical gust.
@@ -185,30 +208,30 @@ While the algorithm tries to minimize this scalar, a set of constraints have to 
 These constraints can represent physical limitations or specific requirements related to the system at hand.
 The cost and constraints are expressed as functions of a set of system state variables.
 The state variables can represent temporal or spatial values.
-The optimization is performed in a sequential fashion where different algorithm are used to step from one set of values for the state variables to another. 
+The optimization is performed in a sequential fashion where different algorithms are used to step from one set of values for the state variables to another. 
 
 \par Optimization routines are divided into two families. 
 
 \par The first method is called the gradient method, it requires a good knowledge of the physics behind the problem.
 The cost function as well as the constraints have to be explicitly defined.
 In this method the gradient of the cost function and the constraints is used to determine the direction of the next step in the optimization.
-Different algorithm are used to chose the step size, and sometime the direction of the previous step can influence the current step.
+Different algorithms are used to chose the step size, and sometimes the direction of the previous step can influence the current step.
 The gradients for either the cost function or the constraints do not have to be explicitly defined as modern optimization routines, such as the one included in Matlab, can perform numerical gradient estimation.
-However inputting an user defined gradient into the routine will significantly speed up the overall process.
+However inputting a user defined gradient into the routine will significantly speed up the overall process.
 
-\par The second method is using the so called ``evolutionary algorithms''. 
+\par The second method uses the so called ``evolutionary algorithms''. 
 This method relies a lot less on knowing the underlying physical phenomenon.
 Its basic principle is a ``try and see'' process.
 Random changes are performed on the state variables and their effects on the cost function are assessed.
 The best steps are selected as a starting point for the next generation.
-While with this method each step is a less computation intensive than with the previous method, the number of steps is a lot higher.
+While with this method each step is a less computation intensive than with the previous method, the number of steps is much higher.
 
-\par The first method has been used in this optimization as it provides more insight on the physics behind the problem.
+\par The gradient method has been used in this optimization, because it provides more insight on the physics behind the problem.
 However it should be noted that the resulting ``optimal'' point is usually only assured to be \emph{a local} minimum of the cost function.
-Several different starting states should be tested to ensure that the optimization converges toward a reasonable minimum.
+Several different starting states were tested to ensure that the optimization converges toward a reasonable minimum.
 
 \Subsection{Cost function}
-Our problem here consists in optimizing the trajectory in a gusting environment to minimize energy lose.
+Our problem here consists in optimizing the trajectory in a gusting environment to minimize energy loss.
 The most obvious cost function would be something like
 
 \begin{equation}
@@ -217,23 +240,24 @@ The most obvious cost function would be something like
 \end{equation}
 
 Which would be equivalent to maximizing the total energy at the end of the gust.
-However after testing this has shown to leave to much freedom to the algorithm. 
-As a result the local minimum found are the result of trajectories such as very steep dives, clearly far from the optimum.
+However after testing this has shown to leave too much freedom to the algorithm. 
+As a result the local minima found are the result of unrealistic trajectories such as very steep dives clearly far from the optimum.
 
-\par Once again we refer to the Lissaman paper \cite{Lissaman2007neutral} and chose, instead of minimizing energy loss for a given gust condition, to find the minimum gust amplitude to satisfy an energy neutral trajectory over the gust period.
-This means that the cost function is the wind gust amplitude, which will have to be added to the state vector in order to be explicit, and that the neutral energy trajectory will have to be added to the constraints
+\par Once again we refer to the Lissaman paper \cite{Lissaman2007neutral}, and instead of minimizing energy loss for a given gust condition, we choose to find the minimum gust amplitude required to satisfy an energy neutral trajectory over the gust period.
+This means that the cost function is the wind gust amplitude, which will have to be added to the state vector in order to be explicit, and that the neutral energy trajectory will have to be added to the constraints.
 
 \Subsection{State vector and constraints formulation}
 In our case a gust cycle of duration $T_f$ is divided into $N$ discrete instants $T_i$ (usually between 31 and 101).
 At each of these points we need to know the state of the vehicle.
-Since we are considering a two degree of freedom model the two positions $X$, $Z$ and speed $U$, $W$ variables are the most simple choices.
-However this is not enough to describe the system completely, we also need to know what our input is going to be, in this case the lift available and where on the lift vs drag curve we are.
-Theres is two possible choices for this.
-If you consider only the quasi steady part, the angle of attack $\alpha$ seems obvious.
+Since we are considering a two degree of freedom model, the two positions $X$, $Z$ and speed $U$, $W$ variables are the most simple choices.
+However this is not enough to describe the system completely.
+We also need to know what our input is going to be, in this case the lift available and where we are on the lift vs drag curve.
+Theres are two possible choices for this.
+If you consider only the quasi steady part then the angle of attack $\alpha$ is obvious.
 However since the drag is a function of the lift (the inverse is not true), it is possible to use only the $L$ to define our point on the lift to drag curve.
 This allows us to use one less variable.
 
-\par With this five variables defined at each considered time points the state and input vector look like:
+\par With the five variables defined at each of the considered time points, the state and input vector look like:
 
 \begin{equation}
   x= 
@@ -251,8 +275,8 @@ This allows us to use one less variable.
   \label{eqn:big_vector}
 \end{equation}
 
-\par All this variables have to be constrained to achieve a realistic trajectory.
-The first and most obvious constrain is done with the equation of motion \ref{eqn:non_dim_eqm}.
+\par All of the variables have to be constrained to achieve a realistic trajectory.
+The first and most obvious constraint is done with the equation of motion \ref{eqn:non_dim_eqm}.
 This equation has to be changed from a continuous differential equation to a discrete equation.
 This is done by using the Simpson's 1/3rd rule as derived by Zhao \cite{zhao2004optimal}.
 
@@ -286,10 +310,10 @@ The condition to satisfy the equation of motion becomes
 \end{equation}
 
 \par Another constraint is on the neutral energy loop condition.
-To account for that the initial and final $Z$ values are fixed at zero and the initial and final vertical and horizontal speeds are set to be equal.
+To account for the neutral energy loop requirements initial and final $Z$ values are fixed at zero and the initial and final vertical and horizontal speeds are set to be equal.
 
 \par Since we are looking at only one cycle, in order for it to be repeatable, we need to have a smooth transition from one to another.
-This  means setting the derivative of the speed to be equal at the start and at the end of the cycle.
+This means setting the derivative of the speed to be equal at the start and at the end of the cycle.
 
 \begin{equation}
   \begin{array}[c]{c}
@@ -299,18 +323,18 @@ This  means setting the derivative of the speed to be equal at the start and at 
   \label{eqn:derivative_constraint}
 \end{equation}
 
-\par Finally the last set of constraint is on the physical limits of the aircraft.
-Typically an aircraft flight envelope is limited by its maximum speed (depends on the dynamic pressure), its maximum load and its maximum lift (which determines the stalling speed).
-Since our aircraft is will be flying around its optimal glide speed, over speeding isn't going to be an issue.
+\par Finally the last set of constraints is on the physical limits of the aircraft.
+Typically an aircraft flight envelope is limited by its maximum speed (depending the dynamic pressure), its maximum load and its maximum lift (which determines the stalling speed).
+Since our aircraft will be flying around its optimal glide speed, over speeding is not going to be an issue.
 Moreover the drag increasing proportionally to the square of speed, high speeds will be avoided as much as possible by the optimization routine.
 The limit on the load can conveniently be expressed as:
 
 \begin{equation}
-  L_i Q_i \leq g_max \quad \forall i \in [1,N]
+  L_i Q_i \leq g_{max} \quad \forall i \in [1,N]
   \label{eqn:load_constraint}
 \end{equation}
 
-With $g_max$ the maximum load in Gs.
+With $g_{max}$ the maximum load in Gs.
 
 % did I actually used that in my code? I think it wasn't necessary.
 
@@ -329,18 +353,18 @@ As it will be seen in section \ref{sec:results_QS} the value of $C_l^{max}$ has 
 \Subsection{Matlab optimization function}
 Matlab offers several ways of doing optimization.
 Since this scripting language allows for easy parallelization, it is relatively painless to implement your own optimization code.
-However in most cases, ``classical'' optimization problems, such as weight reduction, topology optimization or mechanism design are reducible to a set of linear  equations and constraints.
-In our case the equations of motions as well as the lift and drag properties are not linear at all, and trying to linearize this problem would make any solution meaningless.
-For this reason a already existing optimization function has been chosen.
+However in most cases, ``classical'' optimization problems, such as weight reduction, topology optimization or mechanism design are reducible to a set of linear equations and constraints.
+In our case the equations of motions, as well as the lift and drag properties are not linear at all, and trying to linearize this problem would make any solution meaningless.
+For this reason an already existing optimization function has been chosen.
 
-\par Since non linear optimizations like that are a computation intensive process dedicated tools have been developed to tackle the problem.
-SNOP is one of these software and seems to be widely used.
+\par Since non-linear optimizations like that are a computationally intensive process dedicated tools have been developed to tackle the problem.
+SNOPT \cite{SNOPT} is one of these software that is widely used.
 Another tool appearing in the literature is a Fortran library called NPSOL.
 Since our laboratory's language of predilection is Matlab, the optimization toolbox from MathWorks was used.
 
-\par The optimization toolbox provides with a helpful function for non-linear optimization called \emph{fmincon()}.
-This function needs an initial guest for the $x$ vector.
-When using this function the initial guest has quite a big influence on the converging speed and on the local optimal solution found.
+\par The optimization toolbox provides a helpful function for non-linear optimization called \emph{fmincon()}.
+This function needs an initial guess for the $x$ vector.
+When using this function the initial guess has quite a big influence on the converging speed and on the local optimal solution found.
 To account for that several educated guesses were made and tested for the different types of the wind profiles and gusts duration.
 These guesses are refined as new results are obtained.
 
@@ -351,7 +375,7 @@ These guesses are refined as new results are obtained.
 The first step is to validate the code implemented here against previous results. 
 Even if the lift and drag profiles are different from Lissaman's assumptions a similar case is optimized.
 The gust duration is set to be $T_g=4 T$, for a purely vertical gust.
-Since it is only a validation test the same lift and drag characteristics are used. Equation \ref{eqn:Lissaman_G} plugged into the equation of motion part of the code. An optimal lift to drag ratio of $G_{max}=20$ is chosen, as seen in the original Lissaman paper \cite{Lissaman2007neutral}.
+Since it is only a validation test the same lift and drag characteristics are used. Equation \ref{eqn:Lissaman_G} was substituted into the equation of motion part of the code. An optimal lift to drag ratio of $G_{max}=20$ is chosen, as seen in the original Lissaman paper \cite{Lissaman2007neutral}.
 
 \begin{figure}[ht]
   \begin{center}	
@@ -365,10 +389,10 @@ Since it is only a validation test the same lift and drag characteristics are us
 \FloatBarrier
 
 Lissaman, with is optimal lift to drag ratio of 20 found a wind gust amplitude of $0.129$. 
-Here the minimum required for neutral energy loop is $0.128$ (see figure \ref{fig:Validation_optimization}).
+Here the minimum gust amplitude required for neutral energy loop is $0.128$ (see figure \ref{fig:Validation_optimization}).
 The shape of the state and control parameters curves are also consistent with the Lissaman results.
 
-\par Similarly an optimization is performed for a purely horizontal wind gust.
+\par Similarly an optimization was performed for a purely horizontal wind gust.
 
 \begin{figure}[h]
   \begin{center}
@@ -380,9 +404,9 @@ The shape of the state and control parameters curves are also consistent with th
 \end{figure}
 
 The resulting minimum wind amplitude is higher than for the vertical gust. 
-However this shows that it is possible to take advantage of horizontal wind gusts to save energy if the performances are high enough.
+However, this shows that it is possible to take advantage of horizontal wind gusts to save energy if the performances are high enough.
 
-\par Finally a combined horizontal and vertical gust is simulated.
+\par Finally a combined horizontal and vertical gust is simulated with no phase shift ($\varphi=0$).
 
 \begin{figure}[h]
   \begin{center}
@@ -419,15 +443,17 @@ Unsurprisingly the neutral energy loop trajectory exists also for this case.
   \caption{$4T$ long combined gust for the NACA0009 airfoil, $W_a=0.387$}
   \label{fig:combined_optimization_UAV}
 \end{figure}
+
 \FloatBarrier
 
-As it can be seen on the figures \ref{fig:vertical_optimization_UAV} and \ref{fig:combined_optimization_UAV} the trajectories are similar in shape. However the gust amplitude needed to achieve neutral energy flight are a lot higher.
+As it can be seen on the figures \ref{fig:vertical_optimization_UAV} and \ref{fig:combined_optimization_UAV} the trajectories are similar in shape to the quadratic lift and drag model.
+However, the gust amplitude needed to achieve neutral energy flight are a lot higher.
 Such differences can be explained by looking at the maximum lift to drag ratio for both conceptual aircraft.
 The quadratic drag profile used by Lissaman has a $G_{max}$ of 20.
 
 \FloatBarrier
 
-\par With this kind of performances, a purely horizontal gust can't sustain a neutral energy loop.
+\par With this kind of performance, a purely horizontal gust can not sustain a neutral energy loop.
 
 \FloatBarrier
 
@@ -439,9 +465,9 @@ The quadratic drag profile used by Lissaman has a $G_{max}$ of 20.
 
 
 \Subsection{Influence of the gust duration}
-From our literature review it seems like most of the studies done on gusting winds has been conducted on gusts duration greater than $2T$.
-Considering shorter gusts seemed unreasonable since only quasi steady aerodynamic models were used. 
-However since the purpose this research is to extend the energy extraction envelope, such cases should be considered.
+From our literature review it was found that most of the studies done on gusting winds have been conducted on gusts wind duration greater than $2T$.
+Considering shorter gusts was considered unreasonable, since only quasi steady aerodynamic models were used. 
+However since the purpose of this research is to extend the energy extraction envelope, such cases should be considered.
 
 \begin{figure}[h!]
   \begin{center}
@@ -451,7 +477,7 @@ However since the purpose this research is to extend the energy extraction envel
   \caption{Influence of gust duration on the minimum gust amplitude for vertical gusts}
   \label{fig:vertical_amplitude_duration}
 \end{figure}
-
+\FloatBarrier
 \begin{figure}[h!]
   \begin{center}
     \scalebox{1.0}
@@ -461,12 +487,12 @@ However since the purpose this research is to extend the energy extraction envel
   \label{fig:combined_amplitude_duration}
 \end{figure}
 
-\par Interestingly shorter gusts require less wind amplitude than the long ones.
-This seems to indicate that most of the lost energy is due to the non-conservative drag force and not due to the downwind effects.
+\par Interestingly shorter gusts require less wind amplitude to execute the neutral energy loop than the long period ones.
+This indicates that most of the lost energy is due to the non-conservative drag force and not due to the time spend in unfavorable or favorable wind conditions.
 However the actual minimum gust amplitude required for neutral energy flight has a minimum for $2.5T$ long vertical gusts.
 
-\par In figure \ref{fig:combined_amplitude_duration} This time no minimum is found.
-This seems to reinforce the idea that the losses are mainly due to the energy dissipated by the drag since in this case the drag influence is mitigated by the horizontal component of the combined gust.
+\par In figure \ref{fig:combined_amplitude_duration} no minimum is found.
+This seems to reinforce the idea that the losses are mainly due to the energy dissipated by the drag, since in this case the drag influence is mitigated by the horizontal component of the combined gust.
 
 %\par The diminishing gust amplitude required is an interesting phenomenon but can be fairly easily explained.
 %For a glider the only energy dissipation comes from the drag, in the cases we are considering the energy loss can be seen as a superposition of the losses due to simple cruse flight and the ones due to the maneuvering.
@@ -505,21 +531,21 @@ This seems to reinforce the idea that the losses are mainly due to the energy di
   \label{fig:short_vs_long_qs_wt=3}
 \end{figure}
 
-\par Figures \ref{fig:short_vs_long_qs_wt=1} and \ref{fig:short_vs_long_qs_wt=3} shows the clear distinction between short and long gusts results.
+\par Figures \ref{fig:short_vs_long_qs_wt=1} and \ref{fig:short_vs_long_qs_wt=3} show the clear distinction between short and long gusts results.
 These profiles are representative of what happens left and right of the $T_g=3$ value.
 
-\par For longer duration gust the amplitude needed from the lift appears to be reduced, the algorithm seems to minimize the drag losses by flying close to either the maximum lift to drag ratio ($\alpha = 3.5 ^{\circ}$) or the minimum drag point at the zero angle of attack point.
+\par For the longer duration gust the amplitude needed from the lift appears to be reduced.
+The algorithm minimizes the drag losses by flying close to either the maximum lift to drag ratio ($\alpha = 3.5 ^{\circ}$) or the minimum drag point at the zero angle of attack point.
 Only a short period of negative lift is needed.
 
 \par Shorter gusts need more amplitude to achieve the energy neutral loop.
 The angle of attack saturates at around $6^{\circ}$ and its minimum also decreases.
-The value of 6 degrees correspond to were the lift to drag ratio starts to really dip (see figure \ref{fig:G_vs_alpha_qs} so it is probable that the optimization routine voluntarily avoids these high drag regions. 
+The value of 6 degrees corresponds to where the lift to drag ratio starts to really dip (see figure \ref{fig:G_vs_alpha_qs}) so it is probable that the optimization routine deems these high drag regions to detrimental to the performances, even if the lift there is high. 
 
 
 % get some commentary there
 \FloatBarrier
 \Subsection{Influence of phase variation in the combined gust case}
-%\emph{IS KEEPING THIS PART INTERESTING???}
 For combined vertical and horizontal gusts another parameter can be changed.
 So far the phase between the two components of the gust has been constant.
 
@@ -533,7 +559,7 @@ So far the phase between the two components of the gust has been constant.
   \label{eqn:combined_gust_phase}
 \end{equation}
 
-After Simulations are performed each 30 degrees steps with the following results.
+Simulations are performed each 30 degrees steps with the following results.
 
 \begin{figure}[ht]
   \begin{center}
@@ -545,18 +571,18 @@ After Simulations are performed each 30 degrees steps with the following results
 \end{figure}
 
 \par This shows that the performances differ depending on the actual gust shape.
-$\varphi=120^{\circ}$ is the best case scenario for energy neutral loops while $\varphi=300^{\circ}$ is the worst case.
+$\varphi=120^{\circ}$ is the best case scenario, where the gusts amplitude required to perform the neutral energy loop is the smallest, while $\varphi=300^{\circ}$ requires significantly higher amplitude gusts.
 
 \FloatBarrier
 
-\par We can see that the results are different for different gust durations.
-One possible explanation for this is that at some point the inertia is too great and start to act as a low pass filter, introducing some phase shift in the trajectory. 
+\par Furthermore We can see that the results are different for different gust durations.
+One possible explanation is that at some point the inertia of the aircraft is too great and it starts to act as a low pass filter, introducing some phase shift in the trajectory. 
 
 \Subsection{Effects of the maximum angle of attack allowed}
-The previous results show that for shorter gusts higher values of the angle of attack much be reached.
-The issue is that higher angle of attacks can get dangerously close to region where the flow is separated.
+The previous results show that for shorter gusts, higher values of the angle of attack must be reached.
+The issue is that higher angles of attack can get close to a region where the flow is separated.
 To make sure no separation happens a new linear constraint is put on the angle of attack.
-The angle is limited to a range of $\pm 5 ^{\circ}$, the linear part of the lift curve.
+The angle is limited to a range of $\pm 5 ^{\circ}$, in the linear part of the lift curve.
 
 
 \begin{figure}[h]
@@ -575,9 +601,9 @@ The angle is limited to a range of $\pm 5 ^{\circ}$, the linear part of the lift
 
 \FloatBarrier
 
-As seen here the results are confirming the previous analysis of the difference between short and long gusts.
+The results shown in figures \ref{fig:allowed_alpha_Wt_vs_tg_wt=3} and \ref{fig:allowed_alpha_Wt_vs_tg_wt=1} confirm the previous analysis of the difference between short and long period gusts.
 There is no difference in the longer gusts region because, as seen before the optimization results in no angle of attack bigger than $4^{\circ}$.
-The difference is that for shorter gusts duration the more violent maneuvers are not available anymore.
+The difference is that for shorter gusts duration, the more violent maneuvers are not available anymore.
 It can be seen on figure \ref{fig:alpha_vs_tg_maxalpha=5} that the angle of attack comes right against the limit of 5 degrees.
 
 \begin{figure}[h]
@@ -589,13 +615,13 @@ It can be seen on figure \ref{fig:alpha_vs_tg_maxalpha=5} that the angle of atta
 
 \FloatBarrier
 \Subsection{Additional remarks}
-Analyzing each of the solutions found, and notably the non optimal ones it can be see, as noticed by Lissaman, that the exact shape of the lift input isn't really important.
-In his paper he approximated the input with a simple sinusoidal curve with amplitude and phase control, similar inputs in this simulation have produced minimum gust amplitude similar to the previous results.
-This raises the hope that even very basic controllers should be able to improve UAV endurance as a very precise control of the lift and drag are not required to get improvement oer a non-controlled case.
+Analyzing each of the solutions found, and notably the non optimal ones, it can be see, as noticed by Lissaman, that the exact shape of the lift input isn't really important.
+In his paper he approximated the input with a simple sinusoidal curve with amplitude and phase control, similar inputs in this simulation have produced minimum gust amplitudes similar to the previous results.
+This raises the hope that even very basic controllers should be able to improve UAV endurance. 
 
 % [DO I WANT TO  CHANGE THE PHASE TO ACTUALLY TEST IT !!!!]
 \par While these results are supposed to be the optimal solution, it does not mean a controller can achieve such performances.
-Even if the trajectory and lift curves are physically possible, the optimization algorithm assume a known gust shape and optimize all of the time points at once.
+Even if the trajectory and lift curves are physically possible, the optimization algorithm assumes a known gust shape and optimizes all of the time points at once.
 This means that contrary to a real controller the optimized trajectory can anticipate the wind change and preemptively react.
 Even if the wind gusts were perfectly sinusoidal, it would not be able to anticipate since a controller is casual.
 Finally in a real life scenario the wind would of course not be a simple clean sinusoidal gust.
@@ -603,6 +629,6 @@ Finally in a real life scenario the wind would of course not be a simple clean s
 \par The simulation is also limited by its inability to account for the moment of inertia along the pitch axis.
 Fast pitching as seen for shorter gusts would require a huge amount of pitch authority.
 
-\par Even with all this limitations these results provide good insight into what would be needed implement energy extraction trajectories in UAVs.
+\par Even with all this limitations, the results provide new insight into what would be needed implement energy extraction trajectories in UAVs.
 
 
