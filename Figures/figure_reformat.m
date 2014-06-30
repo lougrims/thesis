@@ -13,7 +13,7 @@ display off
     openfig(names(i).name)
 
     set(findall(gcf,'Type','text'),'FontSize',12) % change labels and legend size
-    set(findall(gcf,'type','axes')(1:end),'fontsize',10) % change axis numbers size
+    set(findall(gcf,'type','axes'),'fontsize',10) % change axis numbers size
     set(findall(gcf,'type','line'),'LineWidth',2) % change line width
     set(findall(gcf,'type','line'),'MarkerSize',9) % changes marker size
      

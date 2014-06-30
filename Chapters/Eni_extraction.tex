@@ -49,7 +49,7 @@ With $C_l^*$ and $C_d^*$ the angle of attack for the maximum lift to drag ratio 
 \begin{equation}
 \begin{array}[c]{c}
   U = \frac{\dot{x}}{V^*} \\
-  V= \frac{\dot{z}}{V^*}
+  W= \frac{\dot{z}}{V^*}
 \end{array}
 \label{eqn:non_dim_speed}
 \end{equation}
@@ -130,8 +130,7 @@ Finally this model is only valid for the quasi-steady flow conditions.
 
 \begin{figure}[ht]
 \begin{center}
-%    \scalebox{1.0}
-%   {\includegraphics{./Figures/lift_to_drag_UAV.eps}}
+   \includegraphics{./Figures/NACA0009_steady_map_G.eps}
 \end{center}
 \caption{Lift to drag ratio for the NACA0009}
 \label{fig:G_vs_alpha_qs}
@@ -140,6 +139,7 @@ Finally this model is only valid for the quasi-steady flow conditions.
 \par This results, while being arguably more realistic than a simple quadratic approach, are still only considering quasi-steady change in the angle of attack.
 This limitation will be discussed more in depth in the result discussion section \ref{sec:results_QS}.
 
+\FloatBarrier
 \Subsection{Wind profiles}
 Most of the studies done on dynamic soaring has either been done with vertical wind gusts or thermal updraft, or horizontal wind gradient foxed in time.
 In this optimization procedure we chose to consider three different wind profiles made out of first order sinusoidal gusts.
@@ -206,8 +206,6 @@ While with this method each step is a less computation intensive than with the p
 \par The first method has been used in this optimization as it provides more insight on the physics behind the problem.
 However it should be noted that the resulting ``optimal'' point is usually only assured to be \emph{a local} minimum of the cost function.
 Several different starting states should be tested to ensure that the optimization converges toward a reasonable minimum.
-
-
 
 \Subsection{Cost function}
 Our problem here consists in optimizing the trajectory in a gusting environment to minimize energy lose.
@@ -408,7 +406,7 @@ Unsurprisingly the neutral energy loop trajectory exists also for this case.
    \scalebox{1.0}
    {\includegraphics{./Figures/Windtype=1_Tg=4_Wg=0p205_UAV_alphamax=12.eps}}
   \end{center}
-  \caption{$4T$ long vertical gust for UAV, $W_a=0.205$}
+  \caption{$4T$ long vertical gust for the NACA0009 airfoil, $W_a=0.205$}
   \label{fig:vertical_optimization_UAV}
 \end{figure}
 
@@ -418,7 +416,7 @@ Unsurprisingly the neutral energy loop trajectory exists also for this case.
     \scalebox{1.0}
     {\includegraphics{./Figures/Windtype=3_Tg=4_Wg=0p387_UAV_alphamax=12.eps}}
   \end{center}
-  \caption{$4T$ long combined gust for UAV, $W_a=0.387$}
+  \caption{$4T$ long combined gust for the NACA0009 airfoil, $W_a=0.387$}
   \label{fig:combined_optimization_UAV}
 \end{figure}
 \FloatBarrier
@@ -521,7 +519,7 @@ The value of 6 degrees correspond to were the lift to drag ratio starts to reall
 % get some commentary there
 \FloatBarrier
 \Subsection{Influence of phase variation in the combined gust case}
-\emph{IS KEEPING THIS PART INTERESTING???}
+%\emph{IS KEEPING THIS PART INTERESTING???}
 For combined vertical and horizontal gusts another parameter can be changed.
 So far the phase between the two components of the gust has been constant.
 
@@ -535,19 +533,19 @@ So far the phase between the two components of the gust has been constant.
   \label{eqn:combined_gust_phase}
 \end{equation}
 
-After Simulations are performed by 10 degrees steps with the following results.
+After Simulations are performed each 30 degrees steps with the following results.
 
 \begin{figure}[ht]
   \begin{center}
     \scalebox{1.0}
-    {\includegraphics{./Figures/combined_gust_amplitude_vs_phase.eps}}
+    {\includegraphics{./Figures/combined_gust_amplitude_vs_phase_LUT.eps}}
   \end{center}
   \caption{Influence of the phase between the component of the combined gust}
   \label{fig:combined_amplitude_phase}
 \end{figure}
 
-\par This clearly shows that our minimum gust amplitude for a 0 phase was actually close to the worst case possible.
-The best case scenario is when the phase is around 90 to 120 degrees and the worst is around 270 to 300.
+\par This shows that the performances differ depending on the actual gust shape.
+$\varphi=120^{\circ}$ is the best case scenario for energy neutral loops while $\varphi=300^{\circ}$ is the worst case.
 
 \FloatBarrier
 
