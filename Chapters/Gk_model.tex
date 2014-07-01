@@ -79,7 +79,7 @@ A piezoelectric ATI Nano17 force balance is located between the sting and the ai
 This sensor measures both absolute forces and moments along 3 different axis.
 
 \par The wing is made out of balsa wood with the structure wrapped in monocote, a heat-shrunk plastic film.
-Its chord length is 245mm and its width 560mm with a NACA0009 profile.
+Its chord length is 245 mm and its width 560 mm with a NACA0009 profile.
 It connects to the force balance at a point at 25 percent of the chord.
 The design was made to keep the weight and moment of inertia as small as possible to minimize the inertial effects when the wing is moving.
 
@@ -272,8 +272,16 @@ Some work has been and is still being conducted on linking POD decomposition of 
 \Subsection{Time constants}
 While the ability to predict lift and drag based on separation can be useful, the real strength of the GK model resides in its ability to match the unsteady cases.
 The first step is to determine the two time constants $\tau_1$ and $\tau_2$. 
-To do that a series of pitching cases are performed. 
-The pitching inputs are the following
+To do that a series of pitching cases are performed at different reduced frequency $k$.
+$k$ is defined as
+
+\begin{equation}
+  k=\frac{\pi c f}{U}
+\end{equation}
+
+With $f$ the frequency of the oscillation.
+
+\par The pitching inputs are the following
 
 \begin{equation}
 	\alpha\left( t \right)= A \sin \left( 2 \pi \frac{t}{f} \right) + \alpha_0
@@ -281,11 +289,11 @@ The pitching inputs are the following
 \end{equation}
 
 With $A=2^\circ$ and $\alpha_0=12^\circ$.
-The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively K of 0.064, 0.128, 0.257 and 0.513)
+The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively $k$ 0.064, 0.128, 0.257 and 0.513)
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{1.0}  
+    \scalebox{0.9}  
     {\includegraphics{./Figures/Pitching_allcases_CL_12_amp_2.eps}}
   \end{center}
   \caption{Unsteady effects on the lift of sinusoidal pitching around 12 degree} 
@@ -294,7 +302,7 @@ The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively K of 0.064, 0.12
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{1.0}  
+    \scalebox{0.9}  
     {\includegraphics{./Figures/Pitching_allcases_CD_12_amp_2.eps}}
   \end{center}
   \caption{Unsteady effects on the drag of sinusoidal pitching around 12 degree} 
@@ -314,7 +322,7 @@ However the lift variation amplitude is more pronounced in those cases.
 \par Before using the GK model as a predictive tool, the time constants need to be found.
 This is done by trial and error.
 The two time constants are determined manually, and are tuned to produce the best results at the different frequencies tested.
-$\tau_1$ is found to be equal to 3.06 t+ (0.25s) and $\tau_2$ is 4.29 t+ (0.35s).
+$\tau_1$ is found to be equal to 3.1 t+ (0.25s) and $\tau_2$ is 4.29 t+ (0.35s).
 
 
 \par The reason for the difference in behavior between the high and low frequencies is that at low frequencies the flow has the time to separate from the airfoil, this can be checked by the fact that state variable $x$ is driven by the time constant $\tau_1$.
@@ -336,14 +344,14 @@ This means that for a small step $C_l$ from 12 to 13 degrees the output lift loo
 
 \FloatBarrier
 
-\par The classical methods used to find the time constant for first order system can be used.
-As you can see in the figure \ref{fig:tau_1_identification}, the $\tau_1$ constant found from the GK model output is close to the one used in the model.
+\par The classical methods of measuring the time it take to reach 63\% of the final value is used to find the time constant of this first order system.
+As you can see in the figure \ref{fig:tau_1_identification}, the $\tau_1$ constant found from the simulated step GK model output is close to the one used in the model.
 
 \begin{figure}[h]
   \centering
 %  \includegraphics{<+file+>}
   \includegraphics{./Figures/tau_1_Cl_vs_tplus_step_12to13.eps}
-  \caption{Identification of $\tau_1$ from the theoretical step response}
+  \caption{Identification of $\tau_1=3.3t^+$ from the theoretical step response}
   \label{fig:tau_1_identification}
 \end{figure}	
 
@@ -360,7 +368,7 @@ The most obvious result is that the shape of the lift and drag versus angle of a
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{1.0}{
+    \scalebox{0.85}{
       \includegraphics{./Figures/Cl_u=3_meanaoa=12_amp=2_freq=0p5.eps}}
   \end{center}
   \caption{Comparison of experimental lift coefficient and model prediction after tunning of the time constant at k =0.128}
@@ -369,7 +377,7 @@ The most obvious result is that the shape of the lift and drag versus angle of a
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{1.0}{
+    \scalebox{0.85}{
       \includegraphics{./Figures/Cd_u=3_meanaoa=12_amp=2_freq=0p5.eps}}
   \end{center}
   \caption{Comparison of experimental drag coefficient and model prediction after tunning of the time constant at k =0.128}
@@ -382,7 +390,7 @@ The most obvious result is that the shape of the lift and drag versus angle of a
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{1.0}  
+    \scalebox{1}  
     {\includegraphics{./Figures/Pitching_allcases_GK_CL_12_amp_2.eps}}
   \end{center}
   \caption{Lift measurement and prediction during sinusoidal pitching around 12 degree} 
@@ -391,19 +399,21 @@ The most obvious result is that the shape of the lift and drag versus angle of a
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{1.0}  
+    \scalebox{1}  
     {\includegraphics{./Figures/Pitching_allcases_GK_CD_12_amp_2.eps}}
   \end{center}
   \caption{Drag measurement and prediction during sinusoidal pitching around 12 degree} 
   \label{fig:Pitching_allcases_GK_Cd_12}
 \end{figure}
 
+\FloatBarrier
+
 \par Similarly another set of acquisitions is made at a mean angle of 10 degrees (see figures \ref{fig:Pitching_allcases_GK_Cl_10} and \ref{fig:Pitching_allcases_GK_Cd_10}).
 For some unknown reason the model does not account very well for the behavior of the drag at this frequency.
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{1.0}  
+    \scalebox{0.85}  
     {\includegraphics{./Figures/Pitching_allcases_GK_CL_10_amp_2.eps}}
   \end{center}
   \caption{Lift measurement and prediction during sinusoidal pitching around 10 degree} 
@@ -412,7 +422,7 @@ For some unknown reason the model does not account very well for the behavior of
 
 \begin{figure}[h]
   \begin{center}
-    \scalebox{1.0}  
+    \scalebox{0.85}  
     {\includegraphics{./Figures/Pitching_allcases_GK_CD_10_amp_2.eps}}
   \end{center}
   \caption{Drag measurement and prediction during sinusoidal pitching around 10 degree} 

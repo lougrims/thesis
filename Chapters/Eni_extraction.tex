@@ -7,7 +7,7 @@ With such assumption the equations of motion in the ground reference frame is :
 
 \begin{figure}[h]
   \centering
-  %\includegraphics{<+file+>}
+  \includegraphics{./Figures/glider.eps}
   \caption{Coordinate system used for the optimization}
 \end{figure}
 
@@ -22,6 +22,7 @@ All these values and vectors are defined in the inertial ground reference frame.
 \end{equation}
 
 % should I include a figure with the reference frame, and angle definition?
+
 
 \par The lift and drag are defined are: 
 
@@ -198,6 +199,8 @@ Moreover we introduce $\phi$, a phase difference between the two component of th
 \end{array}
 \label{eqn:combined_gust_definition}
 \end{equation}
+
+Unless indicated otherwise the phase $\varphi$ is set to zero for combined gusts.
 
 \Section{Optimization process, cost function and constraints}
 
@@ -403,6 +406,8 @@ The shape of the state and control parameters curves are also consistent with th
   \label{fig:Horizontal_optimization}
 \end{figure}
 
+\FloatBarrier
+
 The resulting minimum wind amplitude is higher than for the vertical gust. 
 However, this shows that it is possible to take advantage of horizontal wind gusts to save energy if the performances are high enough.
 
@@ -417,9 +422,9 @@ However, this shows that it is possible to take advantage of horizontal wind gus
   \label{fig:combined_optimization}
 \end{figure}
 
+\FloatBarrier
 Unsurprisingly the neutral energy loop trajectory exists also for this case.
 
-\FloatBarrier
 
 \Subsection{Typical results for the NACA0009 wing}
 

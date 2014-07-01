@@ -1,5 +1,4 @@
 \Section{Implementation in the energy extraction algorithm}
-
 \par As seen in the previous chapter the optimization process for the energy extraction trajectory only requires a way to calculate the relationship between the lift and drag coefficient.
 In our case these two variables depend only on the angle of attack and its change rate over time, it is fairly easy to implement it into the algorithm.
 However the non-dimensional time constants are different for fluid dynamics and vehicle dynamics.
@@ -23,7 +22,6 @@ Or if the aircraft flies near its optimal glide speed
 
 This ratio happens to be the Froude number.
 
-
 \begin{figure}[ht]
   \begin{center}
     %\includegraphics{<+file+>}
@@ -35,12 +33,10 @@ This ratio happens to be the Froude number.
 \par It is interesting to notice that this ratio is in the same order of magnitude for all these objects.
 The value of 90 is chosen as a default Froude number for this ratio, as it represents a good average of the data compiled.
 
-
 \par Another issue is that the GK model is dependent on the initial value of the state variable $x$.
 The initial value of $x$ is taken as the quasi-steady value.
 To minimize the effect of the transition from quasi-steady to unsteady flow at the beginning of the maneuver, the cycle is simulated twice and then only the second cycle is considered.
 This is possible to do since the conditions applied on the trajectory constrain the initial and final angles of attack and pitch rate to be the same.
-
 
 \Subsection{Expected effects of considering unsteady aerodynamics on the optimal trajectory}
 Unsteady aerodynamics allows access to new areas on the $C_l$ versus $\alpha$ map as well as on the lift to drag ratio map.
@@ -58,18 +54,20 @@ For example, for a 4 degrees amplitude sinusoidal pitching around a mean angle o
 
 \begin{figure}[h]
   \centering
-  \includegraphics{./Figures/alpha_dalpha_sin_amp=4_k=0p5.eps}
+  \scalebox{0.9}{
+    \includegraphics{./Figures/alpha_dalpha_sin_amp=4_k=0p5.eps}}
   \caption{Effects of $\tau_2 \dot{\alpha}$ for high pitching rate}
   \label{fig:alpha_dalpha_vs_t}
 \end{figure}
 
-
 \begin{figure}[h]
   \centering
-  \includegraphics{./Figures/x_sin_amp=4_k=0p5.eps}
+  \scalebox{0.9}{
+    \includegraphics{./Figures/x_sin_amp=4_k=0p5.eps}}
   \caption{State variable during fast sinusoidal pitching}
   \label{fig:x_fast_pitching}
 \end{figure}
+\FloatBarrier
 
 \par The state variable value starts at the quasi-steady value (as designed in the algorithm implementation) but after a couple of cycles it orbits close to an average value that would correspond to separated flows in a quasi-steady case.
 This also leads to lower lift overall (see figure \ref{fig:Cl_fast_pitching}) since the value of x is smaller.
@@ -81,19 +79,7 @@ This also leads to lower lift overall (see figure \ref{fig:Cl_fast_pitching}) si
   \label{fig:Cl_fast_pitching}
 \end{figure}
 
-\par If the exact same constraints are used for optimization then the problem is  illustrated by figure \ref{fig:unlimited_alpha_dot}.	
-
-\begin{figure}[h]
-  \begin{center}
-  
-<++>%\includegraphics{<+file+>}
-\end{center}
-  \caption{Optimization for vertical wind gusts with the same constraints as the previous cases}
-  \label{fig:unlimited_alpha_dot}
-\end{figure}
-
-The issue is that the in order to reach the favorable high lift regions the algorithm producesm
-
+\FloatBarrier
 %Since the lift to drag ratio of the NACA0009 is about 10 (compared to 13 for the notional UAV) direct comparisons with the results presented in part \ref{sec:results_QS} are impossible.
 \Subsection{The ``staircase'' optimization issue}
 The pitch rate dependent effects add a lot of complexity to the optimization problem.
@@ -105,14 +91,17 @@ It seems that for most optimization cases this effect is avoided.
 
 \begin{figure}[h]
   \centering
-  %\includegraphics{<+file+>}
-  \caption{Staircase pattern seen for XXXX wind gust with $T_g=XX$}
+  \includegraphics{./Figures/Alpha_vs_T_Windtype=3_Tg=0p3_GK_alphamax=20.eps}
+  \caption{Staircase pattern seen for combined wind gust with $T_g=0.3$}
   \label{fig:staircase_case}
 \end{figure}
 
 \par In those cases the algorithm attempts to ``game'' the GK model with this jerky pitch motion.
 Our theory is that this jerky motion avoids the decrease of the lift coefficient caused by high pitch rates by doing those for only short amount of time.
-These spikes in the pitch rate are too short to be able to influence the low pass equation regulating the value of $x$.
+These spikes in the pitch rate are too short to be able to influence the low pass equation regulating the value of $x$ and as such maintain higher lift coefficient than it would be possible with quasi-steady assumption.
+
+\par While this behavior is unrealistic, nothing is done to prevent it.
+This is a valuable clue on what the perfect pitch input should be, and if it is not possible with traditional control system, some solution involving active flow control could be in order.
 
 \Section{A closer look at the high performing short gusts}
 

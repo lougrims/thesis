@@ -10,6 +10,9 @@
 \usepackage{epsfig}
 \usepackage{subfigure}          % These two packages, epsfig and subfigure, are used for creating subplots.
 \usepackage{mathtools}          % used for equations
+\usepackage{listing}
+\usepackage{xcolor}
+\usepackage[final]{mcode}
 % Packages are explained in the Help document.
 
 
@@ -17,7 +20,7 @@
 %%fakesection{TITLES AND INDEXES)
 %%% Declarations for Title Page %%%
 \title{Energy savings for UAV flight in unsteady gusting conditions \\
-  through trajectory optimization }
+through trajectory optimization }
 \author{Lou Grimaud}
 \degree{Master of Science}
 \dept{Mechanical, Materials, and Aerospace Engineering}
@@ -85,7 +88,7 @@
 \SymbolDefinition{$t^+$}{Airfoil time scale ($=\frac{U}{c}$)}
 \SymbolDefinition{$c$}{Airfoil chord}
 \SymbolDefinition{$u$}{Free stream velocity}
-%\SymbolDefinition{$<++>$}{<++>}<++>
+%\SymbolDefinition{$$}{<++>}<++>
 %\SymbolDefinition{$<++>$}{<++>}<++>
 %\SymbolDefinition{$<++>$}{<++>}<++>
 %\SymbolDefinition{$<++>$}{<++>}<++>
@@ -140,15 +143,12 @@ This was just to create a sample section...
 % Then create each appendix using
 % \Appendix{title_of_appendix} command
 
-\Appendix{Goman Khrabrov model Matlab \textregistered implementation} \label{ch:GK_code}
-Your Appendix will go here !
+\Appendix{Goman Khrabrov model Matlab\textsuperscript{\textregistered} implementation} \label{ch:GK_code}
+\lstinputlisting{./NACA0009_GK.m}
+%\moretox
 
-\moretox
 
-\Appendix{Name of your Second
-Appendix}
 
-Your second appendix text....
 
 %
 % BIBLIOGRAPHY
