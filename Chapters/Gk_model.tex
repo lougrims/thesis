@@ -334,15 +334,20 @@ This means that for a small step $C_l$ from 12 to 13 degrees the output lift loo
   \label{fig:Cl_for_alpha_step}
 \end{figure}
 
+\FloatBarrier
+
 \par The classical methods used to find the time constant for first order system can be used.
 As you can see in the figure \ref{fig:tau_1_identification}, the $\tau_1$ constant found from the GK model output is close to the one used in the model.
 
 \begin{figure}[h]
   \centering
 %  \includegraphics{<+file+>}
-  \caption{Identification of $\tau_1$ from the step response}
+  \includegraphics{./Figures/tau_1_Cl_vs_tplus_step_12to13.eps}
+  \caption{Identification of $\tau_1$ from the theoretical step response}
   \label{fig:tau_1_identification}
 \end{figure}	
+
+\FloatBarrier
 
 \par While this method is fine in theory, it is impossible to implement experimentally.
 The force balance used to measure lift and drag is very fragile, so a fast step could be enough to break it.
