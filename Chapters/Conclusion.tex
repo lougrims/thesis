@@ -1,0 +1,36 @@
+\Section{Low order model for unsteady flow}
+
+\par The Goman and Khrabrov model shows good agreement in both shape and magnitude for the lift and drag of a pitching airfoil in a wide range of conditions.
+It is fast and light and can be adjusted to a new airfoil (or even a whole aircraft) without requiring extensive experimental studies.
+In fact in theory only a static map and one unsteady case should be enough to obtain the whole model.
+
+\par The work in this thesis has proven that the drag can also be easily modeled and there is little doubt that the moment coefficient $C_m$ could be modeled too.
+
+\par Implementing this model is simple enough that it can be used in computationally heavy applications such as optimization problems or real time applications.
+It is however non-linear and as such isn't easily invertible or analyzable with traditional control system methods.
+
+\Section{Energy extraction optimization}
+
+\par From the results presented in this thesis it can be seen that energy extraction can be performed for complex temporal wind gusts with vertical and horizontal components.
+In these gusts overall neutral energy trajectories are possible and require less and less wind gust amplitude the shorter the gust is.
+For short gust ($T_g \le 3$) high angles of attack are needed for maximum performance, which can lead to flow separation.
+
+\par The introduction of an unsteady aerodynamic model proves necessary at when gusts are very short ($T_g \le 0.7$ or $k \ge 0.05)$).
+At this point unsteady effects such as lag in the flow separation can be observed and even taken advantage of.
+While the maneuvers required to obtain such trajectories are unlikely to be realistically done on aircrafts, these results could be exploited in vertical wind turbine pitch optimization for example.
+The results for gusts shorter than $T_g=0.2$ ($k=0.175$) are less obvious to interpret and will require further study, perhaps with a problem more representative of the system operating at such frequencies.
+
+\par While these results shows the optimal trajectory found by the algorithm it is important to keep in mind that the algorithm optimize the trajectory globally over the whole period.
+This means that it can take preemptive actions because it ``knows'' what will happen later in time.
+A real controller flying in an environment where the wind gust shape can't be predicted would not be able to reach the same energy extraction performances.
+
+\Section{Possible improvements and additional work}
+
+\par One of the weakness of the optimization with the GK model is that it does not account for the unsteady effects due to the surging and gusting components of the relative wind.
+I believe that the GK model could be modified to include these effects but a complete experimental campaign would be needed.
+
+\par The ``staircase'' effect described in section \ref{sub:staircase} could be mitigated by introducing a more realistic model for the aircraft dynamics that include the moment of inertia.
+Going even further, a basic elevator model could be implemented.
+
+\par Finally replacing the temporal wind profile by a spatial one would allow for the use of more realistic and complex wind fields.
+

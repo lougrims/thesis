@@ -38,7 +38,7 @@ The initial value of $x$ is taken as the quasi-steady value.
 To minimize the effect of the transition from quasi-steady to unsteady flow at the beginning of the maneuver, the cycle is simulated twice and then only the second cycle is considered.
 This is possible to do since the conditions applied on the trajectory constrain the initial and final angles of attack and pitch rate to be the same.
 
-\Subsection{Expected effects of considering unsteady aerodynamics on the optimal trajectory}
+\Subsection{Expected effects of considering unsteady aerodynamics on the optimal trajectory} \label{sub:unsteady_effects}
 Unsteady aerodynamics allows access to new areas on the $C_l$ versus $\alpha$ map as well as on the lift to drag ratio map.
 This affects the lift and drag characteristics that will influence the optimization process if the pitching rate is fast enough to trigger them.
 The effects on the lift can divided into two categories.
@@ -81,7 +81,7 @@ This also leads to lower lift overall (see figure \ref{fig:Cl_fast_pitching}) si
 
 \FloatBarrier
 %Since the lift to drag ratio of the NACA0009 is about 10 (compared to 13 for the notional UAV) direct comparisons with the results presented in part \ref{sec:results_QS} are impossible.
-\Subsection{The ``staircase'' optimization issue}
+\Subsection{The ``staircase'' optimization issue} \label{sub:staircase}
 The pitch rate dependent effects add a lot of complexity to the optimization problem.
 One of the biggest is that to keep a reasonably low execution time for the optimization, the number of points has to be kept relatively low (less than a hundred).
 Such discretization of the interval can cause issues in the discrete integration parts of the algorithm.
@@ -183,8 +183,23 @@ Similar results are observed for vertical and horizontal gusts in the $T_g=0.2$ 
 
 \Section{Bad performance at $T_g\leq0.1$}
 
-\par As seen on figures \ref{fig:WG_vs_TG_wt=3} and \ref{fig:WG_vs_TG_wt=1} while the unsteady model optimizations are showing a more efficient energy extraction than the quasi-steady for $0.2 \leq T_g \leq 0.7$ it is not the case at $T_g=0.1$. 
+\par As seen on figures \ref{fig:WG_vs_TG_wt=3} and \ref{fig:WG_vs_TG_wt=1} while the unsteady model optimizations are showing a more efficient energy extraction than the quasi-steady for $0.2 \leq T_g \leq 0.7$ ($0.175 \leq k \leq 0.05$) it is not the case for $T_g \le 0.2$ ($k\ge 0.175$). 
 
+To understand what happens we need to take a look at the $C_l$ versus $\alpha$ plot for these cases and compare it to the quasi-steady one.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{./Figures/Cl_vs_alpha_Windtype=3_Tg=0p05_GK_alphamax=12.eps}
+  \caption{Lift coefficient versus angle of attack for a 0.05T long combined gust}
+  \label{fig:Cl_vs_alpha_Windtype=3_Tg=0p05_GK_alphamax=12}
+\end{figure}
+
+\FloatBarrier
+
+\par This results is consistent to what was shown on figure \ref{fig:Cl_fast_pitching} and explained in section \ref{sub:unsteady_effects}.
+
+\par It should be noted that the results found for these very short gusts duration are highly dependent on the initial guess used in the optimization algorithm.
+As such, while everything was done to ensure the best results, it is possible that the solutions presented here are only a local, and not a absolute minimum.
 
 \Section{Limitations of the unsteady GK model}
 

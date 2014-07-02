@@ -24,14 +24,14 @@ G_max=10.13;
 t=linspace(0,m*dt,m);
 
 % experimental x0 vs alpha curve
-x0ref=[1 6 7    8     10   12  15   18   19   20   21    22    23 24 25;
-      1  1 0.95 0.85  0.60 0.4 0.21 0.09 0.06 0.03 0.015 0.005 0  0  0]';
+x0ref=[1 6 7    8    10   12  15   18   19   20   21    22    23 25;
+       1 1 0.95 0.85 0.60 0.4 0.21 0.09 0.06 0.03 0.015 0.005 0  0]';
 x0ref=[ -1*flipud(x0ref); x0ref];
 x0ref(:,2)=abs(x0ref(:,2));
 
 % initialize x (only the first value is usefull)
 x=ones(length(t),1)*interp1(x0ref(:,1),x0ref(:,2),alpha(1)); 
-X0=interp1(x0ref(:,1),x0ref(:,2),alpha(2:end)-diff(alpha)./dt*tau2,'pchip','extrap');
+X0=interp1(x0ref(:,1),x0ref(:,2),alpha(2:end)-diff(alpha)./dt*tau2);
 
 for i=2:length(t)
     x(i)=x(i-1)+dt*(X0(i-1)-x(i-1))/tau1;   
