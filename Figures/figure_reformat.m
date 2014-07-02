@@ -22,7 +22,7 @@ display off
      set(gcf,'WindowStyle','normal')
      set(gcf, 'PaperUnits', 'inches');
 set(gcf, 'PaperPosition', [0 0 6 4.2]);
-    set(gcf,'units','inches','outerposition',[0 0 6 4.2])
+%     set(gcf,'units','inches','outerposition',[0 0 6 4.2])
 set(findall(gcf,'type','legend'),'Position','best') % changes marker size
 
 % pause
