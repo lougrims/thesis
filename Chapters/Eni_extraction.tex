@@ -190,12 +190,14 @@ In this optimization procedure we chose to consider three different wind profile
 
 \par Finally a more complex combined gust is defined.
 This gust profile is the sum of the two previously defined gusts.
-Moreover we introduce $\phi$, a phase difference between the two component of the gust. 
+Moreover we introduce $\varphi$, a phase difference between the two component of the gust. 
+Changing the phase between the vertical and horizontal components allows the recreation of a wide variety of wind gust profiles. 
+Moreover, the results obtained here can serve as a proof of concept for even more complex wind structures such as the ones used by Golubev \cite{golubev2010high} \cite{golubev2010parametric}.
 
 \begin{equation}
 \begin{array}[c]{c}
   W_g = W_a \cdot sin(2\pi T) \\
-  U_g = W_a \cdot cos(2 \pi T + \phi)
+  U_g = W_a \cdot cos(2 \pi T + \varphi)
 \end{array}
 \label{eqn:combined_gust_definition}
 \end{equation}
@@ -388,6 +390,14 @@ Since it is only a validation test the same lift and drag characteristics are us
   \caption{Optimization results for a $4T$ long vertical gust}
   \label{fig:Validation_optimization}
 \end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{./Figures/LIssaman_N_comparison.eps}
+  \caption{Comparison with Lissaman's \cite{Lissaman2007neutral} non-dimmesional normal force $N$ for a $4T$ long vertical gust}
+  \label{fig:lissaman_N_comparison}
+\end{figure}
+
 
 \FloatBarrier
 

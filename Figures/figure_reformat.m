@@ -16,14 +16,14 @@ display off
     set(findall(gcf,'type','axes'),'fontsize',10) % change axis numbers size
     set(findall(gcf,'type','line'),'LineWidth',2) % change line width
     set(findall(gcf,'type','line'),'MarkerSize',9) % changes marker size
-     
-%     legend(findall(gcf,'type','axes'),'Location','Best')
+
+%     legend(findall(gcf,'type','axes'),'Location','Best')gh
  
      set(gcf,'WindowStyle','normal')
      set(gcf, 'PaperUnits', 'inches');
 set(gcf, 'PaperPosition', [0 0 6 4.2]);
 %     set(gcf,'units','inches','outerposition',[0 0 6 4.2])
-set(findall(gcf,'type','legend'),'Position','best') % changes marker size
+% set(findall(gcf,'type','legend'),'Position','best') % changes marker size
 
 % pause
     saveas(gcf,names(i).name(1:end-4),'fig')

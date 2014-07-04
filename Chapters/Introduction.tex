@@ -32,12 +32,18 @@ It is however still fairly complicated and requires an extensive experimental st
 One quasi-steady map of the lift and two time constants are all that is needed to get the full model.
 So far it seems that the use of this model has been limited to the lift coefficient predictions, however for the trajectory optimization the drag coefficient is also needed.
 
-\Section{Previous investigations/literature review}
+\Section{Previous investigations}
 
-\par As explained in the previous part \ref{subsec:dynsoar}, the bulk part of the research on trajectory optimization for small flying vehicles has been focused on either natural convection, such as the one glider pilots and some birds take advantage of in plains, or wind gradients, such the ones found close to the surface of the ocean.
+\par As explained in the previous part \ref{subsec:dynsoar}, the bulk part of the research on trajectory optimization for small flying vehicles has been focused on either natural convection, such as the one glider pilots and some birds (Denny \cite{denny2009dynamic}) take advantage of in plains, or wind gradients, such the ones found close to the surface of the ocean.
 The latter are often exploited by seabirds such as albatrosses.
 
-\par Lissaman \cite{lissaman2005wind} conducted a study for 3D trajectories in differently shaped wind gradients close to the ground.
-His optimization is performed on a non-dimensional set of equation that has been reused in this study.
+\par Lissaman conducted a study for 3D trajectories in differently shaped wind gradients close to the ground \cite{lissaman2005wind} as well as 2D trajectories through sinusoidal wind gusts \cite{Lissaman2007neutral}. 
+His optimization is performed on a non-dimensional set of equation \cite{chakrabarty2010flight} that has been reused in this study.
 He also uses different kind of profiles for the wind gradient in order to represent more accurately real wind gradients.
 The approach pioneered by Lissaman forms the basis of the following optimization study.
+
+\par However these studies have all only used quasi-steady aerodynamic model.
+Airfoil interactions with more complex gusts structures such as the ones produced by vortices shed by upstream obstacles have also been studied with CFD tools by Golubev \cite{golubev2010high} \cite{golubev2010parametric}.
+
+\par Traditional low order models that try to circumvent the use of CFD are often based on Theodorsen's \cite{theodorsen} and Greenberg's \cite{green} derivations of the Navier-Stokes equations for potential flow.
+However experimental study of flow separation for pitching airfoils was started even earlier by researcher like Katzmayr in 1922 \cite{katz}.
