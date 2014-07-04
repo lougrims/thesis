@@ -95,7 +95,7 @@ Other input methods induced too much mechanical vibrations.
 \par The amplifier driving the electric servos has its own PID control system, however even after careful tuning some error exists between the commanded angle of attack and the actual angle of attack.
 To negate that effect the actual servo position, as given by the potentiometers, is used for our measurements.
 This data is used to transform the normal and tangent force into lift and drag (via a simple rotation matrix). 
-They are then normalized (divided by $\frac{1}{2}\rho S U^2$, with $S$ the surface area of the wing, $\rho$ the air density and $U$ the free stream velocity) to get the aerodynamics coefficients.
+They are then normalized (divided by $\frac{1}{2}\rho S u^2$, with $S$ the surface area of the wing, $\rho$ the air density and $u$ the free stream velocity) to get the aerodynamics coefficients.
 
 \par Unless specified otherwise, all the acquisitions have been done at a flow speed of 3m/s which correspond to a chord based Reynolds number of 50000.
 
@@ -276,7 +276,7 @@ To do that a series of pitching cases are performed at different reduced frequen
 $k$ is defined as
 
 \begin{equation}
-  k=\frac{\pi c f}{U}
+  k=\frac{\pi c f}{u}
 \end{equation}
 
 With $f$ the frequency of the oscillation.
@@ -429,9 +429,6 @@ For some unknown reason the model does not account very well for the behavior of
   \label{fig:Pitching_allcases_GK_Cd_10}
 \end{figure}
 
-\FloatBarrier
-
-\emph{GRAPH FOR THIS IS NEEDED!!!}
 
 \par The area around 8 degrees is interesting, because this is where the flow just starts to become separated.
 The transition between attached flow and separated flow means that the state variable $x$ should not have any effect for the lower angles and as a consequence the loop seen in the $C_l$ versus $\alpha$ plots should be ``pinched'' on its left side.
@@ -439,9 +436,11 @@ This can be further illustrated by plotting the value of the state variable duri
 This kind of behavior is particularly apparent on high amplitude (tens of degrees) pitch maneuver as it is seen in the original Goman and Khrabrov paper.
 The behavior is comparable at $k$ of 0.257 and 0.513 but the drag has a noticeably different shape at $k$ of 0.128.
 
-\par Another obvious parameter to check for our model is the amplitude of the oscillations.
-The amplitude is set to a range from 1 to 4 degrees at different mean angle of attack.
-The predictions still reasonably match the experimental results. 
+\FloatBarrier
+
+%\par Another obvious parameter to check for our model is the amplitude of the oscillations.
+%The amplitude is set to a range from 1 to 4 degrees at different mean angle of attack.
+%The predictions still reasonably match the experimental results. 
 
 % divers figures
 
@@ -478,11 +477,10 @@ This is done so that the bandwidth of the input signal is limited to reasonable 
 \par The accuracy of these results means that this model could be used in real time during arbitrary pitching maneuvers.
 This is potentially very useful since a lot of systems rely on the periodicity of the pitching motion to predict the lift and can be inaccurate in case of non periodic disturbances such as wind gusts changing the effective angle of attack.
 
-\FloatBarrier
-
 \par This model is producing accurate results that account for both the dynamic effects and the flow separation.
 Moreover the procedure is simple enough to be implemented into the optimization algorithm without increasing too much the computation cost.
 
+\FloatBarrier
 
 \Section{Model limitations}
 

@@ -34,15 +34,9 @@ through trajectory optimization }
 
 %%%  Acknowledgement %%%
 \begin{acknowledgement}     % acknowledgement environment, this is optional
-  \par 
-  \par  This dissertation could not have been written without Dr. X
-  who not only served as my supervisor but also encouraged and
-  challenged me throughout my academic program. He and the other
-  faculty members, Dr. Y and Dr. Z, guided me through the
-  dissertation process, never accepting less than my best efforts. I
-  thank them all.\\ \\ (Don't copy this sample text. Write your own
-  acknowledgement.)
-%\input{acknowledgement.tex} % you need a separate acknowledgement.tex file to include it.
+  \par I would like to thank my advisor Dr Williams for his guidance and trust.
+  The results presented in this dissertation would have not been obtained without the help of my lab-mates, Xuanhong An, Simeon Iliev and Jeremy Weirich.
+
 \end{acknowledgement}
 
 
@@ -67,6 +61,7 @@ through trajectory optimization }
 
 \SymbolDefinition{$C_l$}{Lift coefficient}
 \SymbolDefinition{$C_d$}{Drag coefficient}
+\SymbolDefinition{$y_i$}{Vector of position and velocities at point $i$}
 \SymbolDefinition{$W_a$}{Non-dimensional gust amplitude}
 \SymbolDefinition{$T_g$}{Non-dimensional gust duration}
 \SymbolDefinition{$T$}{Vehicle time scale ($=\frac{V_cr}{g}$)}
@@ -81,20 +76,13 @@ through trajectory optimization }
 \SymbolDefinition{$V^*$}{Optimal glide speed}
 \SymbolDefinition{$\gamma$}{Angle of the vehicle trajectory to the horizon}
 \SymbolDefinition{$U_g, W_g$}{Non-dimensional horizontal and vertical gust velocity components}
-\SymbolDefinition{$x$}{State vector used for the optimizatiion}
-\SymbolDefinition{$y_i$}{Vector of position and velocities at point $i$}
-\SymbolDefinition{$C_l^{qs}$}{Quasi-steady lift coefficient}
-\SymbolDefinition{$x_0$}{State variable x value for quasi-steady cases}
-\SymbolDefinition{$k$}{Non-dimesional reduced frequency ($=\pi c \frac{f}{u}$)}
-\SymbolDefinition{$t^+$}{Airfoil time scale ($=\frac{U}{c}$)}
-\SymbolDefinition{$c$}{Airfoil chord}
 \SymbolDefinition{$u$}{Free stream velocity}
-%\SymbolDefinition{$$}{<++>}<++>
-%\SymbolDefinition{$<++>$}{<++>}<++>
-%\SymbolDefinition{$<++>$}{<++>}<++>
-%\SymbolDefinition{$<++>$}{<++>}<++>
-%\SymbolDefinition{$<++>$}{<++>}<++>
-%\SymbolDefinition{$<++>$}{<++>}<++>
+\SymbolDefinition{$c$}{Airfoil chord}
+\SymbolDefinition{$t^+$}{Airfoil time scale ($=\frac{u}{c}$)}
+\SymbolDefinition{$k$}{Non-dimesional reduced frequency ($=\pi c \frac{f}{u}$)}
+\SymbolDefinition{$x$}{State vector used for the optimizatiion}
+\SymbolDefinition{$C_l^{qs}, C_d^{qs}$}{Quasi-steady lift and drag coefficients}
+\SymbolDefinition{$x_0$}{State variable x value for quasi-steady cases}
 %
 \clearpage
 
