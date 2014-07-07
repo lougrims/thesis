@@ -15,8 +15,8 @@ All these values and vectors are defined in the inertial ground reference frame.
 
 \begin{equation}
 \begin{array}[c]{c}
-  \ddot{x}= -L' \cdot sin(\gamma) + D' \cdot cos(\gamma) \\ 
-  \ddot{z}= L' \cdot cos(\gamma) - D' \cdot sin(\gamma) - m \cdot g
+ m \cdot \ddot{x}= -L' \cdot sin(\gamma) + D' \cdot cos(\gamma) \\ 
+ m \cdot \ddot{z}= L' \cdot cos(\gamma) - D' \cdot sin(\gamma) - m \cdot g
 \end{array}
 \label{eqn:eqm}
 \end{equation}
@@ -104,14 +104,14 @@ With
 \gamma = -atan(\frac{W-W_g}{U-U_g})
 \label{eqn:gamma_def}
 \end{equation}
-
-\begin{figure}[h]
-  \centering
-  %\includegraphics{<+file+>}
-  \caption{Definition of $\gamma$ the flight path angle}
-  \label{fig:gamma}
-\end{figure}
-
+%
+%\begin{figure}[h]
+%  \centering
+%  %\includegraphics{<+file+>}
+%  \caption{Definition of $\gamma$ the flight path angle}
+%  \label{fig:gamma}
+%\end{figure}
+%
 
 $W_g$ and $U_g$ are the vertical and horizontal wind speeds in the inertial reference frame.
 
@@ -131,7 +131,7 @@ In his paper, Lissaman \cite{Lissaman2007neutral} is using a relatively simple q
 The only parameter is the optimal lift to drag ratio $G^*$:
 
 \begin{equation}
-D=\frac{Q}{2G^*}(1+L^2)
+D=\frac{1+L^2}{2G^*}
 \label{eqn:Lissaman_G}
 \end{equation}
 
@@ -172,7 +172,7 @@ In this optimization procedure we chose to consider three different wind profile
 
 \begin{equation}
 \begin{array}[c]{c}
-  W_g = W_a \cdot sin(2\pi T) \\
+  W_g = W_a \cdot \sin(2\pi T) \\
   U_g = 0 
 \end{array}
 \label{eqn:vertical_gust_definition}
@@ -183,7 +183,7 @@ In this optimization procedure we chose to consider three different wind profile
 \begin{equation}
 \begin{array}[c]{c}
   W_g = 0 \\
-  U_g = W_a \cdot cos(2 \pi T)
+  U_g = W_a \cdot \cos(2 \pi T)
 \end{array}
 \label{eqn:horizontal_gust_definition}
 \end{equation}
@@ -196,8 +196,8 @@ Moreover, the results obtained here can serve as a proof of concept for even mor
 
 \begin{equation}
 \begin{array}[c]{c}
-  W_g = W_a \cdot sin(2\pi T) \\
-  U_g = W_a \cdot cos(2 \pi T + \varphi)
+  W_g = W_a \cdot \sin(2\pi T) \\
+  U_g = W_a \cdot \cos(2 \pi T + \varphi)
 \end{array}
 \label{eqn:combined_gust_definition}
 \end{equation}
