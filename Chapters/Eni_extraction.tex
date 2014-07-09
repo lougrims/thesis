@@ -84,7 +84,7 @@ The characteristic time for normalizing is
 \par Finally we introduce Q the non-dimensional dynamic pressure as:
 
 \begin{equation}
-Q = \frac{L'}{MgL} = \frac{\frac{1}{2} \rho V^2 C_l C_l^* }{Mg}
+  Q = \frac{L'}{MgL} = \frac{\frac{1}{2} \rho V^{2} C_l^* }{Mg}
 \label{eqn:dynamic_pressure}
 \end{equation}
 
@@ -288,12 +288,28 @@ This is done by using the Simpson's 1/3rd rule as derived by Zhao \cite{zhao2004
 In order to satisfy the equations of motion we need to define the state variable at the time $T_i$:
 
 \begin{equation}
-  y_i= \begin{bmatrix}
-    X_i \\
-    Z_i \\
-    U_i \\
-    W_i 
-  \end{bmatrix}
+	\begin{array}[c]{cc}
+	  y_i= \begin{bmatrix}
+	    X_i \\
+	    Z_i \\
+	    U_i \\
+	    W_i 
+	  \end{bmatrix} &
+
+	  \dot{y_i} = 
+	  \begin{bmatrix}
+	    U_i \\
+	    W_i \\
+	    -L_i Q_i \cdot sin(\gamma_i) + D_i Q_i \cdot cos(\gamma_i) \\
+	    L_i Q_i  \cdot cos(\gamma_i ) - D_i Q_i  \cdot sin(\gamma_i ) - 1
+	  \end{bmatrix}
+	\end{array}
+%  y_i= \begin{bmatrix}
+%    X_i \\
+%    Z_i \\
+%    U_i \\
+%    W_i 
+%  \end{bmatrix}
   \label{eqn:state_i}
 \end{equation}
 
