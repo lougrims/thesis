@@ -172,7 +172,7 @@ In this optimization procedure we chose to consider three different wind profile
 
 \begin{equation}
 \begin{array}[c]{c}
-  W_g = W_a \cdot \sin(2\pi T) \\
+    W_g = W_a \cdot \sin(2\pi \frac{T}{T_g}) \\
   U_g = 0 
 \end{array}
 \label{eqn:vertical_gust_definition}
@@ -183,7 +183,7 @@ In this optimization procedure we chose to consider three different wind profile
 \begin{equation}
 \begin{array}[c]{c}
   W_g = 0 \\
-  U_g = W_a \cdot \cos(2 \pi T)
+  U_g = W_a \cdot \cos(2 \pi \frac{T}{T_g})
 \end{array}
 \label{eqn:horizontal_gust_definition}
 \end{equation}
@@ -196,8 +196,8 @@ Moreover, the results obtained here can serve as a proof of concept for even mor
 
 \begin{equation}
 \begin{array}[c]{c}
-  W_g = W_a \cdot \sin(2\pi T) \\
-  U_g = W_a \cdot \cos(2 \pi T + \varphi)
+  W_g = W_a \cdot \sin(2\pi \frac{T}{T_g})) \\
+  U_g = W_a \cdot \cos(2 \pi \frac{T}{T_g}) + \varphi)
 \end{array}
 \label{eqn:combined_gust_definition}
 \end{equation}
