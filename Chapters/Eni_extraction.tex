@@ -16,7 +16,7 @@ All these values and vectors are defined in the inertial ground reference frame.
 \begin{equation}
 \begin{array}[c]{c}
  m \cdot \ddot{x}= -L' \cdot sin(\gamma) + D' \cdot cos(\gamma) \\ 
- m \cdot \ddot{z}= L' \cdot cos(\gamma) - D' \cdot sin(\gamma) - m \cdot g
+ m \cdot \ddot{z}= -L' \cdot cos(\gamma) + D' \cdot sin(\gamma) + m \cdot g
 \end{array}
 \label{eqn:eqm}
 \end{equation}
@@ -93,7 +93,7 @@ The characteristic time for normalizing is
 \begin{equation}
 \begin{array}[c]{c}
   \frac{dU}{dT}= -LQ \cdot sin(\gamma) + DQ \cdot cos(\gamma) \\ 
-  \frac{dW}{dT}= LQ \cdot cos(\gamma) - DQ \cdot sin(\gamma) - 1
+  \frac{dW}{dT}= -LQ \cdot cos(\gamma) + DQ \cdot sin(\gamma) + 1
 \end{array}
 \label{eqn:non_dim_eqm}
 \end{equation}
@@ -326,7 +326,7 @@ Then with $\dot{y_i}$ the derivative of the state variables, given by the equati
 The condition to satisfy the equation of motion becomes
 
 \begin{equation}
-  0=y_{k+1} - y_k - \frac{1}{6}( \dot{y_k} + 4 \dot{y_m} + \dot{y_{k+1}})\delta t \quad \forall i \in [1,N-1]
+  0=y_{i+1} - y_i - \frac{1}{6}( \dot{y_i} + 4 \dot{y_m} + \dot{y_{i+1}})\delta t \quad \forall i \in [1,N-1]
   \label{eqn:simpson}
 \end{equation}
 
@@ -459,9 +459,9 @@ Unsurprisingly the neutral energy loop trajectory exists also for this case.
 \begin{figure}
   \begin{center}
    \scalebox{1.0}
-   {\includegraphics{./Figures/Windtype=1_Tg=4_Wg=0p205_UAV_alphamax=12.eps}}
-  \end{center}
-  \caption{$4T$ long vertical gust for the NACA0009 airfoil, $W_a=0.205$}
+   {\includegraphics{./Figures/Windtype=1_Tg=4_Wg=0p273_LUTNACA0009_alphamax=5_dalphadt=50.eps}}
+      \end{center}
+      \caption{$4T$ long vertical gust for the NACA0009 airfoil, $W_a=0.273$}
   \label{fig:vertical_optimization_UAV}
 \end{figure}
 
@@ -469,9 +469,9 @@ Unsurprisingly the neutral energy loop trajectory exists also for this case.
 \begin{figure}[h]
   \begin{center}
     \scalebox{1.0}
-    {\includegraphics{./Figures/Windtype=3_Tg=4_Wg=0p387_UAV_alphamax=12.eps}}
-  \end{center}
-  \caption{$4T$ long combined gust for the NACA0009 airfoil, $W_a=0.387$}
+    {\includegraphics[width=1\textwidth]{./Figures/Windtype=3_Tg=4_Wg=0p516_LUTNACA0009_alphamax=12_dalphadt=50.eps}}
+      \end{center}
+      \caption{$4T$ long combined gust for the NACA0009 airfoil, $W_a=0.516$}
   \label{fig:combined_optimization_UAV}
 \end{figure}
 
