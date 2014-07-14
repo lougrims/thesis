@@ -25,7 +25,7 @@ set(gcf, 'PaperPosition', [0 0 6 4.2]);
 %     set(gcf,'units','inches','outerposition',[0 0 6 4.2])
 % set(findall(gcf,'type','legend'),'Position','best') % changes marker size
 
-% pause
+pause
     saveas(gcf,names(i).name(1:end-4),'fig')
 
     saveas(gcf,names(i).name(1:end-4),'epsc')

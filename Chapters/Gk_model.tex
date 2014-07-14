@@ -105,7 +105,7 @@ Even though the wing only weighs around 300 grams, these inertial effects repres
 Moreover some of the force measured come from the springiness of the cables used for the active flow control part.
 After the first offset the real case is taken, followed by a second offset to account for the drift in the force balance measurement sometime seen over the course of several minutes.
 
-\par During each acquisitions at least 50 cycles are recorded.
+\par During each acquisitions at least 50 pitch cycles are recorded.
 This allows us to perform phase averaging.
 Phase averaging is done by slicing the files into individual cycles (thank to the synchronization signal) and then making an average of these cycles.
 With this technique the signal to noise ratio of greatly improved.
@@ -173,7 +173,7 @@ These gaps are necessary to allow for the both pitching and plunging of the wing
 \begin{equation}
   \begin{array}[c]{c}
     C_l= 2 \pi \cdot \alpha + C_{l0} \\
-    C_d= \frac{C_l^2}{2G_{max}} + C_{d0}
+    C_d= \frac{C_l^2}{G_{max}} + C_{d0}
   \end{array}
   \label{eqn:attached_Cl_and_Cd_vs_alpha}
 \end{equation}
@@ -190,7 +190,7 @@ Since for totally separated flow the slop of the lift coefficient as a function 
   \label{eqn:Cl_function}
 \end{equation}
 
-\par By inverting this equation the value of $x_0$ can then be adjusted so that the output of this function matches the experimental data. 
+\par By inverting this equation in a quasi-steady case (when $x=x_0$), the value of $x_0$ can then be adjusted so that the output of this function matches the experimental data. 
 The resulting profile for $x_0(\alpha)$ can be seen in figure \ref{fig:x_0_vs_alpha}
 
 \begin{figure}[h]
@@ -289,7 +289,7 @@ With $f$ the frequency of the oscillation.
 \end{equation}
 
 With $A=2^\circ$ and $\alpha_0=12^\circ$.
-The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively $k$ 0.064, 0.128, 0.257 and 0.513)
+The frequency $f$ is set to 0.25, 0.5, 1 and 2 Hz (respectively $k =$ 0.064, 0.128, 0.257 and 0.513)
 
 \begin{figure}[h]
   \begin{center}
@@ -322,7 +322,7 @@ However the lift variation amplitude is more pronounced in those cases.
 \par Before using the GK model as a predictive tool, the time constants need to be found.
 This is done by trial and error.
 The two time constants are determined manually, and are tuned to produce the best results at the different frequencies tested.
-$\tau_1$ is found to be equal to 3.1 t+ (0.25s) and $\tau_2$ is 4.29 t+ (0.35s).
+$\tau_1$ is found to be equal to 3.1 t+ (0.25s) and $\tau_2$ is 4.29 t+ (0.35s), with $t+=\frac{c}{u}$ the convective time scale.
 
 
 \par The reason for the difference in behavior between the high and low frequencies is that at low frequencies the flow has the time to separate from the airfoil, this can be checked by the fact that state variable $x$ is driven by the time constant $\tau_1$.
@@ -474,7 +474,7 @@ This is done so that the bandwidth of the input signal is limited to reasonable 
   \label{fig:Pitching_random_Cd_12}
 \end{figure}
 
-\par The accuracy of these results means that this model could be used in real time during arbitrary pitching maneuvers.
+\par The accuracy of these results (see figures \ref{fig:Pitching_random_Cl_12} and \ref{fig:Pitching_random_Cd_12}) means that this model could be used in real time during arbitrary pitching maneuvers.
 This is potentially very useful since a lot of systems rely on the periodicity of the pitching motion to predict the lift and can be inaccurate in case of non periodic disturbances such as wind gusts changing the effective angle of attack.
 
 \par This model is producing accurate results that account for both the dynamic effects and the flow separation.
@@ -505,7 +505,7 @@ However the results were deemed not as good as simply moving the rear servo.
 The simultaneous motion of the two servos introduce a lot of vibrations, especially when small and slow motions are needed.
 This is due to the electric servos being based on stepper motors and the fact that the two servo rods are very close together.
 
-\par Attempts to move only the back servo (instead of the front) produced worst data than moving the back one.
+\par Attempts to move only the back servo (instead of the front) produced worse data than moving the back one.
 A possible explanation is that the front servo has to support the whole wing and sting assembly whereas the back one has a much lighter load.
 Under the higher load the servo positioning system is not as precise.
 

@@ -9,14 +9,14 @@ As said before the time scale used in the two models are different.
 To solve this issue the ratio of the two time constants are plotted (see figure \ref{fig:T_t+_ratio}) for a wide variety of flying objects.
 
 \begin{equation}
-  \frac{T}{t+}=\frac{V^*}{g} \cdot \frac{u}{c}
+  \frac{T_c}{t+}=\frac{V^*}{g} \cdot \frac{u}{c}
   \label{eqn:T_t+}
 \end{equation}
 
 Or if the aircraft flies near its optimal glide speed
 
 \begin{equation}
-  \frac{T}{t+}=\frac{{V^*}^2}{g \cdot c}
+  \frac{T_c}{t+}=\frac{{V^*}^2}{g \cdot c}
   \label{eqn:T_t+_ratio}
 \end{equation}
 
@@ -26,7 +26,7 @@ This ratio happens to be the Froude number.
   \begin{center}
     \scalebox{1}{\includegraphics{./Figures/froude.png}}
   \end{center}
-  \caption{T to t+ ratio for various flying objects}
+  \caption{$T_c$ to $t+$ ratio for various flying objects}
   \label{fig:T_t+_ratio}
 \end{figure}
 
@@ -46,9 +46,9 @@ The effects on the lift can divided into two categories.
 \par The first one is the time lag for the flow separation. 
 If the airfoil is pitched up fast enough, the flow doesn't have the time to separate and high values of $C_l$ can be attained.
 %Since during a typical gust negative and positive values are needed for the lift we can assume that the flow will reattach when the angle of attack is close to zero.
-If the flow separates, then behaviors like those in the periodic pitching around 12 degrees (see figure \ref{fig:Pitching_allcases_Cl_12}) will be seen.
+If the flow actually separates, then behaviors like those in the periodic pitching around 12 degrees (see figure \ref{fig:Pitching_allcases_Cl_12}) will be seen.
 
-\par The second effect occurs when high pitch rates are present.
+\par The second effect occurs when even higher pitch rates are present.
 In these cases the $\alpha - \tau_2 \dot{\alpha}$ term in the state variable equation \ref{eqn:state_variable} starts to be influenced by the $\dot{\alpha}$ term. 
 For example, for a 4 degrees amplitude sinusoidal pitching around a mean angle of attack of zero at a frequency of $k=0.5$ will produce unsteady effects as seen on the following figures \ref{fig:alpha_dalpha_vs_t} and \ref{fig:x_fast_pitching}.
 
@@ -96,7 +96,7 @@ It seems that for most optimization cases this effect is avoided.
   \label{fig:staircase_case}
 \end{figure}
 
-\par In those cases the algorithm attempts to ``game'' the GK model with this jerky pitch motion.
+\par In those cases the algorithm attempts to ``game'' the GK model with jerky pitch motions.
 Our theory is that this jerky motion avoids the decrease of the lift coefficient caused by high pitch rates by doing those for only short amount of time.
 These spikes in the pitch rate are too short to be able to influence the low pass equation regulating the value of $x$ and as such maintain higher lift coefficient than it would be possible with quasi-steady assumption.
 
@@ -123,7 +123,7 @@ This is a valuable clue on what the perfect pitch input should be, and if it is 
   \label{fig:WG_vs_TG_wt=1}
 \end{figure}
 
-\par The difference between the quasi-steady model and the unsteady one only appears close for $T_g<0.7$.
+\par The difference between the quasi-steady model and the unsteady one, as shown in figures \ref{fig:WG_vs_TG_wt=3} and \ref{fig:WG_vs_TG_wt=1}, only appears significant for $T_g<0.7$.
 This result is reassuring as it confirms that for long gusts ($T_g>0.7$ or $k<0.05$) the two models are equivalent.
 We can confirm that there are no unsteady effects active by looking at the $C_l$ versus $\alpha$ curve compared to the quasi-steady map, or even better $G$ the lift to drag ratio.
 On figure \ref{fig:G_vs_alpha_wt=1_Tg=1_GK.eps} it can be seen that the lift to drag ratio for $T_g=1$ is following the quasi-steady values.
@@ -141,7 +141,7 @@ This is true for both vertical and combined wind gusts, which indicates that thi
 
 \FloatBarrier
 
-\par Looking more closely at the results around $T_g=0.3$, we try to highlight the differences between the quasi-steady and the unsteady model.
+\par Looking more closely at the results around $T_g=0.3$, we try, in figures \ref{fig:alpha_vs_Tg_wt1} \ref{fig:alpha_vs_Tg_wt3} to highlight the differences between the quasi-steady and the unsteady model.
 First we can look at the optimization parameter $\alpha$ for both vertical and combined gusts.
 
 \begin{figure}[h]
@@ -202,7 +202,7 @@ To understand what happens we need to take a look at the $C_l$ versus $\alpha$ p
 As such, while everything was done to ensure the best results, it is possible that the solutions presented here are only a local, and not absolute minima.
 
 \Section{Influence of the phase in the unsteady model optimization}
-Similarly to the quasi-steady case, a sweep of the phase angles $\varphi$ is done for the combined gust cases of $T_g=0.5$ and $T_g=1$.
+Similarly to the quasi-steady case, a sweep of the phase angles $\varphi$ is done for the combined gust cases of $T_g=0.5$ and $T_g=1$ (see figure \ref{fig:alpha_Tg_Gk_phi_tg=1}.
 
 \begin{figure}[h]
   \centering
@@ -232,7 +232,7 @@ Even if care has been taken to test different initial conditions as the optimiza
 \Section{Limitations of the unsteady GK model}
 
 \Subsection{Considering the gusting and plunging component}
-One of the major issues with this optimization is that it misses are the unsteady effects due to gusting and plunging.
+One of the major issues with this optimization is that it misses the unsteady aerodynamic effects due to gusting flow and plunging of the airfoil.
 In our case we have major gusts present at the same time as the pitching motion.
 While the speed of the UAV changes too, the relative wind amplitude is in the order of 20\%.
 We know that gusts as gentle as 5\% of the free stream speed can have a large influence on the lift characteristics, and that the lift response to such gusts depends strongly on the frequency of the gusts.

@@ -2,18 +2,18 @@
 
 \Subsection{Trajectory optimization through wind gusts}
 The main challenge for electric small size unmanned aerial vehicle is the autonomy.
-Battery energy density is limited and can rapidly become a important part of the weight of vehicle.
+Battery energy density is limited and can rapidly become an important part of the weight of vehicle.
 Since most of the energy is used by the electric engine for propulsion optimizing the control laws and trajectory could have a dramatic effect on endurance. 
 With the progress in autonomous control software, successful attempts have been made by Allen \cite{flight_test_soaring_NASA} and Edwards \cite{flight_test_soaring_NCU} to extract energy from natural updrafts.
 These experiments have shown that a UAV can take advantage of localized vertical winds naturally produced by thermal convection.
 
-\par However, within an urban environment, such as the one mini and micro-UAV aircrafts are designed for, the gust's velovity profile is vastly different. 
-Wind blowing through an group of buildings produces turbulent conditions with both vertical and horizontal vortices.
+\par However, within an urban environment, such as the one mini and micro-UAV aircrafts are designed for, the gust's velocity profile is vastly different. 
+Wind blowing through a group of buildings produces turbulent conditions with both vertical and horizontal vortices.
 The turbulence levels can reach speeds representing a significant portion of micro-UAV's glide speed. 
 In flow fields such as this, the gusts encountered are both faster and arguably more complex than the ones due to thermal convection.
 
 \par The lack of low-order models for the unsteady aerodynamic effects means that all of the studies on trajectory optimization have been based on quasi-steady models to compute the aerodynamic forces.
-More computationally expensive models traditionally used for CFD are too unpractical considering the thousands of function evaluations needed for such algorithm.
+More computationally expensive models traditionally used for CFD are too impractical considering the thousands of function evaluations needed for such algorithm.
 To solve this problem, a low-order model capturing the unsteady behavior of the flow over the aircraft is needed.
 Additionally this model needs to be able to handle flow separation and airfoil stalling since the maneuvers required for energy extraction can be relatively violent and often involve high angle of attack.
 
@@ -38,7 +38,7 @@ So far it seems that the use of this model has been limited to the lift coeffici
 The latter are often exploited by seabirds such as albatrosses.
 
 \par Lissaman conducted a study for 3D trajectories in differently shaped wind gradients close to the ground \cite{lissaman2005wind} as well as 2D trajectories through sinusoidal wind gusts \cite{Lissaman2007neutral}. 
-His optimization is performed on a non-dimensional set of equation \cite{chakrabarty2010flight} that has been reused in this study.
+His optimization is performed on a non-dimensional set of equations \cite{chakrabarty2010flight} that has been reused in this study.
 He also uses different kind of profiles for the wind gradient in order to represent more accurately real wind gradients.
 The approach pioneered by Lissaman forms the basis of the following optimization study.
 
@@ -46,4 +46,4 @@ The approach pioneered by Lissaman forms the basis of the following optimization
 Airfoil interactions with more complex gusts structures such as the ones produced by vortices shed by upstream obstacles have also been studied with CFD tools by Golubev \cite{golubev2010high} \cite{golubev2010parametric}.
 
 \par Traditional low order models that try to circumvent the use of CFD are often based on Theodorsen's \cite{theodorsen} and Greenberg's \cite{green} derivations of the Navier-Stokes equations for potential flow.
-However experimental study of flow separation for pitching airfoils was started even earlier by researcher like Katzmayr in 1922 \cite{katz}.
+However experimental study of flow separation for pitching airfoils was started even earlier by Katzmayr in 1922 \cite{katz}.
